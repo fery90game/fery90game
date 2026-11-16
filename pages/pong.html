@@ -1,0 +1,1070 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#080812">
+  <meta name="description" content="بازی آنلاین Pong Neon Arena در Fery90Game؛ رقابت نئونی با هوش مصنوعی یا بازی دونفره روی یک دستگاه.">
+  <meta name="robots" content="index, follow">
+  <title>Pong Neon Arena | بازی آنلاین پونگ - Fery90Game</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    .pong-page {
+      --bg: #080812;
+      --panel: #111120;
+      --border: rgba(139, 92, 246, .25);
+      --purple: #a78bfa;
+      --blue: #38bdf8;
+      --pink: #fb7185;
+      --text: #f5f3ff;
+      --muted: #aaa7c1;
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse at 15% 0%, rgba(124,58,237,.18), transparent 38%),
+        radial-gradient(ellipse at 90% 30%, rgba(14,165,233,.09), transparent 32%),
+        var(--bg);
+      color: var(--text);
+      font-family: "Vazirmatn", sans-serif;
+      line-height: 1.8;
+    }
+
+    .pong-page *, .pong-page *::before, .pong-page *::after {
+      box-sizing: border-box;
+    }
+
+    .pong-container {
+      width: min(1100px, calc(100% - 30px));
+      margin-inline: auto;
+    }
+
+    .pong-header {
+      border-bottom: 1px solid var(--border);
+      background: rgba(8,8,18,.9);
+    }
+
+    .pong-header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      padding-block: 14px;
+    }
+
+    .pong-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 900;
+      font-size: 1.1rem;
+    }
+
+    .pong-brand-icon {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 13px;
+      background: linear-gradient(135deg,#7c3aed,#2563eb);
+    }
+
+    .pong-back {
+      padding: 8px 13px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--purple);
+      text-decoration: none;
+      font-size: .9rem;
+    }
+
+    .pong-hero {
+      padding-block: 36px 22px;
+      text-align: center;
+    }
+
+    .pong-eyebrow {
+      display: inline-block;
+      padding: 4px 12px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--purple);
+      background: rgba(167,139,250,.06);
+      font-size: .82rem;
+    }
+
+    .pong-hero h1 {
+      margin: 12px 0 5px;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 900;
+      line-height: 1.4;
+    }
+
+    .pong-gradient {
+      color: var(--blue);
+      text-shadow: 0 0 28px rgba(56,189,248,.3);
+    }
+
+    .pong-hero p {
+      margin: 0 auto;
+      max-width: 650px;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .pong-game-panel {
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      background: linear-gradient(145deg,rgba(21,20,39,.96),rgba(11,11,24,.97));
+      box-shadow: 0 20px 65px rgba(0,0,0,.28);
+    }
+
+    .pong-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 15px;
+    }
+
+    .pong-modes {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .pong-btn, .pong-select {
+      min-height: 42px;
+      padding: 8px 13px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      background: #17162a;
+      font: inherit;
+      font-size: .88rem;
+      cursor: pointer;
+      transition: border-color .18s, transform .18s, background .18s;
+    }
+
+    .pong-btn:hover {
+      border-color: var(--purple);
+    }
+
+    .pong-btn:active {
+      transform: scale(.97);
+    }
+
+    .pong-btn.active, .pong-btn.primary {
+      border-color: transparent;
+      background: linear-gradient(120deg,#7c3aed,#4338ca);
+    }
+
+    .pong-select {
+      max-width: 100%;
+    }
+
+    .pong-select option {
+      color: #fff;
+      background: #111120;
+    }
+
+    .pong-scoreboard {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+      text-align: center;
+    }
+
+    .pong-player-label {
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
+    .pong-score {
+      font-size: clamp(2rem,6vw,3.1rem);
+      font-weight: 900;
+      line-height: 1.25;
+      font-variant-numeric: tabular-nums;
+    }
+
+    #scoreLeft {
+      color: var(--blue);
+      text-shadow: 0 0 25px rgba(56,189,248,.3);
+    }
+
+    #scoreRight {
+      color: var(--pink);
+      text-shadow: 0 0 25px rgba(251,113,133,.25);
+    }
+
+    .pong-score-separator {
+      color: #716b8e;
+      font-size: 1.2rem;
+      font-weight: 900;
+    }
+
+    .pong-court-wrap {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(139,92,246,.35);
+      border-radius: 14px;
+      background: #070711;
+      box-shadow: inset 0 0 40px rgba(124,58,237,.07), 0 0 25px rgba(124,58,237,.07);
+    }
+
+    #pongCanvas {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      touch-action: none;
+      cursor: crosshair;
+    }
+
+    .pong-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px;
+      background: rgba(5,5,16,.66);
+      backdrop-filter: blur(5px);
+      text-align: center;
+    }
+
+    .pong-overlay[hidden] {
+      display: none;
+    }
+
+    .pong-overlay-card {
+      max-width: 440px;
+      padding: 23px;
+      border: 1px solid rgba(167,139,250,.35);
+      border-radius: 18px;
+      background: rgba(15,14,32,.94);
+      box-shadow: 0 0 50px rgba(124,58,237,.15);
+    }
+
+    .pong-overlay-card h2 {
+      margin: 0 0 8px;
+      font-size: clamp(1.3rem,3vw,2rem);
+      font-weight: 900;
+    }
+
+    .pong-overlay-card p {
+      margin: 0 0 15px;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .pong-bottom-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 15px;
+    }
+
+    .pong-status {
+      color: var(--muted);
+      font-size: .86rem;
+    }
+
+    .pong-status strong {
+      color: var(--purple);
+    }
+
+    .pong-instructions {
+      display: grid;
+      grid-template-columns: repeat(3,minmax(0,1fr));
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .pong-instruction {
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      background: rgba(17,17,32,.7);
+    }
+
+    .pong-instruction strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: .9rem;
+    }
+
+    .pong-instruction span {
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
+    .pong-mobile-controls {
+      display: none;
+      gap: 10px;
+      margin-top: 13px;
+    }
+
+    .pong-mobile-group {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      min-width: 0;
+      padding: 9px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(17,17,32,.8);
+    }
+
+    .pong-mobile-group span {
+      color: var(--muted);
+      font-size: .75rem;
+    }
+
+    .pong-touch-btn {
+      width: 43px;
+      height: 43px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: white;
+      background: #201b3c;
+      font-size: 1.15rem;
+      touch-action: none;
+      user-select: none;
+    }
+
+    .pong-about {
+      padding-block: 28px 50px;
+    }
+
+    .pong-about h2 {
+      margin: 0 0 8px;
+      font-size: 1.4rem;
+      font-weight: 900;
+    }
+
+    .pong-about p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    .pong-footer {
+      padding-block: 20px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: .85rem;
+    }
+
+    .pong-footer-inner {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .pong-footer a {
+      color: var(--purple);
+      text-decoration: none;
+    }
+
+    @media(max-width:680px) {
+      .pong-game-panel {
+        padding: 10px;
+        border-radius: 15px;
+      }
+
+      .pong-toolbar {
+        align-items: stretch;
+      }
+
+      .pong-modes {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .pong-modes .pong-btn {
+        padding-inline: 8px;
+      }
+
+      .pong-toolbar > .pong-select {
+        width: 100%;
+      }
+
+      .pong-instructions {
+        grid-template-columns: 1fr;
+      }
+
+      .pong-instruction {
+        padding: 11px 13px;
+      }
+
+      .pong-mobile-controls {
+        display: flex;
+      }
+
+      .pong-bottom-controls {
+        align-items: stretch;
+      }
+
+      .pong-bottom-controls .pong-btn {
+        flex: 1;
+      }
+
+      .pong-overlay-card {
+        padding: 14px;
+      }
+
+      .pong-overlay-card p {
+        font-size: .8rem;
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      .pong-page *, .pong-page *::before, .pong-page *::after {
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="pong-page">
+  <header class="pong-header">
+    <div class="pong-container pong-header-inner">
+      <a class="pong-brand" href="../index.html">
+        <span class="pong-brand-icon" aria-hidden="true">🎮</span>
+        <span>Fery90Game</span>
+      </a>
+      <a class="pong-back" href="gaming.html">← بازگشت به بازی‌ها</a>
+    </div>
+  </header>
+
+  <main class="pong-container">
+    <section class="pong-hero">
+      <span class="pong-eyebrow">ARCADE GAME • 01</span>
+      <h1>PONG <span class="pong-gradient">NEON ARENA</span></h1>
+      <p>
+        رفلکس خودت رو امتحان کن! توپ رو برگردون، از حریف امتیاز بگیر
+        و قهرمان زمین نئونی شو.
+      </p>
+    </section>
+
+    <section class="pong-game-panel" aria-label="بازی پونگ">
+      <div class="pong-toolbar">
+        <div class="pong-modes" aria-label="انتخاب حالت بازی">
+          <button class="pong-btn active" id="singleMode" type="button">🤖 تک‌نفره</button>
+          <button class="pong-btn" id="twoMode" type="button">👥 دونفره</button>
+        </div>
+
+        <select class="pong-select" id="difficulty" aria-label="سختی هوش مصنوعی">
+          <option value="easy">سختی: آسان</option>
+          <option value="normal" selected>سختی: معمولی</option>
+          <option value="hard">سختی: سخت</option>
+        </select>
+      </div>
+
+      <div class="pong-scoreboard" aria-live="polite">
+        <div>
+          <div class="pong-player-label" id="leftLabel">بازیکن ۱</div>
+          <div class="pong-score" id="scoreLeft">0</div>
+        </div>
+        <div class="pong-score-separator">VS</div>
+        <div>
+          <div class="pong-player-label" id="rightLabel">ربات</div>
+          <div class="pong-score" id="scoreRight">0</div>
+        </div>
+      </div>
+
+      <div class="pong-court-wrap">
+        <canvas id="pongCanvas" width="960" height="540"
+                aria-label="زمین بازی پونگ. برای کنترل در حالت تک‌نفره، انگشت یا نشانگر را در نیمه چپ زمین حرکت بده.">
+        </canvas>
+
+        <div class="pong-overlay" id="gameOverlay">
+          <div class="pong-overlay-card">
+            <h2 id="overlayTitle">آماده‌ای؟</h2>
+            <p id="overlayText">اولین کسی که به ۷ امتیاز برسه، برنده مسابقه است.</p>
+            <button class="pong-btn primary" id="startButton" type="button">شروع مسابقه ⚡</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="pong-mobile-controls" id="mobileControls" hidden>
+        <div class="pong-mobile-group">
+          <span>بازیکن ۱</span>
+          <button class="pong-touch-btn" data-control="w" aria-label="بازیکن یک بالا">▲</button>
+          <button class="pong-touch-btn" data-control="s" aria-label="بازیکن یک پایین">▼</button>
+        </div>
+        <div class="pong-mobile-group">
+          <span>بازیکن ۲</span>
+          <button class="pong-touch-btn" data-control="up" aria-label="بازیکن دو بالا">▲</button>
+          <button class="pong-touch-btn" data-control="down" aria-label="بازیکن دو پایین">▼</button>
+        </div>
+      </div>
+
+      <div class="pong-bottom-controls">
+        <span class="pong-status" id="gameStatus">وضعیت: <strong>آماده شروع</strong></span>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="pong-btn" id="pauseButton" type="button" disabled>⏸ توقف</button>
+          <button class="pong-btn" id="restartButton" type="button">↻ بازی جدید</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="pong-instructions" aria-label="راهنمای بازی">
+      <div class="pong-instruction">
+        <strong>⌨️ کنترل بازیکن اول</strong>
+        <span>کلیدهای W و S برای حرکت بالا و پایین. در حالت تک‌نفره، نشانگر یا انگشت را در نیمه چپ زمین حرکت بده.</span>
+      </div>
+      <div class="pong-instruction">
+        <strong>🎯 کنترل بازیکن دوم</strong>
+        <span>در حالت دونفره از کلیدهای ↑ و ↓ استفاده کن. روی موبایل هم دکمه‌های لمسی در دسترس‌اند.</span>
+      </div>
+      <div class="pong-instruction">
+        <strong>🏆 هدف مسابقه</strong>
+        <span>با برگرداندن توپ از کنار حریف عبور کن. اولین بازیکنی که به ۷ امتیاز برسد، برنده است.</span>
+      </div>
+    </section>
+
+    <section class="pong-about">
+      <h2>درباره Pong Neon Arena</h2>
+      <p>
+        پونگ یکی از بازی‌های کلاسیک آرکید است. در این نسخه مرورگری Fery90Game،
+        می‌توانی با ربات رقابت کنی یا با دوستت روی یک دستگاه بازی کنی.
+        بازی بدون نصب اجرا می‌شود و برای اجرا به سرور اختصاصی نیاز ندارد.
+      </p>
+    </section>
+  </main>
+
+  <footer class="pong-footer">
+    <div class="pong-container pong-footer-inner">
+      <span>© <span id="pongYear"></span> Fery90Game</span>
+      <a href="gaming.html">بازی‌های بیشتر</a>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const canvas = document.getElementById("pongCanvas");
+      const ctx = canvas.getContext("2d");
+
+      const overlay = document.getElementById("gameOverlay");
+      const overlayTitle = document.getElementById("overlayTitle");
+      const overlayText = document.getElementById("overlayText");
+      const startButton = document.getElementById("startButton");
+      const pauseButton = document.getElementById("pauseButton");
+      const restartButton = document.getElementById("restartButton");
+      const singleModeButton = document.getElementById("singleMode");
+      const twoModeButton = document.getElementById("twoMode");
+      const difficultySelect = document.getElementById("difficulty");
+      const leftLabel = document.getElementById("leftLabel");
+      const rightLabel = document.getElementById("rightLabel");
+      const scoreLeft = document.getElementById("scoreLeft");
+      const scoreRight = document.getElementById("scoreRight");
+      const gameStatus = document.getElementById("gameStatus");
+      const mobileControls = document.getElementById("mobileControls");
+
+      const W = canvas.width;
+      const H = canvas.height;
+      const WIN_SCORE = 7;
+      const PADDLE_H = 104;
+      const PADDLE_W = 13;
+      const BALL_R = 9;
+
+      let mode = "single";
+      let phase = "ready";
+      let leftScore = 0;
+      let rightScore = 0;
+      let lastTime = 0;
+      let animationId = 0;
+      let serveTimer = 0;
+      let particles = [];
+      let trail = [];
+      let keys = Object.create(null);
+      let touchHeld = Object.create(null);
+      let pointerInside = false;
+      let pointerY = H / 2;
+
+      const left = { x: 34, y: H / 2 - PADDLE_H / 2, w: PADDLE_W, h: PADDLE_H };
+      const right = { x: W - 34 - PADDLE_W, y: H / 2 - PADDLE_H / 2, w: PADDLE_W, h: PADDLE_H };
+      const ball = { x: W / 2, y: H / 2, vx: 0, vy: 0, r: BALL_R, speed: 390 };
+
+      const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+      const random = (min, max) => min + Math.random() * (max - min);
+
+      function updateScore() {
+        scoreLeft.textContent = leftScore;
+        scoreRight.textContent = rightScore;
+      }
+
+      function setStatus(message) {
+        gameStatus.innerHTML = "وضعیت: <strong></strong>";
+        gameStatus.querySelector("strong").textContent = message;
+      }
+
+      function resetBall(direction = Math.random() < 0.5 ? -1 : 1) {
+        ball.x = W / 2;
+        ball.y = H / 2;
+        ball.speed = 390;
+        const angle = random(-0.55, 0.55);
+        ball.vx = Math.cos(angle) * ball.speed * direction;
+        ball.vy = Math.sin(angle) * ball.speed;
+        trail = [];
+      }
+
+      function resetMatch() {
+        cancelAnimationFrame(animationId);
+        animationId = 0;
+        lastTime = 0;
+        leftScore = 0;
+        rightScore = 0;
+        particles = [];
+        trail = [];
+        keys = Object.create(null);
+        touchHeld = Object.create(null);
+        left.y = H / 2 - left.h / 2;
+        right.y = H / 2 - right.h / 2;
+        resetBall(Math.random() < 0.5 ? -1 : 1);
+        phase = "ready";
+        serveTimer = 0;
+        updateScore();
+        overlay.hidden = false;
+        overlayTitle.textContent = "آماده‌ای؟";
+        overlayText.textContent = "اولین کسی که به ۷ امتیاز برسه، برنده مسابقه است.";
+        startButton.textContent = "شروع مسابقه ⚡";
+        pauseButton.disabled = true;
+        pauseButton.textContent = "⏸ توقف";
+        setStatus("آماده شروع");
+        draw();
+      }
+
+      function startMatch() {
+        if (phase === "playing") return;
+
+        if (phase === "finished") {
+          resetMatch();
+        }
+
+        overlay.hidden = true;
+        phase = "playing";
+        pauseButton.disabled = false;
+        pauseButton.textContent = "⏸ توقف";
+        setStatus("در حال بازی");
+
+        if (!ball.vx && !ball.vy) resetBall();
+        lastTime = 0;
+        cancelAnimationFrame(animationId);
+        animationId = requestAnimationFrame(loop);
+      }
+
+      function togglePause() {
+        if (phase === "playing") {
+          phase = "paused";
+          cancelAnimationFrame(animationId);
+          animationId = 0;
+          overlay.hidden = false;
+          overlayTitle.textContent = "بازی متوقف شد";
+          overlayText.textContent = "هر وقت آماده بودی، ادامه مسابقه رو بزن.";
+          startButton.textContent = "▶ ادامه بازی";
+          pauseButton.textContent = "▶ ادامه";
+          setStatus("متوقف");
+          draw();
+        } else if (phase === "paused") {
+          startMatch();
+        }
+      }
+
+      function setMode(nextMode) {
+        mode = nextMode;
+        singleModeButton.classList.toggle("active", mode === "single");
+        twoModeButton.classList.toggle("active", mode === "two");
+        rightLabel.textContent = mode === "single" ? "ربات" : "بازیکن ۲";
+        difficultySelect.disabled = mode === "two";
+        mobileControls.hidden = mode !== "two";
+        resetMatch();
+      }
+
+      function spawnParticles(x, y, color, amount = 14) {
+        for (let i = 0; i < amount; i++) {
+          const angle = Math.random() * Math.PI * 2;
+          const speed = random(45, 230);
+          particles.push({
+            x, y,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed,
+            life: random(.25, .7),
+            maxLife: .7,
+            size: random(2, 5),
+            color
+          });
+        }
+      }
+
+      function updateParticles(dt) {
+        for (let i = particles.length - 1; i >= 0; i--) {
+          const p = particles[i];
+          p.x += p.vx * dt;
+          p.y += p.vy * dt;
+          p.life -= dt;
+          p.vx *= Math.pow(.2, dt);
+          p.vy *= Math.pow(.2, dt);
+          if (p.life <= 0) particles.splice(i, 1);
+        }
+      }
+
+      function drawParticles() {
+        for (const p of particles) {
+          ctx.globalAlpha = clamp(p.life / p.maxLife, 0, 1);
+          ctx.fillStyle = p.color;
+          ctx.shadowBlur = 12;
+          ctx.shadowColor = p.color;
+          ctx.fillRect(p.x, p.y, p.size, p.size);
+        }
+        ctx.globalAlpha = 1;
+        ctx.shadowBlur = 0;
+      }
+
+      function drawCourt() {
+        const bg = ctx.createLinearGradient(0, 0, W, H);
+        bg.addColorStop(0, "#080817");
+        bg.addColorStop(.5, "#0c0c20");
+        bg.addColorStop(1, "#100918");
+        ctx.fillStyle = bg;
+        ctx.fillRect(0, 0, W, H);
+
+        ctx.save();
+        ctx.strokeStyle = "rgba(139,92,246,.055)";
+        ctx.lineWidth = 1;
+        for (let x = 0; x < W; x += 40) {
+          ctx.beginPath();
+          ctx.moveTo(x, 0);
+          ctx.lineTo(x, H);
+          ctx.stroke();
+        }
+        for (let y = 0; y < H; y += 40) {
+          ctx.beginPath();
+          ctx.moveTo(0, y);
+          ctx.lineTo(W, y);
+          ctx.stroke();
+        }
+        ctx.restore();
+
+        ctx.save();
+        ctx.setLineDash([12, 14]);
+        ctx.strokeStyle = "rgba(167,139,250,.35)";
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(W / 2, 0);
+        ctx.lineTo(W / 2, H);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        ctx.beginPath();
+        ctx.arc(W / 2, H / 2, 72, 0, Math.PI * 2);
+        ctx.strokeStyle = "rgba(167,139,250,.17)";
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        ctx.fillStyle = "rgba(167,139,250,.3)";
+        ctx.beginPath();
+        ctx.arc(W / 2, H / 2, 4, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+
+        ctx.fillStyle = "rgba(56,189,248,.05)";
+        ctx.fillRect(0, 0, 7, H);
+        ctx.fillStyle = "rgba(251,113,133,.05)";
+        ctx.fillRect(W - 7, 0, 7, H);
+      }
+
+      function drawPaddle(paddle, color) {
+        ctx.save();
+        ctx.shadowBlur = 24;
+        ctx.shadowColor = color;
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.roundRect(paddle.x, paddle.y, paddle.w, paddle.h, 7);
+        ctx.fill();
+
+        ctx.shadowBlur = 0;
+        ctx.fillStyle = "rgba(255,255,255,.3)";
+        ctx.beginPath();
+        ctx.roundRect(paddle.x + 3, paddle.y + 8, 2, paddle.h - 16, 2);
+        ctx.fill();
+        ctx.restore();
+      }
+
+      function drawBall() {
+        for (let i = 0; i < trail.length; i++) {
+          const t = trail[i];
+          const alpha = (i + 1) / trail.length * .28;
+          ctx.globalAlpha = alpha;
+          ctx.fillStyle = "#e9d5ff";
+          ctx.beginPath();
+          ctx.arc(t.x, t.y, ball.r * ((i + 1) / trail.length), 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.globalAlpha = 1;
+
+        const glow = ctx.createRadialGradient(ball.x, ball.y, 0, ball.x, ball.y, 28);
+        glow.addColorStop(0, "rgba(255,255,255,.95)");
+        glow.addColorStop(.3, "rgba(167,139,250,.65)");
+        glow.addColorStop(1, "rgba(124,58,237,0)");
+        ctx.fillStyle = glow;
+        ctx.beginPath();
+        ctx.arc(ball.x, ball.y, 28, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.save();
+        ctx.shadowBlur = 22;
+        ctx.shadowColor = "#c4b5fd";
+        ctx.fillStyle = "#ffffff";
+        ctx.beginPath();
+        ctx.arc(ball.x, ball.y, ball.r, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+
+      function draw() {
+        drawCourt();
+        drawPaddle(left, "#38bdf8");
+        drawPaddle(right, "#fb7185");
+        drawBall();
+        drawParticles();
+      }
+
+      function movePaddles(dt) {
+        const speed = 500;
+        if (keys["w"] || keys["W"] || touchHeld.w) left.y -= speed * dt;
+        if (keys["s"] || keys["S"] || touchHeld.s) left.y += speed * dt;
+
+        if (mode === "two") {
+          if (keys["ArrowUp"] || touchHeld.up) right.y -= speed * dt;
+          if (keys["ArrowDown"] || touchHeld.down) right.y += speed * dt;
+        } else {
+          const difficulty = difficultySelect.value;
+          const factor = difficulty === "easy" ? .75 : difficulty === "hard" ? 1.12 : .92;
+          const reaction = difficulty === "easy" ? 125 : difficulty === "hard" ? 30 : 65;
+          const target = ball.y + Math.sin(ball.x / 90) * reaction;
+          const center = right.y + right.h / 2;
+          const delta = target - center;
+          right.y += clamp(delta, -speed * factor * dt, speed * factor * dt);
+        }
+
+        left.y = clamp(left.y, 0, H - left.h);
+        right.y = clamp(right.y, 0, H - right.h);
+      }
+
+      function scorePoint(leftWonPoint) {
+        if (leftWonPoint) {
+          leftScore++;
+          spawnParticles(W - 20, ball.y, "#38bdf8", 20);
+          resetBall(1);
+        } else {
+          rightScore++;
+          spawnParticles(20, ball.y, "#fb7185", 20);
+          resetBall(-1);
+        }
+
+        updateScore();
+
+        if (leftScore >= WIN_SCORE || rightScore >= WIN_SCORE) {
+          phase = "finished";
+          cancelAnimationFrame(animationId);
+          animationId = 0;
+          overlay.hidden = false;
+
+          const leftWon = leftScore > rightScore;
+          overlayTitle.textContent = leftWon
+            ? (mode === "single" ? "🏆 ربات رو شکست دادی!" : "🏆 بازیکن اول برنده شد!")
+            : (mode === "single" ? "🤖 این بار ربات برنده شد!" : "🏆 بازیکن دوم برنده شد!");
+
+          overlayText.textContent = `نتیجه نهایی: ${leftScore} - ${rightScore}. برای یک مسابقه جدید دوباره شروع کن.`;
+          startButton.textContent = "مسابقه دوباره 🔄";
+          pauseButton.disabled = true;
+          setStatus("پایان مسابقه");
+        } else {
+          serveTimer = .7;
+          setStatus("امتیاز ثبت شد");
+        }
+      }
+
+      function updateBall(dt) {
+        if (serveTimer > 0) {
+          serveTimer -= dt;
+          return;
+        }
+
+        ball.x += ball.vx * dt;
+        ball.y += ball.vy * dt;
+
+        trail.push({ x: ball.x, y: ball.y });
+        if (trail.length > 10) trail.shift();
+
+        if (ball.y - ball.r < 0) {
+          ball.y = ball.r;
+          ball.vy = Math.abs(ball.vy);
+          spawnParticles(ball.x, ball.y, "#c4b5fd", 5);
+        } else if (ball.y + ball.r > H) {
+          ball.y = H - ball.r;
+          ball.vy = -Math.abs(ball.vy);
+          spawnParticles(ball.x, ball.y, "#c4b5fd", 5);
+        }
+
+        const hitLeft =
+          ball.vx < 0 &&
+          ball.x - ball.r <= left.x + left.w &&
+          ball.x + ball.r >= left.x &&
+          ball.y + ball.r >= left.y &&
+          ball.y - ball.r <= left.y + left.h;
+
+        const hitRight =
+          ball.vx > 0 &&
+          ball.x + ball.r >= right.x &&
+          ball.x - ball.r <= right.x + right.w &&
+          ball.y + ball.r >= right.y &&
+          ball.y - ball.r <= right.y + right.h;
+
+        if (hitLeft) {
+          ball.x = left.x + left.w + ball.r;
+          bounce(left);
+          spawnParticles(ball.x, ball.y, "#38bdf8", 12);
+        } else if (hitRight) {
+          ball.x = right.x - ball.r;
+          bounce(right);
+          spawnParticles(ball.x, ball.y, "#fb7185", 12);
+        }
+
+        if (ball.x + ball.r < 0) {
+          scorePoint(false);
+        } else if (ball.x - ball.r > W) {
+          scorePoint(true);
+        }
+      }
+
+      function bounce(paddle) {
+        const relative = (ball.y - (paddle.y + paddle.h / 2)) / (paddle.h / 2);
+        const angle = clamp(relative, -1, 1) * 1.05;
+        const direction = paddle === left ? 1 : -1;
+        ball.speed = Math.min(ball.speed + 22, 720);
+        ball.vx = Math.cos(angle) * ball.speed * direction;
+        ball.vy = Math.sin(angle) * ball.speed;
+      }
+
+      function loop(timestamp) {
+        if (phase !== "playing") return;
+
+        const dt = lastTime ? Math.min((timestamp - lastTime) / 1000, .025) : .016;
+        lastTime = timestamp;
+
+        movePaddles(dt);
+        updateBall(dt);
+        updateParticles(dt);
+        draw();
+
+        if (phase === "playing") {
+          animationId = requestAnimationFrame(loop);
+        }
+      }
+
+      function getCanvasPoint(event) {
+        const rect = canvas.getBoundingClientRect();
+        return {
+          x: (event.clientX - rect.left) / rect.width * W,
+          y: (event.clientY - rect.top) / rect.height * H
+        };
+      }
+
+      canvas.addEventListener("pointermove", event => {
+        const point = getCanvasPoint(event);
+        pointerInside = true;
+        pointerY = point.y;
+
+        if (mode === "single" && phase === "playing" && point.x < W * .58) {
+          left.y = clamp(pointerY - left.h / 2, 0, H - left.h);
+        }
+      });
+
+      canvas.addEventListener("pointerleave", () => {
+        pointerInside = false;
+      });
+
+      window.addEventListener("keydown", event => {
+        if (["ArrowUp", "ArrowDown", " "].includes(event.key)) {
+          event.preventDefault();
+        }
+
+        keys[event.key] = true;
+
+        if (event.key === " " && !event.repeat) {
+          if (phase === "ready" || phase === "paused") startMatch();
+          else if (phase === "playing") togglePause();
+        }
+
+        if (event.key === "Escape" && phase === "playing") {
+          togglePause();
+        }
+      });
+
+      window.addEventListener("keyup", event => {
+        keys[event.key] = false;
+      });
+
+      window.addEventListener("blur", () => {
+        keys = Object.create(null);
+        touchHeld = Object.create(null);
+        if (phase === "playing") togglePause();
+      });
+
+      document.querySelectorAll(".pong-touch-btn").forEach(button => {
+        const control = button.dataset.control;
+
+        button.addEventListener("pointerdown", event => {
+          event.preventDefault();
+          touchHeld[control] = true;
+          button.setPointerCapture?.(event.pointerId);
+        });
+
+        const release = event => {
+          event.preventDefault();
+          touchHeld[control] = false;
+        };
+
+        button.addEventListener("pointerup", release);
+        button.addEventListener("pointercancel", release);
+        button.addEventListener("lostpointercapture", () => {
+          touchHeld[control] = false;
+        });
+      });
+
+      startButton.addEventListener("click", startMatch);
+      pauseButton.addEventListener("click", togglePause);
+      restartButton.addEventListener("click", resetMatch);
+      singleModeButton.addEventListener("click", () => setMode("single"));
+      twoModeButton.addEventListener("click", () => setMode("two"));
+      difficultySelect.addEventListener("change", () => {
+        if (mode === "single") setStatus("سختی تغییر کرد");
+      });
+
+      document.getElementById("pongYear").textContent = new Date().getFullYear();
+
+      resetMatch();
+    })();
+  </script>
+</body>
+</html>

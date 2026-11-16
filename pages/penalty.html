@@ -1,0 +1,729 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#090811">
+<meta name="description" content="بازی پنالتی رباتی در Fery90Game؛ یک بازی مرورگری سرگرم‌کننده با فضای نئونی. مهارتت را در ضربات پنالتی امتحان کن.">
+<title>پنالتی رباتی | Fery90Game</title>
+<style>
+:root {
+    color-scheme: dark;
+    --bg: #090811;
+    --panel: #141124;
+    --border: rgba(190,166,255,.18);
+    --purple: #a78bfa;
+    --blue: #60a5fa;
+    --text: #f6f3ff;
+    --muted: #aaa4c1;
+}
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    min-height: 100vh;
+    background:
+        radial-gradient(ellipse at 50% 0%,rgba(124,58,237,.18),transparent 50%),
+        var(--bg);
+    color: var(--text);
+    font-family: Tahoma, Arial, sans-serif;
+}
+button, select { font: inherit; }
+button { cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+.container { width: min(1100px, calc(100% - 28px)); margin: auto; }
+.topbar {
+    display:flex; align-items:center; justify-content:space-between;
+    gap:14px; padding:19px 0; border-bottom:1px solid var(--border);
+}
+.brand { font-size:1.15rem; font-weight:900; }
+.brand span { color:var(--purple); }
+.back-link { color:var(--muted); font-size:.85rem; }
+.back-link:hover { color:var(--purple); }
+.hero { padding:32px 0 22px; text-align:center; }
+.eyebrow {
+    color:var(--purple); font-size:.75rem; font-weight:bold;
+    letter-spacing:.12em;
+}
+h1 { margin:12px 0; font-size:clamp(1.8rem,5vw,3rem); }
+.hero p { margin:0 auto; max-width:650px; color:var(--muted); line-height:2; }
+.game-shell {
+    overflow:hidden; border:1px solid var(--border); border-radius:22px;
+    background:rgba(20,17,36,.94);
+    box-shadow:0 22px 70px rgba(0,0,0,.28);
+}
+.scoreboard {
+    display:grid; grid-template-columns:repeat(3,1fr);
+    gap:8px; padding:15px;
+    border-bottom:1px solid var(--border);
+}
+.stat {
+    text-align:center; padding:10px 5px; border-radius:12px;
+    background:rgba(9,8,17,.7);
+}
+.stat strong { display:block; font-size:1.5rem; color:var(--purple); }
+.stat span { color:var(--muted); font-size:.75rem; }
+.canvas-wrap { position:relative; background:#101b29; }
+canvas { display:block; width:100%; height:auto; aspect-ratio:3/2; }
+.game-message {
+    min-height:57px; display:flex; align-items:center; justify-content:center;
+    padding:12px 15px; text-align:center; line-height:1.8;
+    font-size:.9rem; color:var(--text);
+}
+.game-message.success { color:#86efac; }
+.game-message.fail { color:#fca5a5; }
+.controls { padding:18px; border-top:1px solid var(--border); }
+.control-title { text-align:center; margin:0 0 13px; font-size:.95rem; }
+.direction-grid {
+    display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:9px; max-width:560px; margin:0 auto;
+}
+.direction {
+    min-height:56px; padding:9px 4px; border:1px solid var(--border);
+    border-radius:12px; background:#0e0b19; color:var(--text);
+    transition:border-color .15s,background .15s,transform .15s;
+}
+.direction:hover:not(:disabled) {
+    border-color:var(--purple); background:rgba(124,58,237,.15);
+}
+.direction.selected {
+    border-color:var(--purple); background:rgba(124,58,237,.24);
+    box-shadow:0 0 0 2px rgba(167,139,250,.12);
+}
+.direction:disabled { opacity:.5; cursor:not-allowed; }
+.direction .arrow { display:block; font-size:1.25rem; margin-bottom:4px; }
+.direction small { color:var(--muted); font-size:.7rem; }
+.main-actions {
+    display:flex; flex-wrap:wrap; justify-content:center; gap:10px;
+    margin-top:15px;
+}
+.btn {
+    min-height:47px; padding:11px 21px; border:1px solid var(--border);
+    border-radius:12px; color:var(--text); background:#201a32;
+}
+.btn-primary {
+    border-color:transparent; color:#fff;
+    background:linear-gradient(100deg,#7c3aed,#4f46e5);
+    font-weight:bold;
+}
+.btn-primary:hover:not(:disabled) { filter:brightness(1.13); }
+.btn-secondary:hover:not(:disabled) { border-color:var(--purple); }
+.btn:disabled { opacity:.45; cursor:not-allowed; }
+.help {
+    display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:12px; margin:18px 0 38px;
+}
+.help article {
+    padding:17px; border:1px solid var(--border);
+    border-radius:15px; background:rgba(20,17,36,.75);
+}
+.help b { display:block; margin-bottom:8px; font-size:.9rem; }
+.help p { margin:0; color:var(--muted); font-size:.8rem; line-height:1.9; }
+footer {
+    padding:22px 0; border-top:1px solid var(--border);
+    color:var(--muted); font-size:.8rem; text-align:center;
+}
+button:focus-visible,a:focus-visible {
+    outline:2px solid var(--purple); outline-offset:3px;
+}
+@media(max-width:600px) {
+    .container { width:calc(100% - 18px); }
+    .hero { padding-top:25px; }
+    .scoreboard { padding:9px; gap:6px; }
+    .stat strong { font-size:1.25rem; }
+    .stat span { font-size:.68rem; }
+    .controls { padding:12px; }
+    .direction { min-height:51px; font-size:.82rem; }
+    .btn { padding:10px 14px; flex:1 1 130px; }
+    .help { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <header class="topbar">
+        <a href="../index.html" class="brand">Fery<span>90Game</span></a>
+        <a href="gaming.html" class="back-link">← بازگشت به گیمینگ</a>
+    </header>
+
+    <section class="hero">
+        <span class="eyebrow">ARCADE FOOTBALL / 001</span>
+        <h1>پنالتی رباتی <span style="color:#a78bfa">⚽</span></h1>
+        <p>جهت شوت را انتخاب کن، قدرت ضربه را تنظیم کن و ببین می‌توانی ربات دروازه‌بان را شکست بدهی یا نه!</p>
+    </section>
+
+    <main>
+        <section class="game-shell" aria-label="بازی پنالتی">
+            <div class="scoreboard">
+                <div class="stat">
+                    <strong id="goals">۰</strong>
+                    <span>گل‌ها</span>
+                </div>
+                <div class="stat">
+                    <strong id="saves">۰</strong>
+                    <span>مهار ربات</span>
+                </div>
+                <div class="stat">
+                    <strong id="attempts">۰</strong>
+                    <span>شوت‌ها</span>
+                </div>
+            </div>
+
+            <div class="canvas-wrap">
+                <canvas id="gameCanvas" width="900" height="600"
+                        role="img" aria-label="زمین فوتبال، دروازه و ربات دروازه‌بان"></canvas>
+            </div>
+
+            <div id="gameMessage" class="game-message" aria-live="polite">
+                یک جهت انتخاب کن و شوت بزن!
+            </div>
+
+            <div class="controls">
+                <h2 class="control-title">۱. مسیر توپ را انتخاب کن</h2>
+                <div class="direction-grid" id="directionGrid">
+                    <button class="direction" data-dir="tl">
+                        <span class="arrow">↖</span><small>بالا چپ</small>
+                    </button>
+                    <button class="direction" data-dir="tc">
+                        <span class="arrow">↑</span><small>بالا وسط</small>
+                    </button>
+                    <button class="direction" data-dir="tr">
+                        <span class="arrow">↗</span><small>بالا راست</small>
+                    </button>
+                    <button class="direction" data-dir="bl">
+                        <span class="arrow">↙</span><small>پایین چپ</small>
+                    </button>
+                    <button class="direction" data-dir="bc">
+                        <span class="arrow">↓</span><small>پایین وسط</small>
+                    </button>
+                    <button class="direction" data-dir="br">
+                        <span class="arrow">↘</span><small>پایین راست</small>
+                    </button>
+                </div>
+
+                <h2 class="control-title" style="margin-top:20px">۲. قدرت شوت</h2>
+                <div style="max-width:560px;margin:auto">
+                    <input id="power" type="range" min="1" max="3" value="2"
+                           style="width:100%;accent-color:#a78bfa"
+                           aria-label="قدرت شوت">
+                    <div style="display:flex;justify-content:space-between;color:#aaa4c1;font-size:.75rem">
+                        <span>فنی</span><span id="powerLabel">متعادل</span><span>قدرتی</span>
+                    </div>
+                </div>
+
+                <div class="main-actions">
+                    <button class="btn btn-primary" id="shootButton">⚽ شوت کن!</button>
+                    <button class="btn btn-secondary" id="nextButton" disabled>پنالتی بعدی</button>
+                    <button class="btn btn-secondary" id="resetButton">شروع مجدد</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="help">
+            <article>
+                <b>🎯 انتخاب مسیر</b>
+                <p>یکی از شش ناحیه دروازه را انتخاب کن. انتخاب درست به‌تنهایی گل را تضمین نمی‌کند.</p>
+            </article>
+            <article>
+                <b>🤖 ربات هوشمند</b>
+                <p>ربات مسیر شوت را حدس می‌زند و به یک سمت شیرجه می‌زند. برخورد توپ با محدوده ربات باعث مهار می‌شود.</p>
+            </article>
+            <article>
+                <b>⚡ قدرت ضربه</b>
+                <p>قدرت شوت سرعت توپ را تغییر می‌دهد. ضربه قدرتی سریع‌تر است؛ واکنش ربات هم در نتیجه نقش دارد.</p>
+            </article>
+        </section>
+    </main>
+
+    <footer>Fery90Game · بازی‌های کوچک، رقابت‌های بزرگ</footer>
+</div>
+
+<script>
+"use strict";
+
+(() => {
+    const canvas = document.getElementById("gameCanvas");
+    const ctx = canvas.getContext("2d");
+
+    const $ = id => document.getElementById(id);
+    const digits = "۰۱۲۳۴۵۶۷۸۹";
+    const toFa = number => String(number).replace(/\d/g, d => digits[d]);
+
+    const targets = {
+        tl: { x: 265, y: 185, label: "بالا چپ" },
+        tc: { x: 450, y: 185, label: "بالا وسط" },
+        tr: { x: 635, y: 185, label: "بالا راست" },
+        bl: { x: 265, y: 325, label: "پایین چپ" },
+        bc: { x: 450, y: 325, label: "پایین وسط" },
+        br: { x: 635, y: 325, label: "پایین راست" }
+    };
+
+    const state = {
+        goals: 0,
+        saves: 0,
+        attempts: 0,
+        selected: null,
+        phase: "ready",
+        shot: null,
+        keeper: { x: 450, y: 315 },
+        keeperStart: { x: 450, y: 315 },
+        keeperEnd: { x: 450, y: 315 },
+        ball: { x: 450, y: 510 },
+        ballStart: { x: 450, y: 510 },
+        ballEnd: { x: 450, y: 510 },
+        startTime: 0,
+        duration: 900,
+        lastTime: 0,
+        collision: false,
+        outcome: "",
+        resultTimer: 0,
+        power: 2
+    };
+
+    function roundedRect(x, y, w, h, r) {
+        ctx.beginPath();
+        ctx.roundRect(x, y, w, h, r);
+    }
+
+    function drawField() {
+        const bg = ctx.createLinearGradient(0, 0, 0, 600);
+        bg.addColorStop(0, "#16283a");
+        bg.addColorStop(1, "#0c302d");
+        ctx.fillStyle = bg;
+        ctx.fillRect(0, 0, 900, 600);
+
+        for (let i = 0; i < 9; i++) {
+            ctx.fillStyle = i % 2 === 0
+                ? "rgba(62,160,116,.10)"
+                : "rgba(5,25,28,.10)";
+            ctx.fillRect(0, 405 + i * 25, 900, 25);
+        }
+
+        ctx.strokeStyle = "rgba(220,255,235,.32)";
+        ctx.lineWidth = 2;
+        ctx.strokeRect(35, 405, 830, 175);
+
+        ctx.beginPath();
+        ctx.arc(450, 580, 95, Math.PI, 0);
+        ctx.stroke();
+
+        ctx.fillStyle = "rgba(255,255,255,.07)";
+        ctx.fillRect(150, 94, 600, 310);
+
+        ctx.strokeStyle = "#d9f3e8";
+        ctx.lineWidth = 9;
+        ctx.strokeRect(150, 95, 600, 310);
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.rect(154, 100, 592, 300);
+        ctx.clip();
+
+        ctx.strokeStyle = "rgba(210,239,255,.28)";
+        ctx.lineWidth = 1;
+
+        for (let x = 160; x < 750; x += 24) {
+            ctx.beginPath();
+            ctx.moveTo(x, 100);
+            ctx.lineTo(x, 400);
+            ctx.stroke();
+        }
+
+        for (let y = 105; y < 405; y += 24) {
+            ctx.beginPath();
+            ctx.moveTo(155, y);
+            ctx.lineTo(745, y);
+            ctx.stroke();
+        }
+        ctx.restore();
+
+        ctx.fillStyle = "rgba(167,139,250,.09)";
+        ctx.fillRect(150, 100, 600, 300);
+
+        ctx.strokeStyle = "rgba(167,139,250,.45)";
+        ctx.lineWidth = 2;
+        ctx.strokeRect(215, 100, 470, 210);
+        ctx.strokeRect(300, 100, 300, 110);
+
+        ctx.fillStyle = "#e5e7eb";
+        ctx.beginPath();
+        ctx.arc(450, 350, 4, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = "rgba(255,255,255,.65)";
+        ctx.font = "bold 15px Tahoma";
+        ctx.textAlign = "center";
+        ctx.fillText("FERY90GAME ARENA", 450, 45);
+
+        if (state.phase === "ready" && state.selected) {
+            const target = targets[state.selected];
+            ctx.save();
+            ctx.strokeStyle = "rgba(167,139,250,.9)";
+            ctx.lineWidth = 3;
+            ctx.setLineDash([7, 7]);
+            ctx.beginPath();
+            ctx.moveTo(450, 510);
+            ctx.lineTo(target.x, target.y);
+            ctx.stroke();
+            ctx.setLineDash([]);
+            ctx.beginPath();
+            ctx.arc(target.x, target.y, 16, 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.restore();
+        }
+    }
+
+    function drawRobot() {
+        const x = state.keeper.x;
+        const y = state.keeper.y;
+        const diving = state.phase === "shooting";
+
+        ctx.save();
+        ctx.translate(x, y);
+
+        if (diving) {
+            const dx = state.keeperEnd.x - state.keeperStart.x;
+            ctx.rotate(Math.max(-0.48, Math.min(0.48, dx / 400)));
+        }
+
+        ctx.shadowColor = "#60a5fa";
+        ctx.shadowBlur = 17;
+
+        const body = ctx.createLinearGradient(-55, -30, 55, 35);
+        body.addColorStop(0, "#b7a3ff");
+        body.addColorStop(.5, "#6d5be8");
+        body.addColorStop(1, "#302c77");
+
+        ctx.fillStyle = body;
+        roundedRect(-43, -31, 86, 68, 16);
+        ctx.fill();
+
+        ctx.shadowBlur = 0;
+        ctx.strokeStyle = "#dbeafe";
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        ctx.fillStyle = "#14162b";
+        roundedRect(-29, -20, 58, 28, 9);
+        ctx.fill();
+
+        ctx.fillStyle = "#67e8f9";
+        ctx.beginPath();
+        ctx.arc(-13, -6, 5, 0, Math.PI * 2);
+        ctx.arc(13, -6, 5, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.strokeStyle = "#67e8f9";
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(-10, 17);
+        ctx.lineTo(10, 17);
+        ctx.stroke();
+
+        ctx.fillStyle = "#5542b8";
+        roundedRect(-64, -24, 20, 42, 8);
+        ctx.fill();
+        roundedRect(44, -24, 20, 42, 8);
+        ctx.fill();
+
+        ctx.fillStyle = "#8b7bff";
+        roundedRect(-53, 26, 19, 34, 6);
+        ctx.fill();
+        roundedRect(34, 26, 19, 34, 6);
+        ctx.fill();
+
+        ctx.fillStyle = "#a5b4fc";
+        roundedRect(-56, 53, 28, 10, 4);
+        ctx.fill();
+        roundedRect(28, 53, 28, 10, 4);
+        ctx.fill();
+
+        ctx.restore();
+    }
+
+    function drawBall() {
+        const { x, y } = state.ball;
+
+        const shadowScale = Math.max(.45, 1 - (510 - y) / 850);
+        ctx.fillStyle = `rgba(0,0,0,${.35 * shadowScale})`;
+        ctx.beginPath();
+        ctx.ellipse(x + 8, y + 12, 17 * shadowScale, 7 * shadowScale, 0, 0, Math.PI * 2);
+        ctx.fill();
+
+        const radius = Math.max(7, 14 - (510 - y) / 48);
+
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(state.phase === "shooting" ? (510 - y) * .045 : 0);
+
+        ctx.fillStyle = "#f8fafc";
+        ctx.strokeStyle = "#334155";
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.arc(0, 0, radius, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = "#1e293b";
+        for (let i = 0; i < 5; i++) {
+            const angle = i * Math.PI * 2 / 5;
+            ctx.beginPath();
+            ctx.arc(Math.cos(angle) * radius * .48,
+                    Math.sin(angle) * radius * .48,
+                    radius * .25, 0, Math.PI * 2);
+            ctx.fill();
+        }
+        ctx.restore();
+    }
+
+    function drawOutcome() {
+        if (state.phase !== "result") return;
+
+        ctx.save();
+        ctx.fillStyle = state.outcome === "goal"
+            ? "rgba(5,35,22,.72)"
+            : "rgba(35,12,28,.72)";
+        roundedRect(270, 240, 360, 105, 18);
+        ctx.fill();
+
+        ctx.strokeStyle = state.outcome === "goal" ? "#4ade80" : "#fb7185";
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        ctx.textAlign = "center";
+        ctx.fillStyle = state.outcome === "goal" ? "#86efac" : "#fda4af";
+        ctx.font = "bold 32px Tahoma";
+        ctx.fillText(state.outcome === "goal" ? "GOAL!" : "SAVED!", 450, 285);
+
+        ctx.fillStyle = "#fff";
+        ctx.font = "15px Tahoma";
+        ctx.fillText(state.outcome === "goal" ? "گل زدی! عالی بود." : "ربات توپ را مهار کرد!", 450, 318);
+        ctx.restore();
+    }
+
+    function render() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawField();
+        drawRobot();
+        drawBall();
+        drawOutcome();
+    }
+
+    function updateScore() {
+        $("goals").textContent = toFa(state.goals);
+        $("saves").textContent = toFa(state.saves);
+        $("attempts").textContent = toFa(state.attempts);
+    }
+
+    function setMessage(text, type = "") {
+        const el = $("gameMessage");
+        el.textContent = text;
+        el.className = "game-message" + (type ? " " + type : "");
+    }
+
+    function selectDirection(direction) {
+        if (state.phase !== "ready") return;
+
+        state.selected = direction;
+
+        document.querySelectorAll(".direction").forEach(button => {
+            const active = button.dataset.dir === direction;
+            button.classList.toggle("selected", active);
+            button.setAttribute("aria-pressed", String(active));
+        });
+
+        setMessage("مسیر " + targets[direction].label + " انتخاب شد. حالا شوت کن!");
+        render();
+    }
+
+    function setControlsDisabled(disabled) {
+        document.querySelectorAll(".direction").forEach(button => {
+            button.disabled = disabled;
+        });
+        $("shootButton").disabled = disabled;
+    }
+
+    function startShot() {
+        if (state.phase !== "ready") return;
+
+        if (!state.selected) {
+            setMessage("اول یکی از شش جهت را انتخاب کن!", "fail");
+            return;
+        }
+
+        state.phase = "shooting";
+        state.attempts++;
+        state.collision = false;
+
+        const target = targets[state.selected];
+        const power = Number($("power").value);
+
+        state.power = power;
+        state.duration = power === 1 ? 1250 : power === 2 ? 920 : 650;
+        state.startTime = performance.now();
+
+        state.ballStart = { x: 450, y: 510 };
+        state.ballEnd = { x: target.x, y: target.y };
+        state.ball = { ...state.ballStart };
+
+        state.keeperStart = { ...state.keeper };
+
+        // ربات یک جهت را برای شیرجه انتخاب می‌کند.
+        // گاهی هم مسیر درست را حدس می‌زند.
+        const directions = Object.keys(targets);
+        const guessCorrectly = Math.random() < (power === 1 ? .55 : power === 2 ? .38 : .25);
+        const keeperDirection = guessCorrectly
+            ? state.selected
+            : directions.filter(key => key !== state.selected)[
+                Math.floor(Math.random() * (directions.length - 1))
+            ];
+
+        state.keeperEnd = {
+            x: targets[keeperDirection].x,
+            y: targets[keeperDirection].y + 12
+        };
+
+        $("nextButton").disabled = true;
+        setControlsDisabled(true);
+
+        const powerNames = { 1: "فنی", 2: "متعادل", 3: "قدرتی" };
+        $("powerLabel").textContent = powerNames[power];
+
+        setMessage("شوت! ربات دارد واکنش نشان می‌دهد...");
+        updateScore();
+    }
+
+    function finishShot(saved) {
+        if (state.phase !== "shooting") return;
+
+        state.phase = "result";
+        state.outcome = saved ? "saved" : "goal";
+
+        if (saved) {
+            state.saves++;
+            setMessage("🧤 مهار شد! ربات مسیر توپ را بست.", "fail");
+        } else {
+            state.goals++;
+            setMessage("⚽ گللل! توپ از محدوده دفاع ربات عبور کرد.", "success");
+        }
+
+        updateScore();
+        $("nextButton").disabled = false;
+        setControlsDisabled(true);
+        render();
+    }
+
+    function update(now) {
+        if (state.phase === "shooting") {
+            const progress = Math.min(1, (now - state.startTime) / state.duration);
+            const eased = 1 - Math.pow(1 - progress, 2);
+
+            state.ball.x = state.ballStart.x +
+                (state.ballEnd.x - state.ballStart.x) * eased;
+            state.ball.y = state.ballStart.y +
+                (state.ballEnd.y - state.ballStart.y) * eased;
+
+            state.keeper.x = state.keeperStart.x +
+                (state.keeperEnd.x - state.keeperStart.x) * eased;
+            state.keeper.y = state.keeperStart.y +
+                (state.keeperEnd.y - state.keeperStart.y) * eased;
+
+            // برخورد واقعی در هر فریم، با محدوده بدنه ربات.
+            const bodyHalfWidth = 45;
+            const bodyHalfHeight = 39;
+            const ballRadius = 11;
+
+            const overlapX = Math.abs(state.ball.x - state.keeper.x)
+                < bodyHalfWidth + ballRadius;
+            const overlapY = Math.abs(state.ball.y - state.keeper.y)
+                < bodyHalfHeight + ballRadius;
+
+            if (overlapX && overlapY && progress > .55) {
+                finishShot(true);
+            } else if (progress >= 1) {
+                finishShot(false);
+            }
+        }
+
+        render();
+        requestAnimationFrame(update);
+    }
+
+    function nextPenalty() {
+        if (state.phase !== "result") return;
+
+        state.phase = "ready";
+        state.selected = null;
+        state.shot = null;
+        state.collision = false;
+        state.outcome = "";
+
+        state.keeper = { x: 450, y: 315 };
+        state.keeperStart = { ...state.keeper };
+        state.keeperEnd = { ...state.keeper };
+
+        state.ball = { x: 450, y: 510 };
+        state.ballStart = { ...state.ball };
+        state.ballEnd = { ...state.ball };
+
+        document.querySelectorAll(".direction").forEach(button => {
+            button.classList.remove("selected");
+            button.setAttribute("aria-pressed", "false");
+        });
+
+        $("nextButton").disabled = true;
+        setControlsDisabled(false);
+        setMessage("مسیر پنالتی بعدی را انتخاب کن!");
+        render();
+    }
+
+    function resetGame() {
+        state.goals = 0;
+        state.saves = 0;
+        state.attempts = 0;
+        nextPenalty();
+        updateScore();
+        setMessage("بازی از نو شروع شد. اولین مسیر را انتخاب کن!");
+    }
+
+    document.querySelectorAll(".direction").forEach(button => {
+        button.setAttribute("aria-pressed", "false");
+        button.addEventListener("click", () => selectDirection(button.dataset.dir));
+    });
+
+    $("shootButton").addEventListener("click", startShot);
+    $("nextButton").addEventListener("click", nextPenalty);
+    $("resetButton").addEventListener("click", resetGame);
+
+    $("power").addEventListener("input", () => {
+        const labels = { 1: "فنی", 2: "متعادل", 3: "قدرتی" };
+        $("powerLabel").textContent = labels[$("power").value];
+    });
+
+    // کنترل با کلیدهای جهت‌دار و Space
+    document.addEventListener("keydown", event => {
+        if (event.target instanceof HTMLInputElement) return;
+
+        const keyboardDirections = {
+            "1": "bl", "2": "bc", "3": "br",
+            "4": "tl", "5": "tc", "6": "tr"
+        };
+
+        if (keyboardDirections[event.key]) {
+            selectDirection(keyboardDirections[event.key]);
+        } else if (event.code === "Space") {
+            event.preventDefault();
+            if (state.phase === "ready") startShot();
+            else if (state.phase === "result") nextPenalty();
+        }
+    });
+
+    window.addEventListener("resize", render);
+
+    updateScore();
+    render();
+    requestAnimationFrame(update);
+})();
+</script>
+</body>
+</html>

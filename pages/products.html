@@ -1,0 +1,704 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>محصولات و برنامه‌ها | Fery90Game</title>
+  <meta name="description" content="برنامه‌ها و محصولات دیجیتال Fery90Game را بشناسید؛ آشنایی با Toolbox Plus، Fery Music و محصولات آینده، همراه با مسیرهای دانلود رسمی.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0b0b14">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="محصولات و برنامه‌ها | Fery90Game">
+  <meta property="og:description" content="معرفی برنامه‌ها و محصولات دیجیتال Fery90Game.">
+  <meta property="og:locale" content="fa_IR">
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    .products-page {
+      --p-bg: #0b0b14;
+      --p-panel: #12121f;
+      --p-border: rgba(167,139,250,.19);
+      --p-purple: #a78bfa;
+      --p-blue: #60a5fa;
+      --p-text: #f4f2ff;
+      --p-muted: #b5b1c9;
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse at 90% 0%, rgba(124,58,237,.15), transparent 38%),
+        radial-gradient(ellipse at 0% 45%, rgba(37,99,235,.08), transparent 35%),
+        var(--p-bg);
+      color: var(--p-text);
+      font-family: "Vazirmatn", sans-serif;
+      line-height: 1.9;
+    }
+
+    .products-page *,
+    .products-page *::before,
+    .products-page *::after {
+      box-sizing: border-box;
+    }
+
+    .products-container {
+      width: min(1120px, calc(100% - 36px));
+      margin-inline: auto;
+    }
+
+    .products-header {
+      border-bottom: 1px solid var(--p-border);
+      background: rgba(11,11,20,.9);
+    }
+
+    .products-header-inner {
+      min-height: 76px;
+      padding-block: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .products-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      color: var(--p-text);
+      text-decoration: none;
+      font-size: 1.15rem;
+      font-weight: 900;
+    }
+
+    .products-brand-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      background: linear-gradient(135deg,#7c3aed,#2563eb);
+      font-size: 1.35rem;
+      box-shadow: 0 0 25px rgba(124,58,237,.24);
+    }
+
+    .products-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .products-nav a {
+      padding: 8px 11px;
+      border-radius: 10px;
+      color: var(--p-muted);
+      text-decoration: none;
+      font-size: .9rem;
+      transition: .2s;
+    }
+
+    .products-nav a:hover,
+    .products-nav a[aria-current="page"] {
+      color: var(--p-purple);
+      background: rgba(167,139,250,.1);
+    }
+
+    .products-hero {
+      padding-block: 78px 52px;
+      text-align: center;
+    }
+
+    .products-eyebrow {
+      display: inline-flex;
+      padding: 6px 14px;
+      border: 1px solid var(--p-border);
+      border-radius: 999px;
+      background: rgba(167,139,250,.07);
+      color: var(--p-purple);
+      font-size: .85rem;
+      font-weight: 700;
+    }
+
+    .products-hero h1 {
+      max-width: 850px;
+      margin: 20px auto 12px;
+      font-size: clamp(2rem,5vw,3.5rem);
+      font-weight: 900;
+      line-height: 1.45;
+    }
+
+    .products-gradient {
+      background: linear-gradient(90deg,#c4b5fd,#60a5fa);
+      color: transparent;
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+
+    .products-hero p {
+      max-width: 700px;
+      margin: 0 auto;
+      color: var(--p-muted);
+      font-size: 1.02rem;
+    }
+
+    .products-stats {
+      display: grid;
+      grid-template-columns: repeat(3,minmax(0,1fr));
+      gap: 14px;
+      margin-top: 32px;
+    }
+
+    .products-stat {
+      padding: 17px 12px;
+      border: 1px solid var(--p-border);
+      border-radius: 15px;
+      background: rgba(18,18,31,.78);
+    }
+
+    .products-stat strong {
+      display: block;
+      font-size: 1.05rem;
+      font-weight: 800;
+    }
+
+    .products-stat span {
+      color: var(--p-muted);
+      font-size: .83rem;
+    }
+
+    .products-section {
+      padding-block: 24px 55px;
+    }
+
+    .products-section-heading {
+      margin-bottom: 25px;
+    }
+
+    .products-section-heading h2 {
+      margin: 0 0 7px;
+      font-size: clamp(1.45rem,3vw,2rem);
+      font-weight: 900;
+    }
+
+    .products-section-heading p {
+      margin: 0;
+      color: var(--p-muted);
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(2,minmax(0,1fr));
+      gap: 20px;
+    }
+
+    .product-card {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      overflow: hidden;
+      border: 1px solid var(--p-border);
+      border-radius: 21px;
+      background: linear-gradient(145deg,rgba(25,24,43,.96),rgba(16,16,29,.97));
+      transition: transform .22s,border-color .22s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(167,139,250,.5);
+    }
+
+    .product-visual {
+      position: relative;
+      min-height: 190px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border-bottom: 1px solid var(--p-border);
+      background:
+        radial-gradient(circle at 50% 45%,rgba(124,58,237,.3),transparent 44%),
+        linear-gradient(130deg,#111126,#101a31);
+    }
+
+    .product-visual::before,
+    .product-visual::after {
+      content: "";
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      border: 1px solid rgba(167,139,250,.16);
+      border-radius: 30px;
+      transform: rotate(35deg);
+    }
+
+    .product-visual::after {
+      width: 190px;
+      height: 190px;
+      border-color: rgba(96,165,250,.12);
+      transform: rotate(55deg);
+    }
+
+    .product-app-icon {
+      position: relative;
+      z-index: 1;
+      width: 102px;
+      height: 102px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,.17);
+      border-radius: 27px;
+      background: linear-gradient(140deg,#7c3aed,#2563eb);
+      box-shadow: 0 12px 45px rgba(79,70,229,.32);
+      font-size: 3rem;
+    }
+
+    .product-app-icon.music {
+      background: linear-gradient(140deg,#db2777,#7c3aed,#2563eb);
+    }
+
+    .product-content {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 23px;
+    }
+
+    .product-badges {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .product-badge {
+      padding: 3px 10px;
+      border: 1px solid var(--p-border);
+      border-radius: 999px;
+      color: var(--p-purple);
+      font-size: .77rem;
+      font-weight: 700;
+    }
+
+    .product-badge.neutral {
+      color: var(--p-muted);
+    }
+
+    .product-content h3 {
+      margin: 0 0 8px;
+      font-size: 1.35rem;
+      font-weight: 900;
+    }
+
+    .product-description {
+      margin: 0 0 18px;
+      color: var(--p-muted);
+      font-size: .94rem;
+    }
+
+    .product-features {
+      width: 100%;
+      display: grid;
+      gap: 8px;
+      padding: 0;
+      margin: 0 0 22px;
+      list-style: none;
+    }
+
+    .product-features li {
+      color: #d8d5e7;
+      font-size: .9rem;
+    }
+
+    .product-features li::before {
+      content: "✓";
+      margin-left: 9px;
+      color: var(--p-blue);
+      font-weight: 900;
+    }
+
+    .product-actions {
+      width: 100%;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: auto;
+    }
+
+    .product-button {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 9px 15px;
+      border: 1px solid var(--p-border);
+      border-radius: 11px;
+      color: var(--p-text);
+      text-align: center;
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: 700;
+      transition: .2s;
+    }
+
+    .product-button:hover {
+      border-color: var(--p-purple);
+    }
+
+    .product-button.primary {
+      border-color: transparent;
+      background: linear-gradient(120deg,#7c3aed,#4338ca);
+    }
+
+    .product-button.disabled {
+      color: #89849d;
+      background: rgba(255,255,255,.025);
+      cursor: default;
+    }
+
+    .products-note {
+      margin-top: 18px;
+      padding: 15px 17px;
+      border: 1px solid var(--p-border);
+      border-radius: 13px;
+      background: rgba(167,139,250,.045);
+      color: var(--p-muted);
+      font-size: .9rem;
+    }
+
+    .products-future {
+      padding: 27px;
+      border: 1px dashed rgba(167,139,250,.35);
+      border-radius: 20px;
+      background: rgba(18,18,31,.5);
+    }
+
+    .products-future h3 {
+      margin: 0 0 8px;
+      font-size: 1.2rem;
+    }
+
+    .products-future p {
+      margin: 0;
+      color: var(--p-muted);
+    }
+
+    .products-future-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 16px;
+    }
+
+    .products-future-tags span {
+      padding: 6px 12px;
+      border: 1px solid var(--p-border);
+      border-radius: 999px;
+      color: #d4c9ff;
+      background: rgba(124,58,237,.07);
+      font-size: .85rem;
+    }
+
+    .products-cta {
+      margin-block: 0 60px;
+      padding: 32px 23px;
+      border: 1px solid var(--p-border);
+      border-radius: 21px;
+      background:
+        radial-gradient(ellipse at 90% 0%,rgba(124,58,237,.17),transparent 50%),
+        var(--p-panel);
+      text-align: center;
+    }
+
+    .products-cta h2 {
+      margin: 0 0 8px;
+      font-size: clamp(1.35rem,3vw,1.9rem);
+      font-weight: 900;
+    }
+
+    .products-cta p {
+      max-width: 650px;
+      margin: 0 auto;
+      color: var(--p-muted);
+    }
+
+    .products-cta-links {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .products-footer {
+      padding-block: 22px;
+      border-top: 1px solid var(--p-border);
+      color: var(--p-muted);
+      font-size: .88rem;
+    }
+
+    .products-footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px 20px;
+    }
+
+    .products-footer a {
+      color: var(--p-purple);
+      text-decoration: none;
+    }
+
+    @media(max-width:760px) {
+      .products-header-inner {
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .products-nav {
+        justify-content: center;
+      }
+
+      .products-hero {
+        padding-block: 55px 38px;
+      }
+
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .products-stats {
+        gap: 8px;
+      }
+
+      .products-stat {
+        padding-inline: 6px;
+      }
+
+      .product-content {
+        padding: 19px;
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      .products-page *,
+      .products-page *::before,
+      .products-page *::after {
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="products-page">
+  <header class="products-header">
+    <div class="products-container products-header-inner">
+      <a class="products-brand" href="../index.html" aria-label="صفحه اصلی Fery90Game">
+        <span class="products-brand-icon" aria-hidden="true">🎮</span>
+        <span>Fery90Game</span>
+      </a>
+
+      <nav class="products-nav" aria-label="منوی اصلی">
+        <a href="../index.html">خانه</a>
+        <a href="gaming.html">بازی‌ها</a>
+        <a href="content.html">آرشیو محتوا</a>
+        <a href="tools.html">ابزارها</a>
+        <a href="products.html" aria-current="page">محصولات</a>
+        <a href="about.html">درباره ما</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="products-hero">
+      <div class="products-container">
+        <span class="products-eyebrow">✦ محصولات دیجیتال Fery90Game</span>
+
+        <h1>
+          ابزارهایی برای تجربه بهتر
+          <span class="products-gradient">دنیای دیجیتال</span>
+        </h1>
+
+        <p>
+          در این صفحه می‌تونی با برنامه‌ها و محصولات دیجیتال پروژه آشنا بشی.
+          اطلاعات و لینک‌های دانلود هر محصول، پس از آماده شدن و تأیید،
+          در همین صفحه قرار می‌گیرند.
+        </p>
+
+        <div class="products-stats">
+          <div class="products-stat">
+            <strong>اندروید</strong>
+            <span>تمرکز محصولات فعلی</span>
+          </div>
+          <div class="products-stat">
+            <strong>دانلود رسمی</strong>
+            <span>از مسیرهای معتبر</span>
+          </div>
+          <div class="products-stat">
+            <strong>در حال توسعه</strong>
+            <span>محصولات و قابلیت‌های جدید</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="products-section">
+      <div class="products-container">
+        <div class="products-section-heading">
+          <h2>برنامه‌های ما</h2>
+          <p>
+            با محصولات پروژه آشنا شو. لینک‌های فروشگاه را بعد از آماده بودن
+            آدرس دقیق آن‌ها فعال می‌کنیم.
+          </p>
+        </div>
+
+        <div class="products-grid">
+          <article class="product-card" id="toolbox-plus">
+            <div class="product-visual">
+              <div class="product-app-icon" aria-hidden="true">🧰</div>
+            </div>
+
+            <div class="product-content">
+              <div class="product-badges">
+                <span class="product-badge">اندروید</span>
+                <span class="product-badge neutral">ابزار کاربردی</span>
+              </div>
+
+              <h3>جعبه ابزار پلاس</h3>
+
+              <p class="product-description">
+                مجموعه‌ای از ابزارهای کاربردی در یک برنامه اندرویدی؛
+                با بخش‌های مختلف برای استفاده روزمره و امکاناتی که در
+                نسخه‌های بعدی گسترش پیدا می‌کنند.
+              </p>
+
+              <ul class="product-features">
+                <li>ابزارهای متنوع در یک محیط واحد</li>
+                <li>رابط کاربری فارسی</li>
+                <li>توسعه تدریجی قابلیت‌ها</li>
+              </ul>
+
+              <div class="product-actions">
+                <!-- پس از آماده شدن لینک رسمی بازار، href را جایگزین کن. -->
+                <a class="product-button disabled" href="#toolbox-plus"
+                   aria-disabled="true" onclick="return false;">
+                  لینک بازار به‌زودی
+                </a>
+                <!-- پس از آماده شدن لینک رسمی مایکت، href را جایگزین کن. -->
+                <a class="product-button disabled" href="#toolbox-plus"
+                   aria-disabled="true" onclick="return false;">
+                  لینک مایکت به‌زودی
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card" id="fery-music">
+            <div class="product-visual">
+              <div class="product-app-icon music" aria-hidden="true">♫</div>
+            </div>
+
+            <div class="product-content">
+              <div class="product-badges">
+                <span class="product-badge">اندروید</span>
+                <span class="product-badge neutral">پخش موسیقی</span>
+              </div>
+
+              <h3>فری موزیک</h3>
+
+              <p class="product-description">
+                پروژه پخش موسیقی برای دستگاه‌های اندرویدی، با تمرکز بر
+                دسترسی به آهنگ‌های موجود روی گوشی و تجربه شنیداری ساده.
+              </p>
+
+              <ul class="product-features">
+                <li>تمرکز بر موسیقی‌های ذخیره‌شده روی دستگاه</li>
+                <li>رابط کاربری فارسی و تیره</li>
+                <li>امکان توسعه قابلیت‌های بیشتر در آینده</li>
+              </ul>
+
+              <div class="product-actions">
+                <!-- پس از آماده شدن لینک رسمی بازار، href را جایگزین کن. -->
+                <a class="product-button disabled" href="#fery-music"
+                   aria-disabled="true" onclick="return false;">
+                  لینک بازار به‌زودی
+                </a>
+                <!-- پس از آماده شدن لینک رسمی مایکت، href را جایگزین کن. -->
+                <a class="product-button disabled" href="#fery-music"
+                   aria-disabled="true" onclick="return false;">
+                  لینک مایکت به‌زودی
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="products-note">
+          توجه: لینک‌های دانلود این صفحه هنوز فعال نشده‌اند.
+          پس از نهایی شدن صفحه هر برنامه در بازار یا مایکت، فقط آدرس رسمی
+          همان محصول را اضافه می‌کنیم. وضعیت انتشار و قابلیت‌های هر برنامه
+          نیز باید مطابق آخرین نسخه واقعی آن به‌روز شود.
+        </div>
+      </div>
+    </section>
+
+    <section class="products-section">
+      <div class="products-container">
+        <div class="products-section-heading">
+          <h2>محصولات آینده</h2>
+          <p>این بخش برای معرفی محصولات جدید در نسخه‌های بعدی آماده است.</p>
+        </div>
+
+        <div class="products-future">
+          <h3>امکانات بیشتر در راه‌اند</h3>
+          <p>
+            با توسعه پروژه، می‌توانیم محصولات جدید، ابزارهای اختصاصی،
+            بازی‌های مستقل و سایر محصولات دیجیتال را به این فهرست اضافه کنیم.
+            هر محصول پس از آماده شدن، اطلاعات اختصاصی و مسیر دسترسی خودش را خواهد داشت.
+          </p>
+
+          <div class="products-future-tags">
+            <span>ابزارهای جدید</span>
+            <span>بازی‌های مستقل</span>
+            <span>محصولات دیجیتال</span>
+            <span>نسخه‌های آینده</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="products-container products-cta">
+      <h2>بیشتر از Fery90Game بدان</h2>
+      <p>
+        برای آشنایی با هدف پروژه یا استفاده از بخش‌های فعلی سایت،
+        می‌تونی از لینک‌های زیر استفاده کنی.
+      </p>
+
+      <div class="products-cta-links">
+        <a class="product-button primary" href="about.html">درباره ما</a>
+        <a class="product-button" href="gaming.html">بازی‌ها</a>
+        <a class="product-button" href="content.html">آرشیو محتوا</a>
+        <a class="product-button" href="../index.html">صفحه اصلی</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="products-footer">
+    <div class="products-container products-footer-inner">
+      <span>© <span id="productsYear"></span> Fery90Game</span>
+      <a href="../index.html">بازگشت به صفحه اصلی</a>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("productsYear").textContent =
+      new Date().getFullYear();
+  </script>
+</body>
+</html>

@@ -1,0 +1,312 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#090811">
+
+    <title>Fery90Game | دنیای بازی، تکنولوژی و سرگرمی</title>
+    <meta name="description" content="در Fery90Game دنیایی از بازی‌ها، ابزارهای کاربردی، آموزش تکنولوژی و محتوای سرگرم‌کننده را کشف کن.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/app.js" defer></script>
+    <style>
+        /* جلوگیری از جابه‌جایی و کوچک‌شدن صفحه در موبایل (ناشی از افکت‌های نورانی پس‌زمینه) */
+        html, body { overflow-x: clip; }
+        body { position: relative; }
+    </style>
+</head>
+<body>
+    <div class="page-glow page-glow-one" aria-hidden="true"></div>
+    <div class="page-glow page-glow-two" aria-hidden="true"></div>
+
+    <div class="announcement">
+        <div class="container announcement-inner">
+            <span class="announcement-dot"></span>
+            <p>به دنیای <strong>Fery90Game</strong> خوش اومدی؛ اینجا همیشه چیزی برای کشف‌کردن هست!</p>
+            <a href="#explore">شروع کن <span aria-hidden="true">←</span></a>
+        </div>
+    </div>
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html" aria-label="صفحه اصلی Fery90Game">
+                <span class="brand-icon" aria-hidden="true">
+                    <svg viewBox="0 0 48 48" fill="none">
+                        <path d="M12 9H37V17H21V21H33V29H21V39H12V9Z" fill="currentColor"/>
+                        <path d="M29 25L40 31L29 37V25Z" fill="#60A5FA"/>
+                    </svg>
+                </span>
+                <span class="brand-copy">
+                    <span class="brand-name">FERY<span>90</span>GAME</span>
+                    <span class="brand-caption">PLAY · CREATE · DISCOVER</span>
+                </span>
+            </a>
+
+            <button class="mobile-menu-button" id="mobileMenuButton"
+                    type="button" aria-label="باز کردن منو"
+                    aria-expanded="false" aria-controls="mainNavigation">
+                <span></span><span></span><span></span>
+            </button>
+
+            <nav class="main-navigation" id="mainNavigation" aria-label="منوی اصلی">
+                <a class="nav-link active" href="index.html">خانه</a>
+                <a class="nav-link" href="pages/gaming.html">دنیای بازی</a>
+                <a class="nav-link" href="pages/content.html">آرشیو محتوا</a>
+                <a class="nav-link" href="pages/tools.html">ابزارها</a>
+                <a class="nav-link" href="pages/products.html">محصولات</a>
+                <a class="nav-link" href="pages/about.html">درباره ما</a>
+            </nav>
+
+            <a class="header-cta" href="#explore">
+                <span>کشف کن</span>
+                <span aria-hidden="true">↗</span>
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero container">
+            <div class="hero-content">
+                <div class="eyebrow">
+                    <span class="eyebrow-icon">✦</span>
+                    دنیایی فراتر از بازی
+                </div>
+
+                <h1>
+                    وارد دنیای خودت شو؛
+                    <span class="gradient-text">متفاوت بازی کن!</span>
+                </h1>
+
+                <p class="hero-description">
+                    از دنیای گیم و سرگرمی تا ابزارهای کاربردی و آموزش تکنولوژی؛
+                    هر چیزی که برای کشف‌کردن و ساختن نیاز داری، از اینجا شروع می‌شه.
+                </p>
+
+                <div class="hero-actions">
+                    <a class="button button-primary" href="#explore">
+                        بزن بریم
+                        <span aria-hidden="true">←</span>
+                    </a>
+                    <a class="button button-secondary" href="pages/content.html">
+                        دیدن محتوا
+                        <span aria-hidden="true">↗</span>
+                    </a>
+                </div>
+
+                <div class="hero-highlights">
+                    <div class="highlight-item">
+                        <span class="highlight-icon purple">✦</span>
+                        <span>محتوای متنوع</span>
+                    </div>
+                    <div class="highlight-item">
+                        <span class="highlight-icon blue">⌘</span>
+                        <span>ابزارهای کاربردی</span>
+                    </div>
+                    <div class="highlight-item">
+                        <span class="highlight-icon pink">◈</span>
+                        <span>دنیای گیمینگ</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-visual" aria-label="تصویر گرافیکی دنیای گیمینگ">
+                <div class="visual-orbit orbit-one"></div>
+                <div class="visual-orbit orbit-two"></div>
+
+                <div class="visual-card visual-card-back">
+                    <span class="visual-card-label">NEXT LEVEL</span>
+                    <div class="visual-bars">
+                        <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                    </div>
+                </div>
+
+                <div class="hero-controller">
+                    <svg viewBox="0 0 300 220" role="img" aria-label="دسته بازی">
+                        <defs>
+                            <linearGradient id="controllerBody" x1="30" y1="30" x2="260" y2="200" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#A78BFA"/>
+                                <stop offset="0.5" stop-color="#6D43D9"/>
+                                <stop offset="1" stop-color="#29204B"/>
+                            </linearGradient>
+                            <linearGradient id="controllerLight" x1="60" y1="60" x2="240" y2="160" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#E9D5FF"/>
+                                <stop offset="1" stop-color="#60A5FA"/>
+                            </linearGradient>
+                        </defs>
+                        <path d="M77 57C58 59 44 73 38 94L20 155C15 175 29 187 45 179L91 148H209L255 179C271 187 285 175 280 155L262 94C256 73 242 59 223 57C176 49 124 49 77 57Z"
+                              fill="url(#controllerBody)" stroke="#C4B5FD" stroke-width="3"/>
+                        <path d="M65 91V129M46 110H84" stroke="#F5F3FF" stroke-width="10" stroke-linecap="round"/>
+                        <circle cx="220" cy="91" r="8" fill="#60A5FA"/>
+                        <circle cx="240" cy="111" r="8" fill="#F0ABFC"/>
+                        <circle cx="200" cy="111" r="8" fill="#C4B5FD"/>
+                        <circle cx="220" cy="131" r="8" fill="#93C5FD"/>
+                        <rect x="111" y="91" width="29" height="10" rx="5" fill="#241A43"/>
+                        <rect x="160" y="91" width="29" height="10" rx="5" fill="#241A43"/>
+                        <path d="M105 61C125 52 175 52 195 61" stroke="url(#controllerLight)" stroke-width="4" stroke-linecap="round"/>
+                    </svg>
+                </div>
+
+                <div class="floating-chip chip-top">
+                    <span class="chip-icon">⚡</span>
+                    <span><strong>GAME ON</strong><small>وقت شروعه!</small></span>
+                </div>
+
+                <div class="floating-chip chip-bottom">
+                    <span class="chip-icon blue-chip">◈</span>
+                    <span><strong>YOUR WORLD</strong><small>دنیای تو، انتخاب تو</small></span>
+                </div>
+
+                <div class="visual-card visual-card-front">
+                    <span class="live-indicator"></span>
+                    <span>LEVEL UP</span>
+                    <strong>90<span>+</span></strong>
+                </div>
+            </div>
+        </section>
+
+        <section class="container quick-search-section" id="explore">
+            <div class="quick-search">
+                <span class="search-symbol" aria-hidden="true">⌕</span>
+                <label class="visually-hidden" for="siteSearch">جست‌وجو در سایت</label>
+                <input id="siteSearch" type="search" placeholder="دنبال چی می‌گردی؟ بازی، ابزار، آموزش..." autocomplete="off">
+                <button id="searchButton" class="search-button" type="button">جست‌وجو</button>
+            </div>
+            <p class="search-hint" id="searchHint">در بخش‌های این صفحه جست‌وجو کن و سریع‌تر به مقصدت برس.</p>
+        </section>
+
+        <section class="section container" id="categories">
+            <div class="section-heading">
+                <div>
+                    <span class="section-kicker">EXPLORE THE UNIVERSE</span>
+                    <h2>کدوم دنیا رو انتخاب می‌کنی؟</h2>
+                    <p>مسیر موردعلاقه‌ات رو انتخاب کن و ماجراجویی رو شروع کن.</p>
+                </div>
+                <span class="section-decoration" aria-hidden="true">✳</span>
+            </div>
+
+            <div class="category-grid">
+                <a class="category-card category-gaming searchable-card" href="pages/gaming.html" data-search="بازی گیم گیمینگ سرگرمی بازی های آنلاین">
+                    <div class="category-top">
+                        <span class="category-icon">🎮</span>
+                        <span class="card-arrow" aria-hidden="true">↗</span>
+                    </div>
+                    <span class="category-label">GAMING ZONE</span>
+                    <h3>دنیای بازی</h3>
+                    <p>بازی‌ها، تجربه‌ها و سرگرمی‌های گیمینگ رو کشف کن.</p>
+                    <span class="category-link">ورود به دنیای بازی <span aria-hidden="true">←</span></span>
+                </a>
+
+                <a class="category-card category-content searchable-card" href="pages/content.html" data-search="آپارات روبیکا ویدیو محتوا آموزش ویدئویی آرشیو">
+                    <div class="category-top">
+                        <span class="category-icon">▶️</span>
+                        <span class="card-arrow" aria-hidden="true">↗</span>
+                    </div>
+                    <span class="category-label">CONTENT HUB</span>
+                    <h3>آرشیو محتوا</h3>
+                    <p>ویدئوها، آموزش‌ها و محتوای کانال‌ها رو یک‌جا پیدا کن.</p>
+                    <span class="category-link">مشاهده محتوا <span aria-hidden="true">←</span></span>
+                </a>
+
+                <a class="category-card category-tools searchable-card" href="pages/tools.html" data-search="ابزار محاسبه گر تبدیل واحد رمز ساز ابزار آنلاین">
+                    <div class="category-top">
+                        <span class="category-icon">🛠️</span>
+                        <span class="card-arrow" aria-hidden="true">↗</span>
+                    </div>
+                    <span class="category-label">SMART TOOLS</span>
+                    <h3>جعبه ابزار</h3>
+                    <p>ابزارهای آنلاین کاربردی برای کارهای روزمره و سریع.</p>
+                    <span class="category-link">استفاده از ابزارها <span aria-hidden="true">←</span></span>
+                </a>
+
+                <a class="category-card category-tech searchable-card" href="pages/products.html" data-search="تکنولوژی محصول برنامه اپلیکیشن دانلود نرم افزار">
+                    <div class="category-top">
+                        <span class="category-icon">🚀</span>
+                        <span class="card-arrow" aria-hidden="true">↗</span>
+                    </div>
+                    <span class="category-label">TECH & PRODUCTS</span>
+                    <h3>محصولات و تکنولوژی</h3>
+                    <p>پروژه‌ها، اپلیکیشن‌ها و چیزهای تازه‌ای که می‌سازیم.</p>
+                    <span class="category-link">بیشتر ببین <span aria-hidden="true">←</span></span>
+                </a>
+            </div>
+            <p class="empty-search" id="emptySearch" hidden>نتیجه‌ای پیدا نشد. عبارت دیگه‌ای رو امتحان کن.</p>
+        </section>
+
+        <section class="feature-section">
+            <div class="container feature-layout">
+                <div class="feature-art" aria-hidden="true">
+                    <div class="feature-ring ring-one"></div>
+                    <div class="feature-ring ring-two"></div>
+                    <div class="feature-orb">F<span>90</span></div>
+                    <span class="feature-star star-one">✦</span>
+                    <span class="feature-star star-two">✧</span>
+                    <span class="feature-plus plus-one">+</span>
+                    <span class="feature-plus plus-two">+</span>
+                </div>
+
+                <div class="feature-copy">
+                    <span class="section-kicker">BUILT FOR CURIOUS MINDS</span>
+                    <h2>فقط تماشا نکن؛ <span class="gradient-text">کشف کن و بساز.</span></h2>
+                    <p>
+                        Fery90Game قراره بیشتر از یک سایت معمولی باشه؛
+                        جایی برای پیدا کردن محتوای جذاب، استفاده از ابزارهای مفید
+                        و دنبال‌کردن پروژه‌های تازه.
+                    </p>
+                    <a class="button button-primary" href="pages/about.html">
+                        بیشتر درباره ما
+                        <span aria-hidden="true">←</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section container community-section">
+            <div class="community-card">
+                <div class="community-symbol" aria-hidden="true">✦</div>
+                <div class="community-copy">
+                    <span class="section-kicker">THE JOURNEY STARTS HERE</span>
+                    <h2>این تازه شروع ماجراست!</h2>
+                    <p>بخش‌های جدید، ابزارهای بیشتر و محتوای تازه در مسیر ساخت این دنیا قرار دارن.</p>
+                </div>
+                <a class="button button-secondary" href="pages/about.html">آشنایی بیشتر <span aria-hidden="true">↗</span></a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-main">
+            <a class="brand footer-brand" href="index.html">
+                <span class="brand-icon" aria-hidden="true">
+                    <svg viewBox="0 0 48 48" fill="none">
+                        <path d="M12 9H37V17H21V21H33V29H21V39H12V9Z" fill="currentColor"/>
+                        <path d="M29 25L40 31L29 37V25Z" fill="#60A5FA"/>
+                    </svg>
+                </span>
+                <span class="brand-copy">
+                    <span class="brand-name">FERY<span>90</span>GAME</span>
+                    <span class="brand-caption">PLAY · CREATE · DISCOVER</span>
+                </span>
+            </a>
+
+            <p class="footer-description">یک دنیا برای بازی، یادگیری، ساختن و کشف چیزهای تازه.</p>
+
+            <nav class="footer-links" aria-label="پیوندهای پایین صفحه">
+                <a href="pages/about.html">درباره ما</a>
+                <a href="pages/content.html">آرشیو محتوا</a>
+                <a href="pages/tools.html">ابزارها</a>
+                <a href="mailto:ghasemifaryan@gmail.com" dir="ltr" aria-label="ارسال ایمیل به Fery90Game">ghasemifaryan@gmail.com</a>
+            </nav>
+        </div>
+        <div class="container footer-bottom">
+            <span>© <span id="currentYear">2026</span> Fery90Game — تمامی حقوق محفوظ است.</span>
+            <span class="footer-status"><span></span> در حال ساخت یک دنیای تازه</span>
+        </div>
+    </footer>
+</body>
+</html>

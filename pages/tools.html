@@ -1,0 +1,357 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#090811">
+    <meta name="description" content="مجموعه ابزارهای گیمینگ Fery90Game؛ ساخت چالش، اسم گیمینگ، انتخاب تصادفی بازی و ذخیره علاقه‌مندی‌ها.">
+    <title>ابزارهای گیمینگ | Fery90Game</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="tools-page">
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="../index.html" aria-label="صفحه اصلی Fery90Game">
+                <span class="brand-mark">F</span>
+                <span class="brand-text">Fery<span>90Game</span></span>
+            </a>
+
+            <button class="menu-toggle" id="menuToggle"
+                    type="button" aria-label="باز کردن منو"
+                    aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+
+            <nav class="main-navigation" id="mainNavigation" aria-label="منوی اصلی">
+                <a class="nav-link" href="../index.html">خانه</a>
+                <a class="nav-link" href="gaming.html">گیمینگ</a>
+                <a class="nav-link" href="content.html">آرشیو محتوا</a>
+                <a class="nav-link active" href="tools.html" aria-current="page">ابزارها</a>
+                <a class="nav-link" href="products.html">محصولات</a>
+                <a class="nav-link" href="about.html">درباره ما</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="tools-hero">
+            <div class="container tools-hero-grid">
+                <div class="tools-hero-content">
+                    <span class="section-kicker">FERY90GAME TOOLKIT</span>
+                    <h1>جعبه ابزار <span>گیمرها</span></h1>
+                    <p>
+                        چالش بساز، اسم گیمینگ پیدا کن، بازی بعدی‌ات را انتخاب کن
+                        و ابزارهای موردعلاقه‌ات را نگه دار.
+                    </p>
+
+                    <div class="tools-hero-actions">
+                        <a class="button button-primary" href="#challengeTool">ساخت چالش</a>
+                        <a class="button button-secondary" href="#favoriteTool">علاقه‌مندی‌ها</a>
+                    </div>
+
+                    <div class="tools-hero-stats">
+                        <div>
+                            <strong>۰۴</strong>
+                            <span>قابلیت کاربردی</span>
+                        </div>
+                        <div>
+                            <strong>رایگان</strong>
+                            <span>بدون ثبت‌نام</span>
+                        </div>
+                        <div>
+                            <strong>محلی</strong>
+                            <span>ذخیره در مرورگر</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tools-hero-art" aria-hidden="true">
+                    <div class="tools-orbit tools-orbit-one"></div>
+                    <div class="tools-orbit tools-orbit-two"></div>
+                    <div class="tools-hero-controller">
+                        <span class="controller-cross">✚</span>
+                        <span class="controller-button">●</span>
+                        <span class="controller-button controller-button-blue">●</span>
+                        <span class="controller-center">F90</span>
+                    </div>
+                    <span class="tools-floating-tag tag-top">GAME ON</span>
+                    <span class="tools-floating-tag tag-bottom">LEVEL UP</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section tools-overview">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="section-kicker">YOUR NEXT MOVE</span>
+                    <h2>از کجا شروع می‌کنی؟</h2>
+                    <p>یک ابزار را انتخاب کن و امتحانش کن.</p>
+                </div>
+
+                <div class="tools-shortcuts">
+                    <a href="#challengeTool" class="tools-shortcut">
+                        <span class="tools-shortcut-icon">⚔</span>
+                        <strong>چالش‌ساز</strong>
+                        <span>چالش جدید بساز</span>
+                    </a>
+                    <a href="#usernameTool" class="tools-shortcut">
+                        <span class="tools-shortcut-icon">✦</span>
+                        <strong>اسم گیمینگ</strong>
+                        <span>یک نام متفاوت پیدا کن</span>
+                    </a>
+                    <a href="#gamePickerTool" class="tools-shortcut">
+                        <span class="tools-shortcut-icon">🎮</span>
+                        <strong>انتخاب بازی</strong>
+                        <span>بازی بعدی را بسپار به شانس</span>
+                    </a>
+                    <a href="#favoriteTool" class="tools-shortcut">
+                        <span class="tools-shortcut-icon">♡</span>
+                        <strong>علاقه‌مندی‌ها</strong>
+                        <span>موارد ذخیره‌شده‌ات</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section tools-main-section" id="challengeTool">
+            <div class="container">
+                <div class="tools-section-heading">
+                    <div>
+                        <span class="section-kicker">01 / CHALLENGE GENERATOR</span>
+                        <h2>چالش‌ساز گیمینگ</h2>
+                        <p>وقتی بازی معمولی شده، یک قانون تازه به آن اضافه کن.</p>
+                    </div>
+                    <span class="tools-section-number">01</span>
+                </div>
+
+                <div class="tools-panel tools-challenge-layout">
+                    <div class="tools-form-column">
+                        <label class="tools-label" for="challengeGame">بازی موردنظر</label>
+                        <select id="challengeGame" class="tools-input">
+                            <option value="minecraft">Minecraft</option>
+                            <option value="survival">بازی‌های بقا</option>
+                            <option value="racing">بازی‌های مسابقه‌ای</option>
+                            <option value="football">بازی‌های فوتبالی</option>
+                            <option value="shooter">بازی‌های شوتر</option>
+                            <option value="any">هر بازی دیگری</option>
+                        </select>
+
+                        <label class="tools-label" for="challengeDifficulty">سطح چالش</label>
+                        <select id="challengeDifficulty" class="tools-input">
+                            <option value="easy">آسان</option>
+                            <option value="medium" selected>متوسط</option>
+                            <option value="hard">سخت</option>
+                            <option value="chaos">دیوانه‌وار</option>
+                        </select>
+
+                        <label class="tools-label" for="challengeCount">تعداد چالش</label>
+                        <select id="challengeCount" class="tools-input">
+                            <option value="1">یک چالش</option>
+                            <option value="3" selected>سه چالش</option>
+                            <option value="5">پنج چالش</option>
+                        </select>
+
+                        <button type="button" class="button button-primary tools-full-button"
+                                id="generateChallenges">
+                            ✦ ساخت چالش جدید
+                        </button>
+                    </div>
+
+                    <div class="tools-result-column">
+                        <div class="tools-result-heading">
+                            <span class="tools-result-dot"></span>
+                            <span>چالش‌های تو</span>
+                        </div>
+
+                        <div id="challengeResults" class="tools-challenge-results" aria-live="polite">
+                            <div class="tools-empty-state">
+                                <span>⚔</span>
+                                <strong>آماده‌ای؟</strong>
+                                <p>تنظیمات را انتخاب کن و دکمه ساخت چالش را بزن.</p>
+                            </div>
+                        </div>
+
+                        <p class="tools-status" id="challengeStatus" aria-live="polite"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section tools-main-section" id="usernameTool">
+            <div class="container">
+                <div class="tools-section-heading">
+                    <div>
+                        <span class="section-kicker">02 / GAMER NAME LAB</span>
+                        <h2>آزمایشگاه اسم گیمینگ</h2>
+                        <p>برای پروفایل، بازی آنلاین یا نام کاربری خودت ایده بگیر.</p>
+                    </div>
+                    <span class="tools-section-number">02</span>
+                </div>
+
+                <div class="tools-panel">
+                    <div class="tools-username-controls">
+                        <div class="tools-field">
+                            <label class="tools-label" for="usernameBase">کلمه یا اسم دلخواه (اختیاری)</label>
+                            <input class="tools-input" id="usernameBase" type="text"
+                                   maxlength="18" placeholder="مثلاً Fery یا Shadow">
+                        </div>
+
+                        <div class="tools-field">
+                            <label class="tools-label" for="usernameStyle">سبک نام</label>
+                            <select class="tools-input" id="usernameStyle">
+                                <option value="all">ترکیبی و متنوع</option>
+                                <option value="pro">حرفه‌ای</option>
+                                <option value="dark">مرموز و تاریک</option>
+                                <option value="fun">بامزه</option>
+                                <option value="short">کوتاه و ساده</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="button" class="button button-primary tools-generate-name"
+                            id="generateUsernames">
+                        ✦ پیشنهاد اسم
+                    </button>
+
+                    <div id="usernameResults" class="tools-username-results" aria-live="polite">
+                        <p class="tools-muted">برای دیدن پیشنهادها، دکمه بالا را بزن.</p>
+                    </div>
+                    <p class="tools-status" id="usernameStatus" aria-live="polite"></p>
+                    <p class="tools-note">
+                        این پیشنهادها برای ایده‌گرفتن هستند؛ در دسترس بودن آن‌ها در بازی‌ها بررسی نمی‌شود.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section tools-main-section" id="gamePickerTool">
+            <div class="container">
+                <div class="tools-section-heading">
+                    <div>
+                        <span class="section-kicker">03 / RANDOM GAME PICKER</span>
+                        <h2>انتخاب‌گر بازی</h2>
+                        <p>بازی‌هایت را اضافه کن و انتخاب را به شانس بسپار.</p>
+                    </div>
+                    <span class="tools-section-number">03</span>
+                </div>
+
+                <div class="tools-panel">
+                    <form id="addGameForm" class="tools-add-game-form">
+                        <div class="tools-field">
+                            <label class="tools-label" for="newGameName">نام بازی</label>
+                            <input class="tools-input" id="newGameName" type="text"
+                                   maxlength="60" placeholder="مثلاً Minecraft" required>
+                        </div>
+                        <button class="button button-secondary" type="submit">+ افزودن بازی</button>
+                    </form>
+
+                    <div class="tools-game-list-heading">
+                        <strong>فهرست بازی‌های تو</strong>
+                        <span id="gameCount" class="tools-count">۰ بازی</span>
+                    </div>
+
+                    <div id="gameList" class="tools-game-list" aria-live="polite"></div>
+
+                    <div class="tools-game-picker-result" id="gamePickerResult" aria-live="polite">
+                        <span class="tools-picker-symbol">?</span>
+                        <div>
+                            <span class="tools-picker-label">بازی بعدی تو</span>
+                            <strong id="pickedGameName">هنوز انتخاب نشده</strong>
+                        </div>
+                    </div>
+
+                    <div class="tools-game-picker-actions">
+                        <button type="button" class="button button-primary" id="pickRandomGame">
+                            🎲 انتخاب تصادفی
+                        </button>
+                        <button type="button" class="button button-secondary" id="resetGames">
+                            بازگردانی فهرست پیش‌فرض
+                        </button>
+                    </div>
+                    <p class="tools-status" id="gameStatus" aria-live="polite"></p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section tools-main-section" id="favoriteTool">
+            <div class="container">
+                <div class="tools-section-heading">
+                    <div>
+                        <span class="section-kicker">04 / YOUR COLLECTION</span>
+                        <h2>مجموعه علاقه‌مندی‌ها</h2>
+                        <p>چالش‌ها و اسم‌هایی که ذخیره کرده‌ای اینجا جمع می‌شوند.</p>
+                    </div>
+                    <span class="tools-section-number">04</span>
+                </div>
+
+                <div class="tools-panel">
+                    <div class="tools-favorite-toolbar">
+                        <div class="tools-favorite-tabs" role="group" aria-label="فیلتر علاقه‌مندی‌ها">
+                            <button type="button" class="tools-filter-button active"
+                                    data-favorite-filter="all">همه</button>
+                            <button type="button" class="tools-filter-button"
+                                    data-favorite-filter="challenge">چالش‌ها</button>
+                            <button type="button" class="tools-filter-button"
+                                    data-favorite-filter="username">اسم‌ها</button>
+                        </div>
+                        <button type="button" class="tools-text-button" id="clearFavorites">
+                            پاک کردن همه
+                        </button>
+                    </div>
+
+                    <div id="favoriteResults" class="tools-favorite-results" aria-live="polite">
+                        <div class="tools-empty-state">
+                            <span>♡</span>
+                            <strong>هنوز چیزی ذخیره نکرده‌ای</strong>
+                            <p>از بخش چالش‌ساز یا اسم‌ساز، گزینه‌های موردعلاقه‌ات را ذخیره کن.</p>
+                        </div>
+                    </div>
+                    <p class="tools-status" id="favoriteStatus" aria-live="polite"></p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section tools-bottom-cta">
+            <div class="container">
+                <div class="tools-cta-card">
+                    <div>
+                        <span class="section-kicker">MORE TO COME</span>
+                        <h2>این تازه شروع ماجراست.</h2>
+                        <p>ابزارهای تخصصی‌تر گیمینگ به‌مرور به Fery90Game اضافه می‌شوند.</p>
+                    </div>
+                    <a href="gaming.html" class="button button-primary">رفتن به بخش گیمینگ</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-main">
+            <div>
+                <a class="brand footer-brand" href="../index.html">
+                    <span class="brand-mark">F</span>
+                    <span class="brand-text">Fery<span>90Game</span></span>
+                </a>
+                <p>دنیای بازی، ابزار و سرگرمی در یک جا.</p>
+            </div>
+            <div class="footer-links">
+                <a href="../index.html">خانه</a>
+                <a href="gaming.html">گیمینگ</a>
+                <a href="content.html">آرشیو محتوا</a>
+                <a href="products.html">محصولات</a>
+                <a href="about.html">درباره ما</a>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <span>© <span id="currentYear"></span> Fery90Game</span>
+            <span>ساخته‌شده برای گیمرها</span>
+        </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+    <script src="../js/tools.js"></script>
+</body>
+</html>

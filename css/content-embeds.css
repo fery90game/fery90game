@@ -1,0 +1,54 @@
+/* Fery90Game — responsive Aparat embeds, loaded only on the content archive */
+.content-aparat-load {
+    position: absolute;
+    z-index: 2;
+    inset: 50% auto auto 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 48px;
+    padding: 11px 22px;
+    border: 1px solid rgba(255,255,255,.24);
+    border-radius: 14px;
+    background: linear-gradient(115deg, #9564fa, #6841d5);
+    color: #fff;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 8px 30px rgba(117,68,224,.4);
+    transform: translate(-50%, -50%);
+}
+.content-aparat-load:hover { filter: brightness(1.12); }
+.content-aparat-load:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
+.content-video-thumbnail { position: relative; }
+.content-video-thumbnail[hidden], .content-aparat-player[hidden] { display: none !important; }
+.content-aparat-player {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    min-height: 190px;
+    overflow: hidden;
+    border: 1px solid rgba(190,166,255,.18);
+    border-radius: 18px;
+    background: #05040b;
+}
+.content-aparat-embed-root { width: 100%; min-height: 190px; aspect-ratio: 16 / 9; }
+.content-aparat-embed-root iframe,
+.content-aparat-embed-root > iframe,
+.content-aparat-player iframe {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 190px;
+    border: 0 !important;
+}
+.content-aparat-error { margin: 18px; color: var(--muted); }
+.content-platform-placeholder { text-decoration: none; cursor: pointer; }
+.content-platform-placeholder:hover { border-color: rgba(155,107,255,.55); }
+.content-video-card[hidden] { display: none !important; }
+@media (max-width: 600px) {
+    .content-aparat-player, .content-aparat-embed-root { min-height: 180px; }
+    .content-aparat-load { min-height: 44px; padding: 9px 17px; }
+}

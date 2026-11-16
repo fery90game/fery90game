@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#090811">
+    <meta name="description" content="آرشیو ویدیوها، گیم‌پلی، آموزش‌ها و محتوای منتخب Fery90Game.">
+    <title>آرشیو محتوا | Fery90Game</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/content-embeds.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container header-inner">
+        <a class="brand" href="../index.html" aria-label="صفحه اصلی Fery90Game">
+            <span class="brand-mark">F</span>
+            <span class="brand-text">
+                <strong>Fery90Game</strong>
+                <small>دنیای بازی و تکنولوژی</small>
+            </span>
+        </a>
+
+        <button class="mobile-menu-button" id="mobileMenuButton"
+                type="button" aria-label="باز کردن منو"
+                aria-expanded="false" aria-controls="mainNavigation">
+            <span></span><span></span><span></span>
+        </button>
+
+        <nav class="main-navigation" id="mainNavigation" aria-label="منوی اصلی">
+            <a class="nav-link" href="../index.html">خانه</a>
+            <a class="nav-link" href="gaming.html">دنیای گیمینگ</a>
+            <a class="nav-link active" href="content.html" aria-current="page">آرشیو محتوا</a>
+            <a class="nav-link" href="tools.html">ابزارها</a>
+            <a class="nav-link" href="products.html">محصولات</a>
+            <a class="nav-link" href="about.html">درباره ما</a>
+        </nav>
+
+        <a class="button button-primary header-cta" href="#content-library">مشاهده ویدیوها</a>
+    </div>
+</header>
+
+<main>
+    <section class="content-hero">
+        <div class="container content-hero-layout">
+            <div class="content-hero-copy">
+                <span class="content-eyebrow">
+                    <span class="content-status-dot"></span>
+                    FERY90GAME MEDIA CENTER
+                </span>
+
+                <h1>
+                    دنیای محتوا،
+                    <span class="content-gradient-text">یک‌جا!</span>
+                </h1>
+
+                <p>
+                    از گیم‌پلی و آموزش بازی‌ها تا ترفندهای تکنولوژی و معرفی ابزارها؛
+                    محتوای موردعلاقه‌ات رو راحت‌تر پیدا کن.
+                </p>
+
+                <div class="content-hero-actions">
+                    <a class="button button-primary" href="#content-library">
+                        کشف محتوا <span aria-hidden="true">←</span>
+                    </a>
+                    <a class="button button-secondary" href="gaming.html">
+                        ورود به دنیای گیمینگ
+                    </a>
+                </div>
+
+                <div class="content-platform-note">
+                    <span aria-hidden="true">▶</span>
+                    ویدیوهای منتخب کانال رسمی آپارات Fery90Game را همین‌جا تماشا کن.
+                </div>
+            </div>
+
+            <div class="content-hero-art" aria-hidden="true">
+                <div class="content-art-orbit content-art-orbit-one"></div>
+                <div class="content-art-orbit content-art-orbit-two"></div>
+                <div class="content-play-card">
+                    <div class="content-play-card-top">
+                        <span>F90 MEDIA</span>
+                        <span>VIDEO ARCHIVE</span>
+                    </div>
+                    <div class="content-big-play">
+                        <span>▶</span>
+                    </div>
+                    <div class="content-wave">
+                        <i></i><i></i><i></i><i></i><i></i><i></i>
+                        <i></i><i></i><i></i><i></i><i></i><i></i>
+                        <i></i><i></i><i></i><i></i><i></i><i></i>
+                        <i></i><i></i><i></i><i></i><i></i><i></i>
+                    </div>
+                    <div class="content-play-card-bottom">
+                        <span>WATCH • LEARN • PLAY</span>
+                        <span>✦</span>
+                    </div>
+                </div>
+                <span class="content-floating-label content-floating-label-one">GAMING 🎮</span>
+                <span class="content-floating-label content-floating-label-two">TUTORIALS ✦</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-library section" id="content-library">
+        <div class="container">
+            <div class="content-section-heading">
+                <div>
+                    <span class="section-kicker">EXPLORE CONTENT</span>
+                    <h2>چی دوست داری تماشا کنی؟</h2>
+                    <p>با انتخاب دسته یا جست‌وجوی عنوان، محتوای موردنظرت رو پیدا کن.</p>
+                </div>
+            </div>
+
+            <div class="content-toolbar">
+                <div class="content-search-box">
+                    <span aria-hidden="true">⌕</span>
+                    <input
+                        type="search"
+                        id="contentSearch"
+                        placeholder="جست‌وجوی ویدیو، بازی یا آموزش..."
+                        aria-label="جست‌وجو در آرشیو محتوا"
+                        autocomplete="off"
+                    >
+                    <button id="contentSearchClear" type="button" aria-label="پاک کردن جست‌وجو">
+                        پاک کردن
+                    </button>
+                </div>
+
+                <div class="content-results-count" aria-live="polite">
+                    نتیجه: <strong id="contentResultCount">۶</strong>
+                </div>
+            </div>
+
+            <div class="content-filter-list" role="group" aria-label="فیلتر دسته‌بندی محتوا">
+                <button class="content-filter-button is-active" type="button" data-filter="all" aria-pressed="true">همه</button>
+                <button class="content-filter-button" type="button" data-filter="aparat" aria-pressed="false">ویدیوهای آپارات</button>
+            </div>
+
+            <div class="content-video-grid" id="contentVideoGrid">
+                <article class="content-video-card"
+                         data-category="aparat"
+                         data-search="آپارات فری 90 game fery90game ویدیوی منتخب 1 ۱ yydu5e9">
+                    <div class="content-video-thumbnail content-thumb-minecraft">
+                        <span class="content-thumbnail-symbol" aria-hidden="true">⛏️</span>
+                        <span class="content-thumbnail-category">GAMING</span>
+                        <span class="content-thumbnail-type">آپارات</span>
+                        <button class="content-aparat-load" type="button" data-aparat-index="0" aria-label="پخش ویدیوی منتخب ۱">
+                            <span aria-hidden="true">▶</span> پخش ویدیو
+                        </button>
+                    </div>
+                    <div class="content-aparat-player" id="aparat-player-1" hidden aria-label="پخش‌کنندهٔ آپارات"></div>
+                    <div class="content-video-info">
+                        <div class="content-video-meta">
+                            <span>آپارات</span>
+                            <span>ویدیوی منتخب ۱</span>
+                        </div>
+                        <h3>ویدیوی منتخب ۱ از Fery90Game</h3>
+                        <p>برای مشاهده، روی دکمهٔ پخش بزن. عنوان ویدیو در پخش‌کنندهٔ رسمی آپارات نمایش داده می‌شود.</p>
+                        <a class="content-video-link" href="https://www.aparat.com/fery90_game" target="_blank" rel="noopener noreferrer">
+                            مشاهدهٔ کانال آپارات <span aria-hidden="true">←</span>
+                        </a>
+                    </div>
+                </article>
+                <article class="content-video-card"
+                         data-category="aparat"
+                         data-search="آپارات فری 90 game fery90game ویدیوی منتخب 2 ۲ fiyqdi0">
+                    <div class="content-video-thumbnail content-thumb-caption">
+                        <span class="content-thumbnail-symbol" aria-hidden="true">CC</span>
+                        <span class="content-thumbnail-category">VIDEO</span>
+                        <span class="content-thumbnail-type">آپارات</span>
+                        <button class="content-aparat-load" type="button" data-aparat-index="1" aria-label="پخش ویدیوی منتخب ۲">
+                            <span aria-hidden="true">▶</span> پخش ویدیو
+                        </button>
+                    </div>
+                    <div class="content-aparat-player" id="aparat-player-2" hidden aria-label="پخش‌کنندهٔ آپارات"></div>
+                    <div class="content-video-info">
+                        <div class="content-video-meta">
+                            <span>آپارات</span>
+                            <span>ویدیوی منتخب ۲</span>
+                        </div>
+                        <h3>ویدیوی منتخب ۲ از Fery90Game</h3>
+                        <p>برای مشاهده، روی دکمهٔ پخش بزن. عنوان ویدیو در پخش‌کنندهٔ رسمی آپارات نمایش داده می‌شود.</p>
+                        <a class="content-video-link" href="https://www.aparat.com/fery90_game" target="_blank" rel="noopener noreferrer">
+                            مشاهدهٔ کانال آپارات <span aria-hidden="true">←</span>
+                        </a>
+                    </div>
+                </article>
+                <article class="content-video-card"
+                         data-category="aparat"
+                         data-search="آپارات فری 90 game fery90game ویدیوی منتخب 3 ۳ hqlirnp">
+                    <div class="content-video-thumbnail content-thumb-racing">
+                        <span class="content-thumbnail-symbol" aria-hidden="true">▶</span>
+                        <span class="content-thumbnail-category">VIDEO</span>
+                        <span class="content-thumbnail-type">آپارات</span>
+                        <button class="content-aparat-load" type="button" data-aparat-index="2" aria-label="پخش ویدیوی منتخب ۳">
+                            <span aria-hidden="true">▶</span> پخش ویدیو
+                        </button>
+                    </div>
+                    <div class="content-aparat-player" id="aparat-player-3" hidden aria-label="پخش‌کنندهٔ آپارات"></div>
+                    <div class="content-video-info">
+                        <div class="content-video-meta">
+                            <span>آپارات</span>
+                            <span>ویدیوی منتخب ۳</span>
+                        </div>
+                        <h3>ویدیوی منتخب ۳ از Fery90Game</h3>
+                        <p>برای مشاهده، روی دکمهٔ پخش بزن. عنوان ویدیو در پخش‌کنندهٔ رسمی آپارات نمایش داده می‌شود.</p>
+                        <a class="content-video-link" href="https://www.aparat.com/fery90_game" target="_blank" rel="noopener noreferrer">
+                            مشاهدهٔ کانال آپارات <span aria-hidden="true">←</span>
+                        </a>
+                    </div>
+                </article>
+                <article class="content-video-card"
+                         data-category="aparat"
+                         data-search="آپارات فری 90 game fery90game ویدیوی منتخب 4 ۴ hgpe3td">
+                    <div class="content-video-thumbnail content-thumb-tools">
+                        <span class="content-thumbnail-symbol" aria-hidden="true">✦</span>
+                        <span class="content-thumbnail-category">VIDEO</span>
+                        <span class="content-thumbnail-type">آپارات</span>
+                        <button class="content-aparat-load" type="button" data-aparat-index="3" aria-label="پخش ویدیوی منتخب ۴">
+                            <span aria-hidden="true">▶</span> پخش ویدیو
+                        </button>
+                    </div>
+                    <div class="content-aparat-player" id="aparat-player-4" hidden aria-label="پخش‌کنندهٔ آپارات"></div>
+                    <div class="content-video-info">
+                        <div class="content-video-meta">
+                            <span>آپارات</span>
+                            <span>ویدیوی منتخب ۴</span>
+                        </div>
+                        <h3>ویدیوی منتخب ۴ از Fery90Game</h3>
+                        <p>برای مشاهده، روی دکمهٔ پخش بزن. عنوان ویدیو در پخش‌کنندهٔ رسمی آپارات نمایش داده می‌شود.</p>
+                        <a class="content-video-link" href="https://www.aparat.com/fery90_game" target="_blank" rel="noopener noreferrer">
+                            مشاهدهٔ کانال آپارات <span aria-hidden="true">←</span>
+                        </a>
+                    </div>
+                </article>
+                <article class="content-video-card"
+                         data-category="aparat"
+                         data-search="آپارات فری 90 game fery90game ویدیوی منتخب 5 ۵ psq0s8d">
+                    <div class="content-video-thumbnail content-thumb-football">
+                        <span class="content-thumbnail-symbol" aria-hidden="true">▶</span>
+                        <span class="content-thumbnail-category">VIDEO</span>
+                        <span class="content-thumbnail-type">آپارات</span>
+                        <button class="content-aparat-load" type="button" data-aparat-index="4" aria-label="پخش ویدیوی منتخب ۵">
+                            <span aria-hidden="true">▶</span> پخش ویدیو
+                        </button>
+                    </div>
+                    <div class="content-aparat-player" id="aparat-player-5" hidden aria-label="پخش‌کنندهٔ آپارات"></div>
+                    <div class="content-video-info">
+                        <div class="content-video-meta">
+                            <span>آپارات</span>
+                            <span>ویدیوی منتخب ۵</span>
+                        </div>
+                        <h3>ویدیوی منتخب ۵ از Fery90Game</h3>
+                        <p>برای مشاهده، روی دکمهٔ پخش بزن. عنوان ویدیو در پخش‌کنندهٔ رسمی آپارات نمایش داده می‌شود.</p>
+                        <a class="content-video-link" href="https://www.aparat.com/fery90_game" target="_blank" rel="noopener noreferrer">
+                            مشاهدهٔ کانال آپارات <span aria-hidden="true">←</span>
+                        </a>
+                    </div>
+                </article>
+                <article class="content-video-card"
+                         data-category="aparat"
+                         data-search="آپارات فری 90 game fery90game ویدیوی منتخب 6 ۶ veh49oa">
+                    <div class="content-video-thumbnail content-thumb-fun">
+                        <span class="content-thumbnail-symbol" aria-hidden="true">✦</span>
+                        <span class="content-thumbnail-category">VIDEO</span>
+                        <span class="content-thumbnail-type">آپارات</span>
+                        <button class="content-aparat-load" type="button" data-aparat-index="5" aria-label="پخش ویدیوی منتخب ۶">
+                            <span aria-hidden="true">▶</span> پخش ویدیو
+                        </button>
+                    </div>
+                    <div class="content-aparat-player" id="aparat-player-6" hidden aria-label="پخش‌کنندهٔ آپارات"></div>
+                    <div class="content-video-info">
+                        <div class="content-video-meta">
+                            <span>آپارات</span>
+                            <span>ویدیوی منتخب ۶</span>
+                        </div>
+                        <h3>ویدیوی منتخب ۶ از Fery90Game</h3>
+                        <p>برای مشاهده، روی دکمهٔ پخش بزن. عنوان ویدیو در پخش‌کنندهٔ رسمی آپارات نمایش داده می‌شود.</p>
+                        <a class="content-video-link" href="https://www.aparat.com/fery90_game" target="_blank" rel="noopener noreferrer">
+                            مشاهدهٔ کانال آپارات <span aria-hidden="true">←</span>
+                        </a>
+                    </div>
+                </article>
+            </div>
+
+            <div class="content-empty-state" id="contentEmptyState" hidden>
+                <span aria-hidden="true">⌕</span>
+                <h3>محتوایی پیدا نشد!</h3>
+                <p>عبارت جست‌وجو یا دسته‌بندی رو تغییر بده.</p>
+                <button class="button button-secondary" id="contentResetButton" type="button">
+                    نمایش همهٔ محتواها
+                </button>
+            </div>
+
+            <div class="content-demo-notice" id="content-notice">
+                <span class="content-notice-icon" aria-hidden="true">ⓘ</span>
+                <div>
+                    <strong>آرشیو متصل به آپارات</strong>
+                    <p>این بخش از کدهای امبدی که برای ویدیوهای کانال Fery90Game فرستادی استفاده می‌کند. برای سبک ماندن صفحه، هر پخش‌کننده بعد از کلیک روی «پخش ویدیو» بارگذاری می‌شود.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-platform-section">
+        <div class="container content-platform-panel">
+            <div>
+                <span class="section-kicker">WATCH ON YOUR PLATFORM</span>
+                <h2>محتوا رو از منبع اصلی دنبال کن</h2>
+                <p>برای دیدن همهٔ ویدیوها و تازه‌ترین انتشارها وارد کانال رسمی Fery90Game در آپارات شو.</p>
+            </div>
+            <a class="content-platform-placeholder" href="https://www.aparat.com/fery90_game" target="_blank" rel="noopener noreferrer">
+                <span aria-hidden="true">▶</span>
+                <div>
+                    <strong>کانال آپارات Fery90Game</strong>
+                    <small>مشاهدهٔ کانال و همهٔ ویدیوها ↗</small>
+                </div>
+            </a>
+        </div>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="container footer-main">
+        <div class="footer-brand">
+            <a class="brand" href="../index.html">
+                <span class="brand-mark">F</span>
+                <span class="brand-text">
+                    <strong>Fery90Game</strong>
+                    <small>دنیای بازی و تکنولوژی</small>
+                </span>
+            </a>
+            <p>یک خانهٔ آنلاین برای بازی، سرگرمی، محتوا و ابزارهای کاربردی.</p>
+        </div>
+
+        <div class="footer-links">
+            <h3>دسترسی سریع</h3>
+            <a href="../index.html">صفحه اصلی</a>
+            <a href="gaming.html">دنیای گیمینگ</a>
+            <a href="tools.html">ابزارها</a>
+        </div>
+
+        <div class="footer-links">
+            <h3>بیشتر بدانید</h3>
+            <a href="products.html">محصولات</a>
+            <a href="about.html">درباره ما</a>
+            <a href="../index.html#categories">همه بخش‌ها</a>
+        </div>
+    </div>
+
+    <div class="container footer-bottom">
+        <p>© <span id="currentYear"></span> Fery90Game — استفاده با رعایت حقوق محتوا.</p>
+        <a href="../index.html">ساخته‌شده برای دنیای گیمرها ✦</a>
+    </div>
+</footer>
+
+<script src="../js/app.js" defer></script>
+<script src="../js/content.js" defer></script>
+</body>
+</html>

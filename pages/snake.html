@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#090811">
+<meta name="description" content="Neon Snake؛ بازی مار نئونی Fery90Game. غذا بخور، بلندتر شو و به دیوار و بدن خودت نخور!">
+<title>Neon Snake | مار نئونی — Fery90Game</title>
+<style>
+:root{color-scheme:dark;--bg:#090811;--panel:#111020;--purple:#a78bfa;--blue:#60a5fa;--pink:#f0abfc;--text:#f5f3ff;--muted:#b9b3d2;--border:rgba(167,139,250,.25)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 15% 0%,rgba(124,58,237,.24),transparent 42%),radial-gradient(ellipse at 95% 25%,rgba(37,99,235,.16),transparent 38%),var(--bg);color:var(--text);font-family:"Vazirmatn",Tahoma,"Segoe UI",sans-serif;line-height:1.8}
+.shell{max-width:1040px;margin:0 auto;padding:14px 16px calc(36px + env(safe-area-inset-bottom))}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:8px 0}
+.brand{display:flex;align-items:center;gap:10px;color:var(--text);text-decoration:none;font-weight:800}
+.brand-mark{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,#7c3aed,#60a5fa);font-weight:900}
+.back{color:var(--blue);text-decoration:none;font-size:.95rem}
+.back:hover{text-decoration:underline}
+.hero{text-align:center;padding:18px 0 14px}
+.eyebrow{display:inline-block;font-size:.78rem;letter-spacing:.08em;color:var(--purple);border:1px solid var(--border);border-radius:999px;padding:2px 14px;direction:ltr}
+h1{margin:10px 0 4px;font-size:clamp(2rem,6vw,3rem);font-weight:900;line-height:1.2}
+.gradient{background:linear-gradient(90deg,var(--purple),var(--blue),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{margin:0 auto;max-width:560px;color:var(--muted)}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:18px;align-items:start;margin-top:10px}
+@media(max-width:820px){.layout{grid-template-columns:1fr}}
+.panel,.side{background:var(--panel);border:1px solid var(--border);border-radius:18px;padding:14px}
+.hud{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}
+.hudbox{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:12px;padding:6px 10px;text-align:center}
+.label{display:block;font-size:.78rem;color:var(--muted)}
+.value{font-size:1.35rem;font-weight:800}
+.stage{position:relative;width:100%;max-width:520px;margin:0 auto}
+canvas{display:block;width:100%;height:auto;aspect-ratio:1;border-radius:14px;border:1px solid var(--border);background:#0b0a18;touch-action:none}
+.overlay{position:absolute;inset:0;display:grid;place-items:center;background:rgba(9,8,17,.8);border-radius:14px;padding:16px}
+.overlay[hidden]{display:none}
+.overlay-card{text-align:center;max-width:300px}
+.overlay-icon{font-size:2.8rem;line-height:1.2}
+.overlay-card h2{margin:6px 0 4px;font-size:1.4rem}
+.overlay-card p{margin:0 0 14px;color:var(--muted);font-size:.95rem}
+.btn{font:inherit;font-weight:700;color:#fff;background:linear-gradient(135deg,#7c3aed,#9b6bff);border:0;border-radius:12px;padding:8px 22px;cursor:pointer}
+.btn:hover{filter:brightness(1.12)}
+.btn.secondary{background:transparent;border:1px solid var(--border);color:var(--text)}
+.actions{display:flex;justify-content:center;gap:10px;margin-top:12px;flex-wrap:wrap}
+.dpad{direction:ltr;display:grid;grid-template-columns:repeat(3,64px);grid-template-rows:repeat(2,56px);gap:8px;justify-content:center;margin-top:14px}
+.dpad button{font:inherit;font-size:1.4rem;color:var(--text);background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:14px;cursor:pointer;touch-action:manipulation;user-select:none}
+.dpad button:active{background:rgba(124,58,237,.4)}
+.dpad .up{grid-column:2;grid-row:1}
+.dpad .left{grid-column:1;grid-row:2}
+.dpad .down{grid-column:2;grid-row:2}
+.dpad .right{grid-column:3;grid-row:2}
+@media(hover:hover) and (pointer:fine){.dpad{display:none}}
+.sidecol{display:grid;gap:14px}
+.side h3{margin:0 0 6px;font-size:1rem}
+.record{font-size:2rem;font-weight:900;color:var(--purple)}
+.caption{color:var(--muted);font-size:.82rem}
+.side ul{margin:0;padding-right:18px;color:var(--muted);font-size:.9rem}
+.footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:26px}
+</style>
+</head>
+<body>
+<div class="shell">
+<header class="topbar">
+    <a class="brand" href="../index.html" aria-label="صفحه اصلی Fery90Game"><span class="brand-mark">F</span><span>Fery90Game</span></a>
+    <a class="back" href="gaming.html">← بازگشت به دنیای گیمینگ</a>
+</header>
+
+<section class="hero">
+    <span class="eyebrow">ARCADE CLASSIC / F90 ORIGINAL</span>
+    <h1><span class="gradient">NEON SNAKE</span></h1>
+    <p>غذای صورتی رو بخور و بلندتر شو. هرچی جلوتر بری سرعت بیشتر می‌شه؛ به دیوار و بدن خودت نخور!</p>
+</section>
+
+<main class="layout">
+    <section class="panel" aria-label="بازی مار نئونی">
+        <div class="hud" aria-live="polite">
+            <div class="hudbox"><span class="label">امتیاز</span><strong class="value" id="score">۰</strong></div>
+            <div class="hudbox"><span class="label">سرعت</span><strong class="value" id="speed">۱</strong></div>
+            <div class="hudbox"><span class="label">رکورد</span><strong class="value" id="bestHud">۰</strong></div>
+        </div>
+
+        <div class="stage" id="stage">
+            <canvas id="game" aria-label="صفحه بازی مار. با کلیدهای جهت‌دار، WASD یا کشیدن انگشت مار را حرکت بده"></canvas>
+            <div class="overlay" id="overlay">
+                <div class="overlay-card">
+                    <div class="overlay-icon" id="ovIcon">🐍</div>
+                    <h2 id="ovTitle">آماده‌ای؟</h2>
+                    <p id="ovText">با کلیدهای جهت‌دار، WASD یا کشیدن انگشت روی صفحه بازی کن.</p>
+                    <button class="btn" type="button" id="ovBtn">شروع بازی</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="actions">
+            <button class="btn secondary" type="button" id="pause">⏸ مکث</button>
+            <button class="btn secondary" type="button" id="restart">↻ شروع دوباره</button>
+        </div>
+
+        <div class="dpad" aria-label="کنترل لمسی">
+            <button class="up" type="button" data-dir="up" aria-label="بالا">▲</button>
+            <button class="left" type="button" data-dir="left" aria-label="چپ">◀</button>
+            <button class="down" type="button" data-dir="down" aria-label="پایین">▼</button>
+            <button class="right" type="button" data-dir="right" aria-label="راست">▶</button>
+        </div>
+    </section>
+
+    <aside class="sidecol">
+        <section class="side">
+            <h3>🏆 بهترین رکورد</h3>
+            <div class="record" id="best">۰</div>
+            <div class="caption">در همین مرورگر ذخیره می‌شود</div>
+        </section>
+        <section class="side">
+            <h3>🎮 راهنمای کنترل</h3>
+            <ul>
+                <li>کامپیوتر: کلیدهای جهت‌دار یا WASD</li>
+                <li>موبایل: انگشت را روی صفحه بکش یا از دکمه‌ها استفاده کن</li>
+                <li>مکث: کلید Space یا P</li>
+                <li>هر ۱۰ امتیاز یک پله سرعت بیشتر می‌شود</li>
+            </ul>
+        </section>
+    </aside>
+</main>
+
+<footer class="footer">Neon Snake — یک بازی مرورگری از Fery90Game. بدون نصب و بدون کتابخانهٔ خارجی.</footer>
+</div>
+
+<script>
+(() => {
+    'use strict';
+
+    const N = 20, CELL = 24, SIZE = N * CELL;
+    const STORE = 'fery90game_snake_best_v1';
+    const $ = (id) => document.getElementById(id);
+    const fa = (n) => Number(n).toLocaleString('fa-IR');
+    const canvas = $('game'), ctx = canvas.getContext('2d');
+    canvas.width = canvas.height = SIZE;
+
+    const DIRS = {
+        up: { x: 0, y: -1 }, down: { x: 0, y: 1 },
+        left: { x: -1, y: 0 }, right: { x: 1, y: 0 }
+    };
+
+    let snake, dir, queue, food, score, stepMs, acc, last, pulse;
+    let best = 0, overAt = 0;
+    let state = 'ready'; // ready | playing | paused | over
+
+    try { best = Math.max(0, Number(localStorage.getItem(STORE)) || 0); } catch (e) { /* ignore */ }
+
+    function reset() {
+        snake = [{ x: 10, y: 10 }, { x: 9, y: 10 }, { x: 8, y: 10 }];
+        dir = DIRS.right;
+        queue = [];
+        score = 0;
+        stepMs = 140;
+        acc = 0;
+        pulse = 0;
+        spawnFood();
+        hud();
+    }
+
+    function spawnFood() {
+        const free = [];
+        for (let x = 0; x < N; x++) {
+            for (let y = 0; y < N; y++) {
+                if (!snake.some((s) => s.x === x && s.y === y)) free.push({ x, y });
+            }
+        }
+        food = free.length ? free[Math.floor(Math.random() * free.length)] : null;
+    }
+
+    function level() { return 1 + Math.floor(score / 10); }
+
+    function hud() {
+        $('score').textContent = fa(score);
+        $('speed').textContent = fa(level());
+        $('bestHud').textContent = fa(best);
+        $('best').textContent = fa(best);
+    }
+
+    function showOverlay(icon, title, text, button) {
+        $('ovIcon').textContent = icon;
+        $('ovTitle').textContent = title;
+        $('ovText').textContent = text;
+        $('ovBtn').textContent = button;
+        $('overlay').hidden = false;
+    }
+
+    function start() {
+        if (state === 'over' || state === 'ready') reset();
+        state = 'playing';
+        last = performance.now();
+        $('overlay').hidden = true;
+        $('pause').textContent = '⏸ مکث';
+    }
+
+    function togglePause() {
+        if (state === 'playing') {
+            state = 'paused';
+            $('pause').textContent = '▶ ادامه';
+            showOverlay('⏸', 'مکث', 'برای ادامه روی دکمه بزن.', 'ادامه');
+        } else if (state === 'paused') {
+            state = 'playing';
+            last = performance.now();
+            $('pause').textContent = '⏸ مکث';
+            $('overlay').hidden = true;
+        }
+    }
+
+    function restart() {
+        reset();
+        state = 'ready';
+        $('pause').textContent = '⏸ مکث';
+        showOverlay('🐍', 'آماده‌ای؟', 'با کلیدهای جهت‌دار، WASD یا کشیدن انگشت روی صفحه بازی کن.', 'شروع بازی');
+        draw();
+    }
+
+    function gameOver() {
+        state = 'over';
+        overAt = performance.now();
+        let record = false;
+        if (score > best) {
+            best = score;
+            record = true;
+            try { localStorage.setItem(STORE, String(best)); } catch (e) { /* ignore */ }
+        }
+        hud();
+        showOverlay(
+            record ? '🏆' : '💥',
+            record ? 'رکورد جدید!' : 'باختی!',
+            `امتیازت ${fa(score)} شد${record ? ' و رکورد قبلی را شکستی' : ''}.`,
+            'دوباره بازی کن'
+        );
+    }
+
+    function turn(name) {
+        const wanted = DIRS[name];
+        if (!wanted || state === 'paused') return;
+        if (state === 'over' && performance.now() - overAt < 600) return;
+        if (state === 'ready' || state === 'over') start();
+        const ref = queue.length ? queue[queue.length - 1] : dir;
+        if ((wanted.x === ref.x && wanted.y === ref.y) || (wanted.x === -ref.x && wanted.y === -ref.y)) return;
+        if (queue.length < 3) queue.push(wanted);
+    }
+
+    function step() {
+        if (queue.length) {
+            const next = queue.shift();
+            if (!(next.x === -dir.x && next.y === -dir.y)) dir = next;
+        }
+        const head = { x: snake[0].x + dir.x, y: snake[0].y + dir.y };
+        if (head.x < 0 || head.y < 0 || head.x >= N || head.y >= N) { gameOver(); return; }
+
+        const eating = food && head.x === food.x && head.y === food.y;
+        const body = eating ? snake : snake.slice(0, -1);
+        if (body.some((s) => s.x === head.x && s.y === head.y)) { gameOver(); return; }
+
+        snake.unshift(head);
+        if (eating) {
+            score++;
+            stepMs = Math.max(70, 140 - Math.floor(score / 10) * 14 - (score % 10));
+            pulse = 1;
+            spawnFood();
+            hud();
+            if (!food) gameOver();
+        } else {
+            snake.pop();
+        }
+    }
+
+    function frame(time) {
+        requestAnimationFrame(frame);
+        if (state === 'playing') {
+            acc += Math.min(time - last, 250);
+            last = time;
+            while (acc >= stepMs && state === 'playing') {
+                acc -= stepMs;
+                step();
+            }
+        }
+        if (pulse > 0) pulse = Math.max(0, pulse - 0.05);
+        draw();
+    }
+
+    function roundRect(x, y, w, h, r) {
+        ctx.beginPath();
+        ctx.moveTo(x + r, y);
+        ctx.arcTo(x + w, y, x + w, y + h, r);
+        ctx.arcTo(x + w, y + h, x, y + h, r);
+        ctx.arcTo(x, y + h, x, y, r);
+        ctx.arcTo(x, y, x + w, y, r);
+        ctx.closePath();
+    }
+
+    function draw() {
+        ctx.fillStyle = '#0b0a18';
+        ctx.fillRect(0, 0, SIZE, SIZE);
+
+        ctx.fillStyle = 'rgba(167,139,250,.10)';
+        for (let x = 0; x < N; x++) {
+            for (let y = 0; y < N; y++) {
+                ctx.fillRect(x * CELL + CELL / 2 - 1, y * CELL + CELL / 2 - 1, 2, 2);
+            }
+        }
+
+        if (food) {
+            const cx = food.x * CELL + CELL / 2, cy = food.y * CELL + CELL / 2;
+            const glow = 10 + Math.sin(performance.now() / 180) * 3;
+            ctx.save();
+            ctx.shadowColor = '#f0abfc';
+            ctx.shadowBlur = glow;
+            ctx.fillStyle = '#f0abfc';
+            ctx.beginPath();
+            ctx.arc(cx, cy, CELL * 0.32, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+        }
+
+        for (let i = snake.length - 1; i >= 0; i--) {
+            const s = snake[i];
+            const t = snake.length > 1 ? i / (snake.length - 1) : 0;
+            const hue = 262 - t * 50;
+            ctx.save();
+            ctx.shadowColor = `hsl(${hue},90%,65%)`;
+            ctx.shadowBlur = i === 0 ? 14 + pulse * 10 : 6;
+            ctx.fillStyle = `hsl(${hue},85%,${i === 0 ? 72 : 64}%)`;
+            const inset = i === 0 ? 1 : 2.5;
+            roundRect(s.x * CELL + inset, s.y * CELL + inset, CELL - inset * 2, CELL - inset * 2, 7);
+            ctx.fill();
+            ctx.restore();
+        }
+
+        // چشم‌ها
+        const h = snake[0];
+        const hx = h.x * CELL + CELL / 2, hy = h.y * CELL + CELL / 2;
+        const px = -dir.y, py = dir.x;
+        ctx.fillStyle = '#0b0a18';
+        [-1, 1].forEach((side) => {
+            ctx.beginPath();
+            ctx.arc(hx + dir.x * 4 + px * 4.5 * side, hy + dir.y * 4 + py * 4.5 * side, 2.4, 0, Math.PI * 2);
+            ctx.fill();
+        });
+    }
+
+    // کنترل‌ها
+    const KEYMAP = {
+        ArrowUp: 'up', ArrowDown: 'down', ArrowLeft: 'left', ArrowRight: 'right',
+        w: 'up', s: 'down', a: 'left', d: 'right',
+        W: 'up', S: 'down', A: 'left', D: 'right'
+    };
+
+    document.addEventListener('keydown', (event) => {
+        if (event.ctrlKey || event.metaKey || event.altKey) return;
+        const name = KEYMAP[event.key];
+        if (name) {
+            event.preventDefault();
+            turn(name);
+        } else if (event.key === ' ' || event.key === 'p' || event.key === 'P') {
+            if (document.activeElement && document.activeElement.tagName === 'BUTTON') return;
+            event.preventDefault();
+            togglePause();
+        }
+    });
+
+    let touchStart = null;
+    $('stage').addEventListener('touchstart', (event) => {
+        const t = event.changedTouches[0];
+        touchStart = { x: t.clientX, y: t.clientY };
+    }, { passive: true });
+    $('stage').addEventListener('touchmove', (event) => { event.preventDefault(); }, { passive: false });
+    $('stage').addEventListener('touchend', (event) => {
+        if (!touchStart) return;
+        const t = event.changedTouches[0];
+        const dx = t.clientX - touchStart.x, dy = t.clientY - touchStart.y;
+        touchStart = null;
+        if (Math.max(Math.abs(dx), Math.abs(dy)) < 20) return;
+        if (Math.abs(dx) > Math.abs(dy)) turn(dx > 0 ? 'right' : 'left');
+        else turn(dy > 0 ? 'down' : 'up');
+    }, { passive: true });
+
+    document.querySelectorAll('[data-dir]').forEach((button) => {
+        button.addEventListener('pointerdown', (event) => {
+            event.preventDefault();
+            turn(button.dataset.dir);
+        });
+    });
+
+    $('ovBtn').addEventListener('click', () => {
+        if (state === 'paused') togglePause();
+        else start();
+    });
+    $('pause').addEventListener('click', togglePause);
+    $('restart').addEventListener('click', restart);
+
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden && state === 'playing') togglePause();
+    });
+
+    reset();
+    requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

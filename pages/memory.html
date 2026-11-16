@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#090811">
+<meta name="description" content="Memory Match؛ بازی جفت‌یابی کارت‌های Fery90Game. کارت‌های مشابه را پیدا کن و با کمترین حرکت برنده شو.">
+<title>Memory Match | جفت‌یابی کارت‌ها — Fery90Game</title>
+<style>
+:root{color-scheme:dark;--bg:#090811;--panel:#111020;--purple:#a78bfa;--blue:#60a5fa;--pink:#f0abfc;--text:#f5f3ff;--muted:#b9b3d2;--border:rgba(167,139,250,.25)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 15% 0%,rgba(124,58,237,.24),transparent 42%),radial-gradient(ellipse at 95% 25%,rgba(37,99,235,.16),transparent 38%),var(--bg);color:var(--text);font-family:"Vazirmatn",Tahoma,"Segoe UI",sans-serif;line-height:1.8}
+.shell{max-width:1040px;margin:0 auto;padding:14px 16px calc(36px + env(safe-area-inset-bottom))}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:8px 0}
+.brand{display:flex;align-items:center;gap:10px;color:var(--text);text-decoration:none;font-weight:800}
+.brand-mark{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,#7c3aed,#60a5fa);font-weight:900}
+.back{color:var(--blue);text-decoration:none;font-size:.95rem}
+.back:hover{text-decoration:underline}
+.hero{text-align:center;padding:18px 0 14px}
+.eyebrow{display:inline-block;font-size:.78rem;letter-spacing:.08em;color:var(--purple);border:1px solid var(--border);border-radius:999px;padding:2px 14px;direction:ltr}
+h1{margin:10px 0 4px;font-size:clamp(2rem,6vw,3rem);font-weight:900;line-height:1.2}
+.gradient{background:linear-gradient(90deg,var(--purple),var(--blue),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{margin:0 auto;max-width:560px;color:var(--muted)}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:18px;align-items:start;margin-top:10px}
+@media(max-width:820px){.layout{grid-template-columns:1fr}}
+.panel,.side{background:var(--panel);border:1px solid var(--border);border-radius:18px;padding:14px}
+.levels{display:flex;gap:8px;justify-content:center;margin-bottom:12px;flex-wrap:wrap}
+.level{font:inherit;font-size:.92rem;color:var(--muted);background:transparent;border:1px solid var(--border);border-radius:999px;padding:3px 16px;cursor:pointer}
+.level:hover{color:var(--text)}
+.level[aria-pressed="true"]{color:#fff;background:rgba(124,58,237,.35);border-color:var(--purple)}
+.hud{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.hudbox{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:12px;padding:6px 10px;text-align:center}
+.label{display:block;font-size:.78rem;color:var(--muted)}
+.value{font-size:1.35rem;font-weight:800}
+.stage{position:relative;width:100%;max-width:520px;margin:0 auto}
+.board{display:grid;grid-template-columns:repeat(var(--cols,4),1fr);gap:8px}
+.card{position:relative;aspect-ratio:1;padding:0;border:0;background:none;cursor:pointer;perspective:600px;-webkit-tap-highlight-color:transparent}
+.card:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:12px}
+.inner{position:absolute;inset:0;transition:transform .35s;transform-style:preserve-3d}
+.card.flipped .inner,.card.matched .inner{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;display:grid;place-items:center;border-radius:12px;backface-visibility:hidden;-webkit-backface-visibility:hidden;font-size:clamp(1.4rem,7vw,2.5rem)}
+.board.dense .face{font-size:clamp(1.1rem,4.8vw,2rem)}
+.back-face{background:linear-gradient(135deg,#2a1b5c,#16264d);border:1px solid var(--border);color:var(--purple);font-weight:900}
+.front-face{transform:rotateY(180deg);background:#1a1838;border:1px solid rgba(96,165,250,.45)}
+.card.matched .front-face{border-color:var(--pink);box-shadow:0 0 16px rgba(240,171,252,.45)}
+.card:disabled{cursor:default}
+@media(prefers-reduced-motion:reduce){.inner{transition:none}}
+.overlay{position:absolute;inset:0;display:grid;place-items:center;background:rgba(9,8,17,.84);border-radius:14px;padding:16px;z-index:2}
+.overlay[hidden]{display:none}
+.overlay-card{text-align:center;max-width:300px}
+.overlay-icon{font-size:2.8rem;line-height:1.2}
+.overlay-card h2{margin:6px 0 4px;font-size:1.4rem}
+.overlay-card p{margin:0 0 14px;color:var(--muted);font-size:.95rem}
+.btn{font:inherit;font-weight:700;color:#fff;background:linear-gradient(135deg,#7c3aed,#9b6bff);border:0;border-radius:12px;padding:8px 22px;cursor:pointer}
+.btn:hover{filter:brightness(1.12)}
+.btn.secondary{background:transparent;border:1px solid var(--border);color:var(--text)}
+.actions{display:flex;justify-content:center;gap:10px;margin-top:14px;flex-wrap:wrap}
+.sidecol{display:grid;gap:14px}
+.side h3{margin:0 0 6px;font-size:1rem}
+.record{font-size:1.7rem;font-weight:900;color:var(--purple)}
+.caption{color:var(--muted);font-size:.82rem}
+.side ul{margin:0;padding-right:18px;color:var(--muted);font-size:.9rem}
+.footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:26px}
+</style>
+</head>
+<body>
+<div class="shell">
+<header class="topbar">
+    <a class="brand" href="../index.html" aria-label="صفحه اصلی Fery90Game"><span class="brand-mark">F</span><span>Fery90Game</span></a>
+    <a class="back" href="gaming.html">← بازگشت به دنیای گیمینگ</a>
+</header>
+
+<section class="hero">
+    <span class="eyebrow">PUZZLE / F90 ORIGINAL</span>
+    <h1><span class="gradient">MEMORY MATCH</span></h1>
+    <p>کارت‌ها رو برگردون و جفت‌های مشابه رو پیدا کن. هرچی با حرکت کمتر تموم کنی، رکوردت بهتره!</p>
+</section>
+
+<main class="layout">
+    <section class="panel" aria-label="بازی جفت‌یابی کارت‌ها">
+        <div class="levels" role="group" aria-label="انتخاب سطح">
+            <button class="level" type="button" data-level="easy" aria-pressed="false">آسان</button>
+            <button class="level" type="button" data-level="normal" aria-pressed="true">متوسط</button>
+            <button class="level" type="button" data-level="hard" aria-pressed="false">سخت</button>
+        </div>
+
+        <div class="hud" aria-live="polite">
+            <div class="hudbox"><span class="label">حرکت</span><strong class="value" id="moves">۰</strong></div>
+            <div class="hudbox"><span class="label">زمان</span><strong class="value" id="time">۰۰:۰۰</strong></div>
+            <div class="hudbox"><span class="label">جفت‌ها</span><strong class="value" id="pairs">۰/۸</strong></div>
+        </div>
+
+        <div class="stage">
+            <div class="board" id="board"></div>
+            <div class="overlay" id="overlay" hidden>
+                <div class="overlay-card">
+                    <div class="overlay-icon">🏆</div>
+                    <h2 id="ovTitle">آفرین!</h2>
+                    <p id="ovText"></p>
+                    <button class="btn" type="button" id="ovBtn">بازی دوباره</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="actions">
+            <button class="btn secondary" type="button" id="restart">↻ شروع دوباره</button>
+        </div>
+    </section>
+
+    <aside class="sidecol">
+        <section class="side">
+            <h3>🏆 بهترین رکورد این سطح</h3>
+            <div class="record" id="best">—</div>
+            <div class="caption" id="bestCaption">هنوز رکوردی ثبت نشده. در همین مرورگر ذخیره می‌شود.</div>
+        </section>
+        <section class="side">
+            <h3>🎮 راهنما</h3>
+            <ul>
+                <li>هر بار دو کارت را برگردان</li>
+                <li>اگر یکسان بودند، باز می‌مانند</li>
+                <li>رکورد یعنی کمترین حرکت (و در برابری، کمترین زمان)</li>
+                <li>آسان: ۶ جفت، متوسط: ۸ جفت، سخت: ۱۲ جفت</li>
+            </ul>
+        </section>
+    </aside>
+</main>
+
+<footer class="footer">Memory Match — یک بازی مرورگری از Fery90Game. بدون نصب و بدون کتابخانهٔ خارجی.</footer>
+</div>
+
+<script>
+(() => {
+    'use strict';
+
+    const SYMBOLS = ['🎮', '🕹️', '👾', '🏆', '⚽', '🏎️', '🎧', '🚀', '⭐', '🔥', '💎', '🎯'];
+    const LEVELS = {
+        easy: { pairs: 6, cols: 4, name: 'آسان' },
+        normal: { pairs: 8, cols: 4, name: 'متوسط' },
+        hard: { pairs: 12, cols: 6, name: 'سخت' }
+    };
+    const STORE = 'fery90game_memory_best_v1';
+    const $ = (id) => document.getElementById(id);
+    const fa = (n) => Number(n).toLocaleString('fa-IR');
+
+    let level = 'normal';
+    let deck = [];
+    let first = null;
+    let busy = false;
+    let moves = 0, matched = 0, seconds = 0;
+    let timer = null;
+    let records = {};
+
+    try {
+        const raw = JSON.parse(localStorage.getItem(STORE) || '{}');
+        if (raw && typeof raw === 'object') records = raw;
+    } catch (e) { /* ignore */ }
+
+    function shuffle(list) {
+        const a = list.slice();
+        for (let i = a.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+    }
+
+    function fmtTime(total) {
+        const m = Math.floor(total / 60), s = total % 60;
+        const two = (n) => (n < 10 ? '۰' : '') + fa(n);
+        return two(m) + ':' + two(s);
+    }
+
+    function stopTimer() {
+        if (timer) { clearInterval(timer); timer = null; }
+    }
+
+    function updateHud() {
+        $('moves').textContent = fa(moves);
+        $('time').textContent = fmtTime(seconds);
+        $('pairs').textContent = fa(matched) + '/' + fa(LEVELS[level].pairs);
+    }
+
+    function updateBest() {
+        const r = records[level];
+        if (r && Number.isFinite(r.moves)) {
+            $('best').textContent = fa(r.moves) + ' حرکت';
+            $('bestCaption').textContent = 'زمان: ' + fmtTime(r.seconds) + ' · سطح ' + LEVELS[level].name;
+        } else {
+            $('best').textContent = '—';
+            $('bestCaption').textContent = 'هنوز رکوردی برای این سطح ثبت نشده. در همین مرورگر ذخیره می‌شود.';
+        }
+    }
+
+    function newGame() {
+        stopTimer();
+        const cfg = LEVELS[level];
+        deck = shuffle(shuffle(SYMBOLS).slice(0, cfg.pairs).flatMap((s) => [s, s]));
+        first = null;
+        busy = false;
+        moves = 0;
+        matched = 0;
+        seconds = 0;
+        $('overlay').hidden = true;
+
+        const board = $('board');
+        board.style.setProperty('--cols', cfg.cols);
+        board.classList.toggle('dense', cfg.cols >= 6);
+        board.textContent = '';
+
+        deck.forEach((symbol, index) => {
+            const card = document.createElement('button');
+            card.type = 'button';
+            card.className = 'card';
+            card.dataset.index = String(index);
+            card.setAttribute('aria-label', 'کارت ' + fa(index + 1) + '، رو نشده');
+
+            const inner = document.createElement('span');
+            inner.className = 'inner';
+            const back = document.createElement('span');
+            back.className = 'face back-face';
+            back.textContent = '؟';
+            back.setAttribute('aria-hidden', 'true');
+            const front = document.createElement('span');
+            front.className = 'face front-face';
+            front.textContent = symbol;
+            front.setAttribute('aria-hidden', 'true');
+            inner.append(back, front);
+            card.appendChild(inner);
+
+            card.addEventListener('click', () => flip(card));
+            board.appendChild(card);
+        });
+
+        document.querySelectorAll('.level').forEach((b) => {
+            b.setAttribute('aria-pressed', String(b.dataset.level === level));
+        });
+        updateHud();
+        updateBest();
+    }
+
+    function setFace(card, open) {
+        const index = Number(card.dataset.index);
+        card.classList.toggle('flipped', open);
+        card.setAttribute('aria-label', open
+            ? 'کارت ' + fa(index + 1) + '، ' + deck[index]
+            : 'کارت ' + fa(index + 1) + '، رو نشده');
+    }
+
+    function flip(card) {
+        if (busy || card.classList.contains('flipped') || card.classList.contains('matched')) return;
+
+        if (!timer) {
+            timer = setInterval(() => { seconds++; updateHud(); }, 1000);
+        }
+        setFace(card, true);
+
+        if (!first) {
+            first = card;
+            return;
+        }
+
+        moves++;
+        const a = first, b = card;
+        first = null;
+
+        if (deck[Number(a.dataset.index)] === deck[Number(b.dataset.index)]) {
+            [a, b].forEach((c) => {
+                c.classList.add('matched');
+                c.disabled = true;
+            });
+            matched++;
+            updateHud();
+            if (matched === LEVELS[level].pairs) win();
+        } else {
+            busy = true;
+            updateHud();
+            setTimeout(() => {
+                setFace(a, false);
+                setFace(b, false);
+                busy = false;
+            }, 800);
+        }
+    }
+
+    function win() {
+        stopTimer();
+        const old = records[level];
+        const better = !old || moves < old.moves || (moves === old.moves && seconds < old.seconds);
+        if (better) {
+            records[level] = { moves, seconds };
+            try { localStorage.setItem(STORE, JSON.stringify(records)); } catch (e) { /* ignore */ }
+        }
+        updateBest();
+        $('ovTitle').textContent = better ? 'رکورد جدید!' : 'آفرین!';
+        $('ovText').textContent = 'همه جفت‌ها را با ' + fa(moves) + ' حرکت و زمان ' + fmtTime(seconds) + ' پیدا کردی.';
+        setTimeout(() => { $('overlay').hidden = false; $('ovBtn').focus(); }, 500);
+    }
+
+    document.querySelectorAll('.level').forEach((button) => {
+        button.addEventListener('click', () => {
+            if (button.dataset.level === level) return;
+            level = button.dataset.level;
+            newGame();
+        });
+    });
+    $('restart').addEventListener('click', newGame);
+    $('ovBtn').addEventListener('click', newGame);
+
+    newGame();
+})();
+</script>
+</body>
+</html>

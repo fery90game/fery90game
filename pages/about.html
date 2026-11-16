@@ -1,0 +1,602 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>درباره ما | Fery90Game؛ دنیای بازی و تکنولوژی</title>
+  <meta name="description" content="با Fery90Game آشنا شوید؛ بستری برای دنیای بازی‌ها، آموزش‌های کاربردی، ابزارهای آنلاین و تجربه‌های سرگرم‌کننده در دنیای فناوری.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0b0b14">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="درباره ما | Fery90Game">
+  <meta property="og:description" content="با هدف و بخش‌های مختلف Fery90Game آشنا شوید.">
+  <meta property="og:locale" content="fa_IR">
+
+  <link rel="stylesheet" href="../css/style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    .about-page {
+      --about-bg: #0b0b14;
+      --about-panel: #12121f;
+      --about-border: rgba(167, 139, 250, .18);
+      --about-purple: #a78bfa;
+      --about-blue: #60a5fa;
+      --about-text: #f4f2ff;
+      --about-muted: #b5b1c9;
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse at 85% 0%, rgba(124, 58, 237, .16), transparent 38%),
+        radial-gradient(ellipse at 5% 40%, rgba(59, 130, 246, .08), transparent 35%),
+        var(--about-bg);
+      color: var(--about-text);
+      font-family: "Vazirmatn", sans-serif;
+      line-height: 1.9;
+    }
+
+    .about-page *,
+    .about-page *::before,
+    .about-page *::after {
+      box-sizing: border-box;
+    }
+
+    .about-container {
+      width: min(1120px, calc(100% - 36px));
+      margin-inline: auto;
+    }
+
+    .about-header {
+      border-bottom: 1px solid var(--about-border);
+      background: rgba(11, 11, 20, .88);
+    }
+
+    .about-header-inner {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+      padding-block: 12px;
+    }
+
+    .about-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      color: var(--about-text);
+      text-decoration: none;
+      font-size: 1.15rem;
+      font-weight: 900;
+    }
+
+    .about-brand-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      background: linear-gradient(135deg, #7c3aed, #2563eb);
+      box-shadow: 0 0 25px rgba(124, 58, 237, .25);
+      font-size: 1.35rem;
+    }
+
+    .about-nav {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .about-nav a {
+      padding: 8px 12px;
+      border-radius: 10px;
+      color: var(--about-muted);
+      text-decoration: none;
+      font-size: .9rem;
+      transition: background .2s, color .2s;
+    }
+
+    .about-nav a:hover,
+    .about-nav a[aria-current="page"] {
+      background: rgba(167, 139, 250, .12);
+      color: var(--about-purple);
+    }
+
+    .about-hero {
+      position: relative;
+      overflow: hidden;
+      padding-block: 92px 76px;
+      text-align: center;
+    }
+
+    .about-hero::before {
+      content: "";
+      position: absolute;
+      width: 270px;
+      height: 270px;
+      top: 20px;
+      left: calc(50% - 135px);
+      border-radius: 50%;
+      background: rgba(124, 58, 237, .13);
+      filter: blur(75px);
+      pointer-events: none;
+    }
+
+    .about-eyebrow {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border: 1px solid var(--about-border);
+      border-radius: 999px;
+      background: rgba(167, 139, 250, .07);
+      color: var(--about-purple);
+      font-size: .85rem;
+      font-weight: 700;
+    }
+
+    .about-hero h1 {
+      position: relative;
+      max-width: 850px;
+      margin: 22px auto 15px;
+      font-size: clamp(2rem, 5vw, 3.7rem);
+      font-weight: 900;
+      line-height: 1.45;
+    }
+
+    .about-gradient-text {
+      background: linear-gradient(90deg, #c4b5fd, #60a5fa);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .about-hero p {
+      position: relative;
+      max-width: 720px;
+      margin: 0 auto;
+      color: var(--about-muted);
+      font-size: 1.05rem;
+    }
+
+    .about-actions {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .about-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 47px;
+      padding: 10px 20px;
+      border: 1px solid var(--about-border);
+      border-radius: 12px;
+      color: var(--about-text);
+      text-decoration: none;
+      font-weight: 700;
+      transition: transform .2s, border-color .2s, background .2s;
+    }
+
+    .about-button:hover {
+      transform: translateY(-2px);
+      border-color: var(--about-purple);
+    }
+
+    .about-button-primary {
+      border-color: transparent;
+      background: linear-gradient(120deg, #7c3aed, #4338ca);
+      box-shadow: 0 8px 28px rgba(124, 58, 237, .2);
+    }
+
+    .about-section {
+      padding-block: 35px 55px;
+    }
+
+    .about-section-heading {
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    .about-section-heading h2 {
+      margin: 0 0 8px;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 900;
+    }
+
+    .about-section-heading p {
+      max-width: 680px;
+      margin: 0 auto;
+      color: var(--about-muted);
+    }
+
+    .about-story {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .about-panel {
+      padding: 27px;
+      border: 1px solid var(--about-border);
+      border-radius: 20px;
+      background: linear-gradient(145deg, rgba(24, 24, 42, .92), rgba(16, 16, 29, .94));
+    }
+
+    .about-panel h2,
+    .about-panel h3 {
+      margin-top: 0;
+      font-weight: 800;
+    }
+
+    .about-panel p {
+      margin-bottom: 0;
+      color: var(--about-muted);
+    }
+
+    .about-highlight {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 230px;
+      background:
+        radial-gradient(circle at 85% 15%, rgba(96, 165, 250, .13), transparent 45%),
+        linear-gradient(145deg, rgba(124, 58, 237, .16), rgba(18, 18, 31, .96));
+    }
+
+    .about-highlight-icon {
+      margin-bottom: 8px;
+      font-size: 2.5rem;
+    }
+
+    .about-features {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .about-feature {
+      padding: 23px;
+      border: 1px solid var(--about-border);
+      border-radius: 17px;
+      background: rgba(18, 18, 31, .82);
+      transition: transform .2s, border-color .2s;
+    }
+
+    .about-feature:hover {
+      transform: translateY(-3px);
+      border-color: rgba(167, 139, 250, .48);
+    }
+
+    .about-feature-icon {
+      width: 49px;
+      height: 49px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 12px;
+      border: 1px solid var(--about-border);
+      border-radius: 14px;
+      background: rgba(124, 58, 237, .12);
+      font-size: 1.5rem;
+    }
+
+    .about-feature h3 {
+      margin: 0 0 7px;
+      font-size: 1.08rem;
+      font-weight: 800;
+    }
+
+    .about-feature p {
+      margin: 0;
+      color: var(--about-muted);
+      font-size: .93rem;
+    }
+
+    .about-principles {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 15px;
+    }
+
+    .about-principle {
+      padding: 20px;
+      border-right: 3px solid var(--about-purple);
+      border-radius: 10px;
+      background: rgba(167, 139, 250, .055);
+    }
+
+    .about-principle strong {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .about-principle span {
+      color: var(--about-muted);
+      font-size: .9rem;
+    }
+
+    .about-final-cta {
+      margin-block: 10px 65px;
+      padding: 34px 24px;
+      border: 1px solid var(--about-border);
+      border-radius: 22px;
+      background:
+        radial-gradient(ellipse at 90% 0%, rgba(124, 58, 237, .17), transparent 50%),
+        var(--about-panel);
+      text-align: center;
+    }
+
+    .about-final-cta h2 {
+      margin: 0 0 8px;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 900;
+    }
+
+    .about-final-cta p {
+      max-width: 650px;
+      margin: 0 auto;
+      color: var(--about-muted);
+    }
+
+    .about-final-cta .about-actions {
+      margin-top: 20px;
+    }
+
+    .about-footer {
+      padding-block: 23px;
+      border-top: 1px solid var(--about-border);
+      color: var(--about-muted);
+      font-size: .88rem;
+    }
+
+    .about-footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px 20px;
+    }
+
+    .about-footer a {
+      color: var(--about-purple);
+      text-decoration: none;
+    }
+
+    @media (max-width: 760px) {
+      .about-header-inner {
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .about-nav {
+        justify-content: center;
+      }
+
+      .about-hero {
+        padding-block: 65px 45px;
+      }
+
+      .about-story {
+        grid-template-columns: 1fr;
+      }
+
+      .about-features {
+        grid-template-columns: 1fr;
+      }
+
+      .about-principles {
+        grid-template-columns: 1fr;
+      }
+
+      .about-panel {
+        padding: 21px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .about-page *,
+      .about-page *::before,
+      .about-page *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="about-page">
+  <header class="about-header">
+    <div class="about-container about-header-inner">
+      <a class="about-brand" href="../index.html" aria-label="صفحه اصلی Fery90Game">
+        <span class="about-brand-icon" aria-hidden="true">🎮</span>
+        <span>Fery90Game</span>
+      </a>
+
+      <nav class="about-nav" aria-label="منوی اصلی">
+        <a href="../index.html">خانه</a>
+        <a href="gaming.html">بازی‌ها</a>
+        <a href="content.html">آرشیو محتوا</a>
+        <a href="tools.html">ابزارها</a>
+        <a href="about.html" aria-current="page">درباره ما</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="about-hero">
+      <div class="about-container">
+        <span class="about-eyebrow">✦ درباره دنیای ما</span>
+
+        <h1>
+          به دنیای
+          <span class="about-gradient-text">Fery90Game</span>
+          خوش آمدی
+        </h1>
+
+        <p>
+          اینجا قراره دنیای بازی، آموزش، ابزارهای کاربردی و سرگرمی رو
+          در یک تجربه ساده و جذاب کنار هم داشته باشیم؛ فضایی که به‌مرور
+          با ایده‌های تازه و امکانات بیشتر توسعه پیدا می‌کنه.
+        </p>
+
+        <div class="about-actions">
+          <a class="about-button about-button-primary" href="gaming.html">
+            ⚽ ورود به دنیای بازی‌ها
+          </a>
+          <a class="about-button" href="content.html">
+            📚 مشاهده محتوا
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-section">
+      <div class="about-container about-story">
+        <article class="about-panel">
+          <h2>Fery90Game چیست؟</h2>
+          <p>
+            Fery90Game یک پروژه در حال توسعه با تمرکز بر بازی‌ها،
+            محتوای آموزشی، ابزارهای آنلاین و سرگرمی دیجیتال است.
+            هدف این پروژه، ساخت یک فضای منظم و کاربردی برای دسترسی
+            آسان‌تر به محتوا و تجربه امکانات مختلف در وب است.
+          </p>
+          <p>
+            این وب‌سایت به‌صورت مرحله‌ای توسعه پیدا می‌کند؛ بنابراین
+            قابلیت‌های جدید پس از طراحی، پیاده‌سازی و آزمایش به آن
+            اضافه خواهند شد.
+          </p>
+        </article>
+
+        <aside class="about-panel about-highlight">
+          <div class="about-highlight-icon" aria-hidden="true">🚀</div>
+          <h2>یک پروژه، ایده‌های بیشتر</h2>
+          <p>
+            از بازی‌های تحت وب گرفته تا آموزش‌های گیمینگ و ابزارهای
+            مفید؛ می‌خواهیم امکانات سایت را به‌شکل تدریجی و هدفمند
+            گسترش دهیم.
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="about-section">
+      <div class="about-container">
+        <div class="about-section-heading">
+          <h2>در Fery90Game چه پیدا می‌کنی؟</h2>
+          <p>
+            بخش‌های مختلف سایت برای دسترسی راحت‌تر به محتوا و
+            امکانات دیجیتال طراحی شده‌اند.
+          </p>
+        </div>
+
+        <div class="about-features">
+          <article class="about-feature">
+            <div class="about-feature-icon" aria-hidden="true">🎮</div>
+            <h3>بازی و سرگرمی</h3>
+            <p>
+              معرفی بازی‌ها و توسعه بازی‌های تحت وب؛ از جمله تجربه‌های
+              ساده و تعاملی که مستقیماً در مرورگر اجرا می‌شوند.
+            </p>
+          </article>
+
+          <article class="about-feature">
+            <div class="about-feature-icon" aria-hidden="true">📺</div>
+            <h3>ویدیو و آموزش</h3>
+            <p>
+              محتوای مرتبط با بازی‌ها، آموزش نرم‌افزارها و موضوعات
+              فناوری؛ با امکان گسترش آرشیو ویدیوها در آینده.
+            </p>
+          </article>
+
+          <article class="about-feature">
+            <div class="about-feature-icon" aria-hidden="true">🧰</div>
+            <h3>ابزارهای آنلاین</h3>
+            <p>
+              ابزارهای کاربردی با تمرکز بر نیازهای کاربران، گیمرها
+              و علاقه‌مندان به دنیای دیجیتال.
+            </p>
+          </article>
+
+          <article class="about-feature">
+            <div class="about-feature-icon" aria-hidden="true">📱</div>
+            <h3>محصولات و برنامه‌ها</h3>
+            <p>
+              معرفی برنامه‌ها و محصولات دیجیتال پروژه؛ این بخش در
+              ادامه توسعه سایت تکمیل خواهد شد.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-section">
+      <div class="about-container">
+        <div class="about-section-heading">
+          <h2>اصول ما در توسعه سایت</h2>
+          <p>می‌خواهیم امکانات جدید را بر پایه تجربه کاربری مناسب بسازیم.</p>
+        </div>
+
+        <div class="about-principles">
+          <div class="about-principle">
+            <strong>سادگی و دسترسی آسان</strong>
+            <span>صفحات قابل فهم و استفاده راحت در موبایل و کامپیوتر.</span>
+          </div>
+
+          <div class="about-principle">
+            <strong>توسعه مرحله‌ای</strong>
+            <span>اضافه کردن قابلیت‌های جدید پس از پیاده‌سازی و آزمایش.</span>
+          </div>
+
+          <div class="about-principle">
+            <strong>محتوای کاربردی</strong>
+            <span>تمرکز بر مطالب و امکاناتی که برای مخاطب ارزش واقعی دارند.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-container about-final-cta">
+      <h2>آماده‌ای گشتی در سایت بزنی؟</h2>
+      <p>
+        از بازی‌ها شروع کن یا سری به آرشیو محتوا بزن.
+        Fery90Game به‌مرور امکانات و تجربه‌های بیشتری ارائه خواهد کرد.
+      </p>
+
+      <div class="about-actions">
+        <a class="about-button about-button-primary" href="gaming.html">
+          دیدن بازی‌ها ←
+        </a>
+        <a class="about-button" href="../index.html">
+          بازگشت به صفحه اصلی
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="about-footer">
+    <div class="about-container about-footer-inner">
+      <span>© <span id="aboutYear"></span> Fery90Game</span>
+      <a href="mailto:ghasemifaryan@gmail.com" dir="ltr" aria-label="ارسال ایمیل به Fery90Game">ghasemifaryan@gmail.com</a>
+      <a href="../index.html">بازگشت به صفحه اصلی</a>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("aboutYear").textContent =
+      new Date().getFullYear();
+  </script>
+</body>
+</html>
