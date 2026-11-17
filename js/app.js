@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("resize",()=>{if(window.innerWidth>760){navigation.classList.remove("is-open");menuButton.setAttribute("aria-expanded","false");menuButton.setAttribute("aria-label","باز کردن منو");}});
  }
  if(!searchInput || !searchResults) return;
- const rootUrl=new URL("../",document.currentScript.src);
+ const appScript=document.querySelector('script[src*="js/app.js"]');\n const rootUrl=new URL("../",appScript ? appScript.src : window.location.href);
  const pages=[
   {path:"pages/gaming.html",type:"بازی و گیمینگ",selectors:[".gaming-game-card",".gaming-category-card"]},
   {path:"pages/tools.html",type:"ابزار",selectors:[".tools-main-section",".tools-shortcut"]},
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const link=element.matches("a[href]")?element:element.querySelector("a[href]");
   let href=link?.getAttribute("href")||"";
   if(!href||href.startsWith("javascript:")){const targetId=element.id||element.closest("[id]")?.id;href=targetId?page.path+"#"+targetId:page.path;}
-  else href=new URL(href,new URL(page.path,rootUrl)).href;
+  else if(page.path==="pages/content.html")href=new URL("pages/content.html#content-library",rootUrl).href;\n  else href=new URL(href,new URL(page.path,rootUrl)).href;
   const description=(element.querySelector("p")?.textContent||"").trim().replace(/\s+/g," ").slice(0,150);
   entries.push({title:title.slice(0,100),description,type,href,searchText:normalize(element.textContent+" "+(element.dataset.search||""))});
  }
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if(!query){searchResults.hidden=true;searchHint.textContent="در تمام بخش‌های سایت جست‌وجو کن؛ بازی، ابزار، ویدیو و محصول.";return;}
   searchResults.hidden=false;searchHint.textContent="در حال جست‌وجو در بخش‌های سایت...";
   const entries=await loadIndex();if(!normalize(searchInput.value))return;
-  const matches=entries.filter(item=>item.searchText.includes(query)).slice(0,30);
+  const activeQuery=normalize(searchInput.value);\n  const matches=entries.filter(item=>item.searchText.includes(activeQuery)).slice(0,30);
   if(matches.length){matches.forEach(item=>searchResults.append(resultCard(item)));searchHint.textContent=matches.length+" نتیجه پیدا شد. برای ورود، روی نتیجه بزن.";}
   else{const empty=document.createElement("p");empty.className="global-search-empty";empty.textContent="نتیجه‌ای پیدا نشد؛ عبارت دیگری را امتحان کن.";searchResults.append(empty);searchHint.textContent="جست‌وجو در بازی‌ها، ابزارها، محتوا و محصولات انجام شد.";}
   if(scroll)searchResults.scrollIntoView({behavior:"smooth",block:"nearest"});
