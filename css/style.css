@@ -3961,3 +3961,15 @@ input:focus-visible {
         transition-duration: .01ms !important;
     }
 }
+
+
+/* جست‌وجوی سراسری سایت */
+.global-search-results{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;max-height:440px;overflow-y:auto;margin-top:18px;padding:2px;text-align:right}
+.global-search-results[hidden]{display:none!important}
+.global-search-result{display:grid;gap:6px;min-width:0;padding:15px 17px;border:1px solid var(--border);border-radius:13px;background:rgba(20,17,36,.82);color:var(--text);text-decoration:none;transition:border-color .2s ease,transform .2s ease,background .2s ease}
+.global-search-result:hover{transform:translateY(-2px);border-color:rgba(182,154,255,.6);background:rgba(34,26,58,.95)}
+.global-search-result strong{font-size:.95rem}
+.global-search-result-type{color:var(--purple-bright);font-size:.72rem}
+.global-search-result p{margin:0;color:var(--muted);font-size:.78rem;line-height:1.8}
+.global-search-empty{grid-column:1/-1;margin:0;padding:22px;border:1px dashed var(--border);border-radius:13px;color:var(--muted);text-align:center}
+@media(max-width:600px){.global-search-results{grid-template-columns:1fr;max-height:380px}}
