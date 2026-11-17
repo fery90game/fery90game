@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .trim();
     }
 
-    function performSearch() {
+    function performSearch(shouldScroll = false) {
         if (!searchInput) {
             return;
         }
@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const categoriesSection = document.getElementById("categories");
 
-        if (query !== "" && categoriesSection) {
+        if (shouldScroll && query !== "" && categoriesSection) {
             categoriesSection.scrollIntoView({
                 behavior: "smooth",
                 block: "start"
@@ -115,25 +115,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (searchInput) {
         searchInput.addEventListener("input", () => {
-            // با پاک‌کردن متن، همه کارت‌ها دوباره نمایش داده شوند
-            if (searchInput.value.trim() === "") {
-                performSearch();
-            }
+            // نتایج هنگام تایپ به‌روز شوند؛ بدون پرش صفحه
+            performSearch(false);
         });
 
         searchInput.addEventListener("keydown", (event) => {
             if (event.key === "Enter") {
-                performSearch();
+                performSearch(true);
             }
 
             if (event.key === "Escape") {
                 searchInput.value = "";
-                performSearch();
+                performSearch(false);
             }
         });
     }
 
     if (searchButton) {
-        searchButton.addEventListener("click", performSearch);
+        searchButton.addEventListener("click", () => performSearch(true));
     }
 });

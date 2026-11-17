@@ -103,6 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
             card.dataset.aparatLoaded = "true";
             thumbnail.hidden = true;
             player.hidden = false;
+            player.replaceChildren();
 
             const embedRoot = document.createElement("div");
             embedRoot.id = video.divId;
@@ -113,14 +114,25 @@ document.addEventListener("DOMContentLoaded", () => {
             script.type = "text/javascript";
             script.src = `https://www.aparat.com/embed/${video.hash}?data[rnddiv]=${video.divId}&data[responsive]=yes&titleShow=true&recom=self`;
             script.onerror = () => {
-                player.innerHTML = '<p class="content-aparat-error">بارگذاری ویدیو انجام نشد. اتصال اینترنت را بررسی کن یا ویدیو را در آپارات باز کن.</p>';
-                const fallback = document.createElement("a");
-                fallback.href = `https://www.aparat.com/v/${video.hash}`;
-                fallback.target = "_blank";
-                fallback.rel = "noopener noreferrer";
-                fallback.textContent = "مشاهده ویدیو در آپارات";
-                fallback.className = "content-video-link";
-                player.appendChild(fallback);
+                card.dataset.aparatLoaded = "false";
+                player.replaceChildren();
+                player.hidden = true;
+                thumbnail.hidden = false;
+
+                let error = thumbnail.querySelector(".content-aparat-error");
+                if (!error) {
+                    error = document.createElement("p");
+                    error.className = "content-aparat-error";
+                    error.setAttribute("role", "status");
+                    thumbnail.appendChild(error);
+                }
+                error.textContent = "بارگذاری ویدیو ناموفق بود. اتصال را بررسی کن و دوباره تلاش کن؛ یا از لینک آپارات پایین کارت استفاده کن.";
+
+                const loadButton = thumbnail.querySelector("[data-aparat-index]");
+                if (loadButton) {
+                    loadButton.querySelector("span")?.remove();
+                    loadButton.textContent = "تلاش دوباره برای پخش";
+                }
             };
             embedRoot.appendChild(script);
         });
