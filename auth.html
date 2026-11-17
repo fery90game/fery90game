@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090811">
+  <meta name="description" content="ورود و ساخت حساب کاربری در Fery90Game">
+  <title>حساب کاربری | Fery90Game</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auth.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/auth.js" defer></script>
+</head>
+<body class="auth-page">
+  <header class="site-header auth-site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="بازگشت به صفحه اصلی Fery90Game">
+        <span class="brand-icon" aria-hidden="true">F</span>
+        <span class="brand-copy"><span class="brand-name">FERY<span>90</span>GAME</span><span class="brand-caption">PLAY · CREATE · DISCOVER</span></span>
+      </a>
+      <a class="button button-secondary" href="index.html">بازگشت به سایت</a>
+    </div>
+  </header>
+
+  <main class="auth-main container">
+    <section class="auth-intro">
+      <span class="auth-kicker">FERY90GAME ACCOUNT</span>
+      <h1>حساب کاربری <span>تو، دنیای تو</span></h1>
+      <p>وارد حساب شو یا یک حساب جدید بساز تا در ادامه، امکانات شخصی سایت در دسترست باشه.</p>
+      <div class="auth-benefits"><span>✦ ورود امن</span><span>✦ تأیید ایمیل</span><span>✦ ورود با گوگل</span></div>
+    </section>
+
+    <section class="auth-card" aria-label="فرم حساب کاربری">
+      <div id="authLoading" class="auth-loading">در حال بررسی وضعیت حساب...</div>
+
+      <div id="authForms" hidden>
+        <div class="auth-tabs" role="tablist" aria-label="انتخاب نوع ورود">
+          <button class="auth-tab is-active" id="loginTab" type="button" role="tab" aria-selected="true">ورود</button>
+          <button class="auth-tab" id="signupTab" type="button" role="tab" aria-selected="false">ساخت حساب</button>
+        </div>
+
+        <button id="googleButton" class="auth-google" type="button"><span aria-hidden="true">G</span> ادامه با حساب گوگل</button>
+        <div class="auth-divider"><span>یا با ایمیل ادامه بده</span></div>
+
+        <form id="loginForm" class="auth-form">
+          <label for="loginEmail">ایمیل</label>
+          <input id="loginEmail" name="email" type="email" autocomplete="email" placeholder="name@example.com" required>
+          <label for="loginPassword">رمز عبور</label>
+          <input id="loginPassword" name="password" type="password" autocomplete="current-password" minlength="6" placeholder="رمز عبور" required>
+          <button class="auth-submit" type="submit">ورود به حساب</button>
+          <button class="auth-text-button" id="forgotButton" type="button">رمز عبورت رو فراموش کردی؟</button>
+        </form>
+
+        <form id="signupForm" class="auth-form" hidden>
+          <label for="signupEmail">ایمیل</label>
+          <input id="signupEmail" name="email" type="email" autocomplete="email" placeholder="name@example.com" required>
+          <label for="signupPassword">رمز عبور</label>
+          <input id="signupPassword" name="password" type="password" autocomplete="new-password" minlength="8" placeholder="حداقل ۸ کاراکتر" required>
+          <label for="signupPasswordConfirm">تکرار رمز عبور</label>
+          <input id="signupPasswordConfirm" name="passwordConfirm" type="password" autocomplete="new-password" minlength="8" placeholder="تکرار رمز عبور" required>
+          <button class="auth-submit" type="submit">ساخت حساب کاربری</button>
+          <p class="auth-note">بعد از ثبت‌نام، در صورت فعال بودن تأیید ایمیل، لینک فعال‌سازی برات ارسال می‌شه.</p>
+        </form>
+
+        <form id="recoveryForm" class="auth-form" hidden>
+          <h2 id="recoveryTitle">بازیابی رمز عبور</h2>
+          <p id="recoveryDescription" class="auth-note">ایمیلی که باهاش ثبت‌نام کردی وارد کن تا لینک بازیابی برات ارسال بشه.</p>
+          <div id="recoveryEmailGroup">
+            <label for="recoveryEmail">ایمیل</label>
+            <input id="recoveryEmail" type="email" autocomplete="email" placeholder="name@example.com" required>
+            <button class="auth-submit" type="submit">ارسال لینک بازیابی</button>
+          </div>
+          <div id="newPasswordGroup" hidden>
+            <label for="newPassword">رمز عبور جدید</label>
+            <input id="newPassword" type="password" minlength="8" autocomplete="new-password" required>
+            <label for="newPasswordConfirm">تکرار رمز عبور جدید</label>
+            <input id="newPasswordConfirm" type="password" minlength="8" autocomplete="new-password" required>
+            <button class="auth-submit" type="button" id="saveNewPassword">ثبت رمز جدید</button>
+          </div>
+          <button class="auth-text-button" type="button" id="backToLogin">بازگشت به ورود</button>
+        </form>
+      </div>
+
+      <section id="accountPanel" class="auth-account" hidden>
+        <div class="auth-avatar" aria-hidden="true">✓</div>
+        <h2>خوش اومدی!</h2>
+        <p>با این حساب وارد Fery90Game شدی:</p>
+        <strong id="accountEmail" class="auth-account-email"></strong>
+        <button id="logoutButton" class="auth-submit" type="button">خروج از حساب</button>
+      </section>
+
+      <p id="authMessage" class="auth-message" role="status" aria-live="polite"></p>
+      <p class="auth-security-note">ارتباط و مدیریت حساب توسط سرویس احراز هویت Supabase انجام می‌شود. رمز عبور شما در این سایت ذخیره نمی‌شود.</p>
+    </section>
+  </main>
+  <footer class="auth-footer">© <span id="authYear"></span> Fery90Game</footer>
+</body>
+</html>
