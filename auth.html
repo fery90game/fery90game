@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#090811">
-  <meta name="description" content="ورود و ساخت حساب کاربری در Fery90Game">
+  <meta name="description" content="ورود، ثبت‌نام و مدیریت پروفایل کاربری در Fery90Game">
   <title>حساب کاربری | Fery90Game</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,20 +29,23 @@
     <section class="auth-intro">
       <span class="auth-kicker">FERY90GAME ACCOUNT</span>
       <h1>حساب کاربری <span>تو، دنیای تو</span></h1>
-      <p>وارد حساب شو یا یک حساب جدید بساز تا در ادامه، امکانات شخصی سایت در دسترست باشه.</p>
-      <div class="auth-benefits"><span>✦ ورود امن</span><span>✦ تأیید ایمیل</span><span>✦ ورود با گوگل</span></div>
+      <p>وارد حساب شو یا یک حساب جدید بساز تا تجربه شخصی‌تری در Fery90Game داشته باشی.</p>
+      <div class="auth-benefits"><span>✦ ورود امن</span><span>✦ تأیید ایمیل</span><span>✦ ورود با گوگل</span><span>✦ پروفایل شخصی</span></div>
     </section>
 
     <section class="auth-card" aria-label="فرم حساب کاربری">
-      <div id="authLoading" class="auth-loading">در حال بررسی وضعیت حساب...</div>
+      <div id="authLoading" class="auth-loading" role="status">در حال بررسی وضعیت حساب...</div>
 
       <div id="authForms" hidden>
         <div class="auth-tabs" role="tablist" aria-label="انتخاب نوع ورود">
-          <button class="auth-tab is-active" id="loginTab" type="button" role="tab" aria-selected="true">ورود</button>
-          <button class="auth-tab" id="signupTab" type="button" role="tab" aria-selected="false">ساخت حساب</button>
+          <button class="auth-tab is-active" id="loginTab" type="button" role="tab" aria-selected="true" aria-controls="loginForm">ورود</button>
+          <button class="auth-tab" id="signupTab" type="button" role="tab" aria-selected="false" aria-controls="signupForm">ساخت حساب</button>
         </div>
 
-        <button id="googleButton" class="auth-google" type="button"><span aria-hidden="true">G</span> ادامه با حساب گوگل</button>
+        <button id="googleButton" class="auth-google" type="button">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.93c-.58 2.96-2.26 5.48-4.76 7.18l7.73 6C44.4 37.98 46.98 31.86 46.98 24.55z"/><path fill="#FBBC05" d="M10.53 28.59A14.4 14.4 0 0 1 9.75 24c0-1.59.27-3.13.76-4.59l-7.98-6.19A23.9 23.9 0 0 0 0 24c0 3.88.93 7.56 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.9-5.8l-7.73-6c-2.14 1.44-4.89 2.3-8.17 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+          <span>ادامه با حساب گوگل</span>
+        </button>
         <div class="auth-divider"><span>یا با ایمیل ادامه بده</span></div>
 
         <form id="loginForm" class="auth-form">
@@ -55,6 +58,8 @@
         </form>
 
         <form id="signupForm" class="auth-form" hidden>
+          <label for="signupName">نام نمایشی <span class="auth-optional">(اختیاری)</span></label>
+          <input id="signupName" name="displayName" type="text" autocomplete="name" maxlength="60" placeholder="مثلاً فریان">
           <label for="signupEmail">ایمیل</label>
           <input id="signupEmail" name="email" type="email" autocomplete="email" placeholder="name@example.com" required>
           <label for="signupPassword">رمز عبور</label>
@@ -84,16 +89,25 @@
         </form>
       </div>
 
-      <section id="accountPanel" class="auth-account" hidden>
-        <div class="auth-avatar" aria-hidden="true">✓</div>
-        <h2>خوش اومدی!</h2>
-        <p>با این حساب وارد Fery90Game شدی:</p>
-        <strong id="accountEmail" class="auth-account-email"></strong>
-        <button id="logoutButton" class="auth-submit" type="button">خروج از حساب</button>
+      <section id="accountPanel" class="auth-account" aria-labelledby="accountTitle" hidden>
+        <div class="auth-avatar" aria-hidden="true">F</div>
+        <span class="auth-profile-kicker">YOUR FERY90GAME PROFILE</span>
+        <h2 id="accountTitle">پروفایل کاربری</h2>
+        <p>اطلاعات نمایشی حسابت رو مدیریت کن.</p>
+        <form id="profileForm" class="auth-profile-form">
+          <label for="profileName">نام نمایشی</label>
+          <input id="profileName" name="displayName" type="text" autocomplete="name" maxlength="60" placeholder="نامی که دوست داری نمایش داده بشه" required>
+          <button id="saveProfileButton" class="auth-submit" type="submit">ذخیره نام</button>
+        </form>
+        <div class="auth-account-details">
+          <span>ایمیل حساب</span>
+          <strong id="accountEmail" class="auth-account-email"></strong>
+        </div>
+        <button id="logoutButton" class="auth-logout" type="button">خروج از حساب</button>
       </section>
 
       <p id="authMessage" class="auth-message" role="status" aria-live="polite"></p>
-      <p class="auth-security-note">ارتباط و مدیریت حساب توسط سرویس احراز هویت Supabase انجام می‌شود. رمز عبور شما در این سایت ذخیره نمی‌شود.</p>
+      <p class="auth-security-note">احراز هویت و ذخیره اطلاعات پروفایل توسط Supabase انجام می‌شود. رمز عبور در این سایت ذخیره نمی‌شود.</p>
     </section>
   </main>
   <footer class="auth-footer">© <span id="authYear"></span> Fery90Game</footer>
