@@ -4067,3 +4067,67 @@ input:focus-visible {
         margin-left: 54px;
     }
 }
+
+
+/* دکمه کامل و خوانای حساب کاربری در هدر */
+.header-account-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    width: auto;
+    min-width: 142px;
+    height: 44px;
+    padding: 0 15px;
+    border: 1px solid rgba(182, 154, 255, .48);
+    border-radius: 13px;
+    background: linear-gradient(135deg, rgba(124, 58, 237, .24), rgba(59, 130, 246, .14));
+    color: #f3eaff;
+    font-family: inherit;
+    font-size: .84rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    white-space: nowrap;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, .16), inset 0 1px 0 rgba(255, 255, 255, .06);
+    transition: transform .2s ease, border-color .2s ease, background .2s ease, box-shadow .2s ease;
+}
+
+.header-account-icon {
+    width: 19px;
+    height: 19px;
+    flex: 0 0 auto;
+    color: #c4b5fd;
+    transition: color .2s ease, transform .2s ease;
+}
+
+.header-account-text {
+    display: inline-block;
+    line-height: 1.5;
+}
+
+.header-account-link:hover {
+    transform: translateY(calc(-50% - 2px));
+    border-color: #c4b5fd;
+    background: linear-gradient(135deg, rgba(124, 58, 237, .38), rgba(59, 130, 246, .24));
+    color: #fff;
+    box-shadow: 0 8px 26px rgba(124, 58, 237, .22), 0 0 0 3px rgba(155, 107, 255, .08);
+}
+
+.header-account-link:hover .header-account-icon {
+    color: #fff;
+    transform: scale(1.08);
+}
+
+.header-account-link:focus-visible {
+    outline: 2px solid #93c5fd;
+    outline-offset: 4px;
+}
+
+@media (max-width: 760px) {
+    .header-account-link {
+        min-width: 132px;
+        height: 42px;
+        padding-inline: 12px;
+        font-size: .78rem;
+    }
+}
