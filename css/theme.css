@@ -80,3 +80,16 @@ html[data-theme] :is(.pong-court-wrap,.canvas-wrap,.stage,.board){border-color:v
 html[data-theme] .content-aparat-player{background:#05040b!important}
 @media(max-width:760px){html[data-theme] .theme-toggle{min-height:36px;padding-inline:10px;font-size:11px}}
 @media(prefers-reduced-motion:reduce){html[data-theme] *,html[data-theme] *::before,html[data-theme] *::after{transition:none!important;scroll-behavior:auto!important}}
+
+/* Consistent controls, utility widgets and product shell */
+html[data-theme] body.products-page{background:var(--bg)!important;color:var(--text)!important}
+html[data-theme] :is(.tools-panel,.tools-challenge-card,.tools-username-card,.tools-favorite-card,.tools-cta-card,.tools-empty-state,.tools-game-picker-result,.tools-field,.tools-input,.tools-result-column,.tools-challenge-results){background:var(--surface)!important;color:var(--text)!important;border-color:var(--border)!important}
+html[data-theme] :is(.tools-label,.tools-muted,.tools-note,.tools-section-heading p,.tools-result-heading,.tools-game-list-heading){color:var(--muted)!important}
+html[data-theme] :is(.tools-input,input.tools-input,textarea.tools-input,select.tools-input){background:var(--surface)!important;color:var(--text)!important;border-color:var(--border)!important}
+html[data-theme] :is(.tools-full-button,.tools-generate-name,.tools-filter-button.is-active,.tools-filter-button.active,.tools-save-button,.tools-mini-button){background:var(--purple)!important;color:#fff!important;border-color:var(--purple)!important}
+html[data-theme] :is(.tools-filter-button,.tools-text-button,.tools-game-picker-actions button,.tools-username-actions button,.tools-favorite-actions button,.tools-remove-favorite){background:var(--bg-soft)!important;color:var(--text)!important;border-color:var(--border)!important}
+html[data-theme] button:not(.auth-google):not(.auth-submit):not(.auth-tab):not(.auth-text-button):not(.auth-logout):not(.theme-toggle):not(.button-primary):not(.search-button):not(.tools-full-button):not(.tools-generate-name):not(.tools-save-button):not(.tools-mini-button):not(.btn-primary):not(.pong-btn.primary):not(.product-button.primary):not(.about-button-primary){color:var(--text);border-color:var(--border)}
+html[data-theme] :is(.about-page .about-panel,.about-page .about-feature,.about-page .about-principle,.about-page .about-highlight,.products-page .product-card,.products-page .products-future,.products-page .products-note){background:var(--surface)!important;color:var(--text)!important;border-color:var(--border)!important}
+html[data-theme] :is(.about-page .about-button,.products-page .product-button:not(.primary)){background:var(--surface)!important;color:var(--purple)!important;border-color:var(--border)!important}
+html[data-theme] :is(.about-page .about-button-primary,.products-page .product-button.primary){background:linear-gradient(120deg,var(--purple),var(--blue))!important;color:#fff!important}
+html[data-theme="light"] :is(.game-message,.pong-status,.auth-message){color:var(--text)}
