@@ -1,0 +1,7 @@
+html[data-theme="light"]{color-scheme:light;--bg:#f4f2fb;--panel:#fff;--surface:#fff;--text:#201a31;--muted:#68617b;--border:rgba(83,65,125,.18);--purple:#7445d4;--blue:#2563eb}
+html[data-theme="light"] body{color:var(--text)}
+.theme-toggle{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:40px;padding:0 13px;border:1px solid var(--border,rgba(190,166,255,.2));border-radius:12px;background:var(--panel,#141124);color:var(--text,#f6f3ff);font:700 12px/1.4 Tahoma,sans-serif;cursor:pointer;white-space:nowrap}
+.theme-toggle-icon{font-size:16px}
+html[data-theme="light"] .theme-toggle{background:#fff;color:#302643}
+html[data-theme="light"] .pong-page{--bg:#f4f2fb;--panel:#fff;--text:#201a31;--muted:#68617b;--border:rgba(83,65,125,.18)}
+@media(max-width:600px){.theme-toggle{min-height:36px;padding-inline:10px;font-size:11px}}
