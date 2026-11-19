@@ -35,7 +35,7 @@ html[data-theme] :is(input:not([type=checkbox]):not([type=radio]),textarea,selec
 html[data-theme] :is(input,textarea,select)::placeholder{color:var(--muted)!important;opacity:.8}
 html[data-theme] :is(button,a,input,select,textarea,[tabindex]):focus-visible{outline:2px solid var(--blue)!important;outline-offset:3px}
 html[data-theme] :is(button:disabled,.disabled){opacity:.58}
-html[data-theme] :is(.theme-toggle){display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:40px;padding:0 14px;border:1px solid var(--border)!important;border-radius:12px;background:var(--surface)!important;color:var(--text)!important;font:700 12px/1.4 inherit;cursor:pointer;white-space:nowrap;transition:transform .2s ease,border-color .2s ease}
+html[data-theme] :is(.theme-toggle){display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:40px;padding:0 14px;border:1px solid var(--border)!important;border-radius:12px;background:var(--surface)!important;color:var(--text)!important;font-family:inherit;font-size:12px;font-weight:700;line-height:1.4;cursor:pointer;white-space:nowrap;transition:transform .2s ease,border-color .2s ease}
 html[data-theme] .theme-toggle:hover{transform:translateY(-2px);border-color:var(--purple)!important}
 .theme-toggle-icon{font-size:16px;line-height:1}
 html[data-theme] :is(.auth-page,.auth-main,.auth-footer){color:var(--text)!important}
