@@ -275,3 +275,29 @@ html[data-theme] .social-card-copy b { color: var(--accent) !important; }
     transition-duration: .01ms !important; scroll-behavior: auto !important;
   }
 }
+
+/* Backwards-compatible aliases used by older page-level styles and game canvases. */
+html[data-theme] {
+  --purple: var(--accent);
+  --purple-bright: var(--accent-strong);
+  --blue: var(--secondary);
+  --pink: var(--highlight);
+  --panel: var(--surface);
+  --card-glow: var(--glow);
+  --about-bg: var(--bg);
+  --about-panel: var(--surface);
+  --about-border: var(--border);
+  --about-purple: var(--accent);
+  --about-blue: var(--secondary);
+  --about-text: var(--text);
+  --about-muted: var(--muted);
+  --p-bg: var(--bg);
+  --p-panel: var(--surface);
+  --p-border: var(--border);
+  --p-purple: var(--accent);
+  --p-blue: var(--secondary);
+  --p-text: var(--text);
+  --p-muted: var(--muted);
+  --game-panel: var(--surface);
+  --game-border: var(--border);
+}
