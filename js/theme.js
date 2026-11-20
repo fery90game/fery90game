@@ -1,43 +1,84 @@
 (() => {
- "use strict";
- const KEY="fery90game-theme",root=document.documentElement;
- const valid=t=>t==="light"||t==="dark";
- let saved=null;try{saved=localStorage.getItem(KEY)}catch(_){}
- const system=window.matchMedia&&window.matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";
- function apply(theme){
-  const selected=valid(theme)?theme:"dark";
-  root.dataset.theme=selected;
-  const meta=document.querySelector('meta[name="theme-color"]');
-  if(meta)meta.setAttribute("content",selected==="light"?"#f7fff9":"#08070d");
-  const button=document.querySelector(".theme-toggle");
-  if(button){
-   const light=selected==="light";
-   button.innerHTML='<span class="theme-toggle-icon" aria-hidden="true">'+(light?"☀️":"🌙")+'</span><span>'+(light?"تم روشن":"تم تاریک")+'</span>';
-   button.setAttribute("aria-label",light?"تغییر به تم تاریک":"تغییر به تم روشن");
-   button.setAttribute("aria-pressed",String(light));
-   button.title=light?"تغییر به تم تاریک":"تغییر به تم روشن";
+  "use strict";
+
+  const STORAGE_KEY = "fery90game-theme";
+  const root = document.documentElement;
+  const isTheme = value => value === "light" || value === "dark";
+  const getSavedTheme = () => {
+    try { return localStorage.getItem(STORAGE_KEY); }
+    catch (_) { return null; }
+  };
+  const systemTheme = () => window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+
+  function applyTheme(theme) {
+    const selected = isTheme(theme) ? theme : "dark";
+    root.dataset.theme = selected;
+
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute("content", selected === "light" ? "#f6faf5" : "#090b14");
+
+    const button = document.querySelector("[data-theme-control]");
+    if (button) {
+      const light = selected === "light";
+      const icon = button.querySelector(".theme-toggle-icon");
+      if (icon) icon.textContent = light ? "☀" : "☾";
+      button.setAttribute("aria-label", light ? "تغییر به تم تاریک" : "تغییر به تم روشن");
+      button.setAttribute("title", light ? "تغییر به تم تاریک" : "تغییر به تم روشن");
+      button.setAttribute("aria-pressed", String(light));
+    }
   }
- }
- apply(valid(saved)?saved:system);
- function mount(){
-  if(document.querySelector(".theme-toggle")){apply(root.dataset.theme);return;}
-  const host=document.querySelector(".header-inner,.products-header-inner,.about-header-inner,.about-header,.topbar,.pong-header-inner,.pong-header");
-  if(!host)return;
-  const button=document.createElement("button");
-  button.type="button";button.className="theme-toggle";button.dataset.themeControl="true";
-  button.addEventListener("click",()=>{
-   const next=root.dataset.theme==="light"?"dark":"light";
-   try{localStorage.setItem(KEY,next)}catch(_){}
-   apply(next);
-  });
-  host.appendChild(button);apply(root.dataset.theme);
- }
- if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",mount,{once:true});else mount();
- if(window.matchMedia){
-  const media=window.matchMedia("(prefers-color-scheme: light)");
-  media.addEventListener?.("change",event=>{
-   let preference=null;try{preference=localStorage.getItem(KEY)}catch(_){}
-   if(!valid(preference))apply(event.matches?"light":"dark");
-  });
- }
+
+  function findHeader() {
+    return document.querySelector(
+      ".header-inner, .products-header-inner, .about-header-inner, .topbar, .pong-header-inner, .pong-header"
+    );
+  }
+
+  function mountThemeControl() {
+    const existing = document.querySelector("[data-theme-control]");
+    if (existing) {
+      applyTheme(root.dataset.theme);
+      return;
+    }
+
+    const header = findHeader();
+    if (!header) return;
+
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "theme-toggle";
+    button.dataset.themeControl = "true";
+    button.innerHTML = '<span class="theme-toggle-icon" aria-hidden="true">☾</span>';
+    button.addEventListener("click", () => {
+      const next = root.dataset.theme === "light" ? "dark" : "light";
+      try { localStorage.setItem(STORAGE_KEY, next); } catch (_) { /* storage may be blocked */ }
+      applyTheme(next);
+    });
+
+    // Place the switch beside the account/back action, not after an arbitrary
+    // flex child. Its fixed dimensions make the header geometry invariant.
+    const anchor = header.querySelector(
+      ".header-account-link, .header-cta, .back, .back-link, .pong-back, .button-secondary"
+    );
+    if (anchor && anchor.parentElement === header) header.insertBefore(button, anchor);
+    else header.appendChild(button);
+
+    applyTheme(root.dataset.theme);
+  }
+
+  applyTheme(isTheme(getSavedTheme()) ? getSavedTheme() : systemTheme());
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", mountThemeControl, { once: true });
+  } else {
+    mountThemeControl();
+  }
+
+  if (window.matchMedia) {
+    const preference = window.matchMedia("(prefers-color-scheme: light)");
+    const onSystemChange = event => {
+      if (!isTheme(getSavedTheme())) applyTheme(event.matches ? "light" : "dark");
+    };
+    if (preference.addEventListener) preference.addEventListener("change", onSystemChange);
+    else if (preference.addListener) preference.addListener(onSystemChange);
+  }
 })();
