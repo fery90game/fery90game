@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://fery90game.github.io/fery90game/sitemap.xml
