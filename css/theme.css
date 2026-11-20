@@ -209,7 +209,7 @@ html[data-theme] :is(.content-search-box,.content-filter-button,.content-platfor
 }
 html[data-theme] .content-platform-placeholder { background: var(--bg-soft) !important; }
 html[data-theme] .content-aparat-player { background: #05040b !important; }
-html[data-theme] .content-aparat-load { color: #fff !important; background: linear-gradient(115deg,var(--accent),var(--secondary)) !important; }
+html[data-theme] .content-aparat-load { color: #fff !important; background: linear-gradient(115deg,var(--button-start),var(--button-end)) !important; }
 
 /* ---------- Tools page ---------- */
 html[data-theme] :is(.tools-panel,.tools-challenge-card,.tools-username-card,.tools-favorite-card,.tools-cta-card,.tools-empty-state,.tools-game-picker-result,.tools-field,.tools-result-column,.tools-challenge-results) { background: var(--surface) !important; color: var(--text) !important; border-color: var(--border) !important; }
@@ -253,7 +253,7 @@ html[data-theme] :is(.btn,.pong-btn,.direction,.pong-touch-btn,.dpad button,.lev
   color: var(--text) !important; background: var(--surface-raised) !important; border: 1px solid var(--border) !important;
 }
 html[data-theme] :is(.btn.primary,.btn-primary,.pong-btn.primary,.level[aria-pressed="true"]) {
-  color: #fff !important; background: linear-gradient(115deg,var(--accent),var(--secondary)) !important; border-color: transparent !important;
+  color: #fff !important; background: linear-gradient(115deg,var(--button-start),var(--button-end)) !important; border-color: transparent !important;
 }
 html[data-theme] :is(.overlay,.game-overlay,.pong-overlay) { background: color-mix(in srgb,var(--bg) 84%,transparent) !important; }
 html[data-theme] :is(.overlay-card,.pong-overlay-card) { color: var(--text) !important; background: var(--surface) !important; border-color: var(--border) !important; }
