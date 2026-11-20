@@ -93,3 +93,110 @@ html[data-theme] :is(.about-page .about-panel,.about-page .about-feature,.about-
 html[data-theme] :is(.about-page .about-button,.products-page .product-button:not(.primary)){background:var(--surface)!important;color:var(--purple)!important;border-color:var(--border)!important}
 html[data-theme] :is(.about-page .about-button-primary,.products-page .product-button.primary){background:linear-gradient(120deg,var(--purple),var(--blue))!important;color:#fff!important}
 html[data-theme="light"] :is(.game-message,.pong-status,.auth-message){color:var(--text)}
+
+/* Theme quality pass: eliminate legacy hard-coded accents and restore readable contrast */
+html[data-theme="light"]{
+ --purple:#137a43;
+ --purple-bright:#176b3e;
+ --blue:#8a6500;
+ --pink:#8a6500;
+ --text:#17251c;
+ --muted:#526456;
+ --border:rgba(25,112,61,.2);
+ --card-glow:rgba(25,145,75,.12);
+ --panel:#fff;
+ --about-purple:#137a43;--about-blue:#8a6500;--about-text:#17251c;--about-muted:#526456;
+ --p-purple:#137a43;--p-blue:#8a6500;--p-text:#17251c;--p-muted:#526456;
+}
+html[data-theme="dark"]{
+ --text:#f7f4ff;
+ --muted:#c6bdd8;
+ --blue:#7db8ff;
+ --border:rgba(190,170,245,.24);
+}
+html[data-theme] body :is(p,li,dd,dt,figcaption,.description,.subtitle,.lead,.meta,.hint,.note,.caption,.help,.tip,.small-text,.section-description,.hero-description,.footer-description){
+ color:var(--muted)!important;
+}
+html[data-theme] body :is(h1,h2,h3,h4,h5,h6,strong,b,th,.title,.section-title,.card-title,.brand-name,.brand-text){
+ color:var(--text);
+}
+html[data-theme] body :is(.announcement,.announcement-inner,.announcement p,.announcement strong,.announcement a,.brand-caption,.nav-link,.header-cta,.eyebrow,.eyebrow-icon,.highlight-item,.visual-card-label,.visual-card-front,.search-hint,.section-kicker,.category-label,.card-arrow,.category-card p,.category-link,.footer-description,.footer-links a,.footer-bottom,.footer-status span,.gaming-eyebrow,.gaming-gradient-text,.gaming-float-tag,.gaming-coming-badge,.content-eyebrow,.content-gradient-text,.content-floating-label,.content-thumbnail-category,.content-thumbnail-type,.tools-hero-content,.tools-floating-tag,.tools-shortcut,.tools-section-number,.tools-result-heading,.tools-game-list-heading,.tools-picker-label,.tools-note,.tools-status,.about-page,.products-page,.pong-page,.auth-page){
+ color:var(--text);
+}
+html[data-theme] :is(.announcement,.announcement-inner){background:color-mix(in srgb,var(--purple) 7%,var(--surface))!important;border-color:var(--border)!important}
+html[data-theme] .announcement p{color:var(--muted)!important}
+html[data-theme] .announcement a{color:var(--purple)!important}
+html[data-theme] :is(.brand-caption,.search-hint,.search-hint *, .brand-copy small,.footer-bottom,.footer-description,.footer-status,.category-card p,.highlight-item,.visual-card-front,.tools-note,.tools-muted,.tools-status,.tools-picker-label,.tools-section-heading p,.tools-game-list-heading span,.content-empty-state p,.about-page p,.products-page p,.pong-instruction p,.auth-note,.auth-security-note,.auth-footer,.auth-account>p){
+ color:var(--muted)!important;
+}
+html[data-theme] :is(.brand-icon,.brand-mark,.about-brand-icon,.products-brand-icon,.pong-brand-icon,.product-app-icon,.about-feature-icon,.about-highlight-icon){
+ background:linear-gradient(135deg,var(--purple),var(--blue))!important;color:#fff!important;
+}
+html[data-theme] :is(.header-cta,.eyebrow,.gaming-eyebrow,.content-eyebrow,.tools-shortcut,.tools-floating-tag,.tools-section-number,.category-label,.category-link,.highlight-icon,.chip-icon,.search-symbol,.content-notice-icon,.content-platform-placeholder>span,.gaming-category-icon,.gaming-coming-badge,.tools-shortcut-icon){
+ border-color:var(--border)!important;
+}
+html[data-theme] :is(.header-cta,.button-primary,.search-button,.auth-submit,.product-button.primary,.about-button-primary,.btn.primary,.btn-primary,.pong-btn.primary,.pong-btn.active,.pong-touch-btn,.tools-full-button,.tools-generate-name,.tools-save-button,.tools-mini-button,.content-filter-button.is-active,.auth-tab.is-active){
+ background:linear-gradient(120deg,var(--purple),color-mix(in srgb,var(--purple) 72%,var(--blue)))!important;
+ color:#fff!important;border-color:transparent!important;
+}
+html[data-theme] :is(.button-secondary,.button:not(.button-primary),.header-cta,.product-button:not(.primary),.about-button:not(.about-button-primary),.btn.secondary,.btn-secondary,.pong-btn:not(.primary):not(.active),.direction,.tools-filter-button,.tools-text-button,.tools-game-picker-actions button,.tools-username-actions button,.tools-favorite-actions button,.tools-remove-favorite,.content-filter-button:not(.is-active),.content-search-box button){
+ background:var(--surface)!important;color:var(--purple)!important;border-color:var(--border)!important;
+}
+html[data-theme] :is(.button-secondary:hover,.button:not(.button-primary):hover,.tools-filter-button:hover,.tools-text-button:hover,.content-filter-button:hover){
+ background:var(--surface-hover)!important;color:var(--purple)!important;
+}
+html[data-theme] :is(.nav-link:hover,.nav-link.active,.about-nav a:hover,.about-nav a[aria-current="page"],.products-nav a:hover,.products-nav a[aria-current="page"],.footer-links a:hover){
+ color:var(--purple)!important;background:color-mix(in srgb,var(--purple) 9%,transparent)!important;
+}
+html[data-theme] :is(.category-card,.gaming-category-card,.gaming-game-card,.content-video-card,.content-play-card,.content-demo-notice,.content-platform-panel,.content-empty-state,.feature-section,.community-card,.quick-search,.global-search-result,.social-card,.tools-panel,.tools-shortcut,.tools-challenge-card,.tools-username-card,.tools-favorite-card,.tools-cta-card,.tools-empty-state,.tools-game-picker-result,.tools-field,.tools-result-column,.tools-challenge-results,.about-panel,.about-feature,.about-principle,.about-highlight,.about-final-cta,.product-card,.products-note,.products-future,.products-cta,.game-shell,.panel,.side,.hudbox,.stat,.scoreboard,.pong-game-panel,.pong-instruction,.game-overlay,.overlay-card){
+ background:var(--surface)!important;color:var(--text)!important;border-color:var(--border)!important;
+}
+html[data-theme] :is(.category-card:hover,.gaming-category-card:hover,.gaming-game-card:hover,.content-video-card:hover,.tools-shortcut:hover,.about-feature:hover,.product-card:hover){
+ border-color:var(--purple)!important;box-shadow:0 14px 34px color-mix(in srgb,var(--purple) 12%,transparent)!important;
+}
+html[data-theme] :is(.category-icon,.highlight-icon,.chip-icon,.search-symbol,.content-notice-icon,.gaming-category-icon,.tools-shortcut-icon,.product-badge,.products-stat,.about-highlight-icon){
+ background:color-mix(in srgb,var(--purple) 10%,var(--surface))!important;color:var(--purple)!important;
+}
+html[data-theme] :is(.category-label,.section-kicker,.section-decoration,.eyebrow,.eyebrow-icon,.gaming-eyebrow,.content-eyebrow,.tools-section-number,.tools-result-dot,.about-eyebrow,.about-section-heading,.products-eyebrow,.products-section-heading,.pong-eyebrow,.auth-kicker,.auth-profile-kicker,.auth-account-email,.auth-text-button,.tools-picker-symbol,.tools-result-heading){
+ color:var(--purple)!important;
+}
+html[data-theme] :is(.gradient-text,.gaming-gradient-text,.content-gradient-text,.about-gradient-text,.products-gradient,.gradient,.pong-gradient,.tools-hero-content h1 span){
+ background:linear-gradient(100deg,var(--purple),var(--blue))!important;background-clip:text!important;-webkit-background-clip:text!important;color:transparent!important;
+}
+html[data-theme] :is(.page-glow-one,.page-glow-two,.hero-visual::before,.visual-orbit,.orbit-two,.hero-controller,.feature-art::before,.feature-ring,.ring-two,.gaming-grid-glow,.gaming-orbit,.gaming-controller,.content-art-orbit,.tools-orbit,.tools-orbit-two,.tools-hero-controller){
+ opacity:.28!important;
+}
+html[data-theme="light"] :is(.page-glow-one,.hero-visual::before,.visual-orbit,.feature-art::before,.feature-ring,.gaming-grid-glow,.gaming-orbit,.gaming-controller,.content-art-orbit,.tools-orbit,.tools-hero-controller){
+ filter:saturate(.45)!important;
+}
+html[data-theme] :is(.mobile-menu-button,.menu-toggle,.tools-input,.auth-form input,.auth-profile-form input,.quick-search input,.content-search-box input,.pong-select,.pong-btn,.direction,.dpad button){
+ background:var(--surface)!important;color:var(--text)!important;border-color:var(--border)!important;
+}
+html[data-theme] :is(input,textarea,select)::placeholder{color:var(--muted)!important;opacity:1!important}
+html[data-theme] :is(.mobile-menu-button span,.menu-toggle span){background:var(--text)!important}
+html[data-theme] :is(.tools-input option,.pong-select option){background:var(--surface)!important;color:var(--text)!important}
+html[data-theme] :is(.stat strong,.value,.record,.hudbox strong,.pong-score,.tools-section-number){color:var(--purple)!important}
+html[data-theme] :is(.footer-bottom,.footer-main,.footer-links,.about-footer,.products-footer){border-color:var(--border)!important}
+html[data-theme] :is(.overlay,.game-overlay,.pong-overlay){background:color-mix(in srgb,var(--bg) 82%,transparent)!important}
+html[data-theme] :is(.auth-tabs,.auth-account-details){background:var(--bg-soft)!important;border-color:var(--border)!important}
+html[data-theme] :is(.auth-tab:not(.is-active),.auth-account-details>span){color:var(--muted)!important}
+html[data-theme] :is(.auth-message,.auth-loading){color:var(--purple)!important}
+html[data-theme] .auth-message.is-error{color:#e05262!important}
+html[data-theme] .auth-message.is-success{color:#16834b!important}
+html[data-theme] .auth-logout{background:color-mix(in srgb,#dc5362 9%,var(--surface))!important;color:#bd3447!important;border-color:color-mix(in srgb,#dc5362 30%,var(--border))!important}
+html[data-theme] .content-aparat-load{background:linear-gradient(115deg,var(--purple),color-mix(in srgb,var(--purple) 65%,var(--blue)))!important;color:#fff!important}
+html[data-theme] .content-platform-placeholder{background:var(--bg-soft)!important;border-color:var(--border)!important}
+html[data-theme] .content-aparat-player{background:#05040b!important}
+html[data-theme] .product-features li{color:var(--muted)!important}
+html[data-theme] .product-button.disabled{background:var(--bg-soft)!important;color:var(--muted)!important}
+html[data-theme] .tools-result-dot{background:#16834b!important;box-shadow:0 0 10px color-mix(in srgb,#16834b 45%,transparent)!important}
+html[data-theme] .tools-input:focus{border-color:var(--purple)!important;box-shadow:0 0 0 3px color-mix(in srgb,var(--purple) 12%,transparent)!important}
+html[data-theme] :is(.game-message.success,.pong-status){color:var(--text)!important}
+html[data-theme] :is(.game-message.fail){color:#e05262!important}
+html[data-theme="light"] [style*="#a78bfa" i],
+html[data-theme="light"] [style*="#c4b5fd" i],
+html[data-theme="light"] [style*="#b69aff" i],
+html[data-theme="light"] [style*="#9b6bff" i]{color:var(--purple)!important}
+html[data-theme] :is(button,a,input,select,textarea,[tabindex]):focus-visible{outline-color:var(--blue)!important}
+html[data-theme] :is(button:disabled,.disabled){opacity:.68}
+@media(prefers-reduced-motion:reduce){html[data-theme] *,html[data-theme] *::before,html[data-theme] *::after{animation-duration:.01ms!important;animation-iteration-count:1!important}}
