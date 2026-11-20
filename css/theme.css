@@ -19,6 +19,8 @@ html[data-theme="dark"] {
   --accent-soft: rgba(169, 149, 255, .13);
   --accent-contrast: #17132b;
   --secondary: #70b8ff;
+  --button-start: #6d50d8;
+  --button-end: #315fba;
   --secondary-soft: rgba(112, 184, 255, .13);
   --highlight: #68d1e8;
   --highlight-soft: rgba(104, 209, 232, .12);
@@ -51,9 +53,11 @@ html[data-theme="light"] {
   --accent-strong: #115c3b;
   --accent-soft: rgba(25, 115, 75, .09);
   --accent-contrast: #ffffff;
-  --secondary: #9a720d;
+  --secondary: #87600b;
+  --button-start: #19734b;
+  --button-end: #115c3b;
   --secondary-soft: rgba(218, 174, 48, .15);
-  --highlight: #b78616;
+  --highlight: #87600b;
   --highlight-soft: rgba(218, 174, 48, .13);
   --success: #16734a;
   --warning: #956400;
@@ -117,7 +121,7 @@ html[data-theme] :is(.site-footer,.about-footer,.products-footer,.footer-main,.f
 html[data-theme] :is(.brand-caption,.footer-description,.footer-bottom,.footer-status,.brand-copy small) { color: var(--subtle) !important; }
 html[data-theme] .brand-icon,
 html[data-theme] :is(.brand-mark,.about-brand-icon,.products-brand-icon,.pong-brand-icon) {
-  background: linear-gradient(140deg,var(--accent),var(--secondary)) !important; color: #fff !important;
+  background: linear-gradient(140deg,var(--button-start),var(--button-end)) !important; color: #fff !important;
 }
 html[data-theme] .header-account-link {
   color: var(--accent) !important; background: var(--accent-soft) !important;
@@ -125,7 +129,7 @@ html[data-theme] .header-account-link {
 }
 html[data-theme] .header-account-icon { color: var(--accent) !important; }
 html[data-theme] .header-cta {
-  color: #fff !important; background: linear-gradient(115deg,var(--accent),var(--secondary)) !important;
+  color: #fff !important; background: linear-gradient(115deg,var(--button-start),var(--button-end)) !important;
   border: 0 !important; box-shadow: 0 8px 22px var(--glow);
 }
 html[data-theme] .mobile-menu-button span { background: var(--text) !important; }
@@ -155,7 +159,7 @@ html[data-theme] :is(.category-card:hover,.gaming-category-card:hover,.gaming-ga
   transform: translateY(-3px); border-color: var(--border-strong) !important; box-shadow: var(--shadow);
 }
 html[data-theme] :is(.button-primary,.search-button,.auth-submit,.product-button.primary,.about-button-primary,.btn.primary,.btn-primary,.pong-btn.primary,.pong-touch-btn,.tools-full-button,.tools-generate-name,.tools-save-button,.tools-mini-button,.content-filter-button.is-active,.auth-tab.is-active) {
-  color: #fff !important; background: linear-gradient(115deg,var(--accent),color-mix(in srgb,var(--accent) 45%,var(--secondary))) !important;
+  color: #fff !important; background: linear-gradient(115deg,var(--button-start),var(--button-end)) !important;
   border: 1px solid transparent !important; box-shadow: 0 8px 20px var(--glow);
 }
 html[data-theme] :is(.button-secondary,.product-button:not(.primary),.about-button:not(.about-button-primary),.btn.secondary,.btn-secondary,.pong-btn:not(.primary):not(.active),.direction,.tools-filter-button,.tools-text-button,.tools-game-picker-actions button,.tools-username-actions button,.tools-favorite-actions button,.tools-remove-favorite,.content-filter-button:not(.is-active)) {
