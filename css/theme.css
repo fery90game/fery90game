@@ -305,3 +305,66 @@ html[data-theme] {
   --game-panel: var(--surface);
   --game-border: var(--border);
 }
+
+
+/* ---------- Stable layout contract (theme changes are paint-only) ---------- */
+html[data-theme] :is(button,.button,.btn,.pong-btn,.direction,.level,.tools-filter-button,.tools-mini-button,.tools-save-button,.tools-generate-name,.tools-full-button,.header-account-link,.header-cta,.about-button,.product-button,.content-filter-button) {
+  box-sizing: border-box;
+  border-style: solid;
+  border-width: 1px;
+}
+html[data-theme] :is(button,.button,.btn,.pong-btn,.direction,.level,.tools-filter-button,.tools-mini-button,.tools-save-button,.tools-generate-name,.tools-full-button,.header-account-link,.header-cta,.about-button,.product-button,.content-filter-button) {
+  transform-origin: center;
+}
+/* The theme switch has a fixed footprint and icon-only label: toggling cannot
+   change header intrinsic width, wrap navigation, or push adjacent actions. */
+html[data-theme] .theme-toggle {
+  box-sizing: border-box !important;
+  display: inline-grid !important;
+  place-items: center !important;
+  flex: 0 0 44px !important;
+  width: 44px !important;
+  min-width: 44px !important;
+  max-width: 44px !important;
+  height: 42px !important;
+  min-height: 42px !important;
+  max-height: 42px !important;
+  padding: 0 !important;
+  overflow: hidden;
+  white-space: nowrap;
+  line-height: 1;
+  transform: none !important;
+}
+html[data-theme] .theme-toggle:hover,
+html[data-theme] .theme-toggle:active {
+  transform: none !important;
+}
+html[data-theme] .theme-toggle-icon {
+  display: block;
+  width: 1em;
+  height: 1em;
+  font-size: 18px;
+  line-height: 1;
+}
+/* Keep controls from changing their box model when theme-specific borders,
+   shadows and focus colors are applied. */
+html[data-theme] :is(button,input,select,textarea) { box-sizing: border-box; }
+html[data-theme] :is(.header-inner,.products-header-inner,.about-header-inner,.topbar,.pong-header-inner) {
+  min-width: 0;
+}
+html[data-theme] :is(.header-inner,.products-header-inner,.about-header-inner,.topbar,.pong-header-inner) > .theme-toggle {
+  align-self: center;
+  justify-self: center;
+  order: 20;
+}
+@media (max-width: 760px) {
+  html[data-theme] .theme-toggle {
+    flex-basis: 42px !important;
+    width: 42px !important;
+    min-width: 42px !important;
+    max-width: 42px !important;
+    height: 40px !important;
+    min-height: 40px !important;
+    max-height: 40px !important;
+  }
+}
